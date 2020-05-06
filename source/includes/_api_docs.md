@@ -1,21 +1,3 @@
----
-title: Merchant API (MAPI) v1.1.0
-language_tabs:
-  - shell: Shell
-  - http: HTTP
-  - javascript: JavaScript
-  - ruby: Ruby
-  - python: Python
-  - php: PHP
-  - java: Java
-  - go: Go
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
----
-
 <!-- Generator: Widdershins v4.0.1 -->
 
 <h1 id="merchant-api-mapi-">Merchant API (MAPI) v1.1.0</h1>
@@ -31,11 +13,17 @@ Base URLs:
 Email: <a href="mailto:support@friendbuy.com">Support</a>
 License: <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>
 
+# Authentication
+
+- HTTP Authentication, scheme: bearer
+
 <h1 id="merchant-api-mapi--public">public</h1>
 
 Public facing API
 
-## post\_\_v1_authorization
+## postAuthorization
+
+<a id="opIdpostAuthorization"></a>
 
 > Code samples
 
@@ -195,7 +183,7 @@ func main() {
 }
 ```
 
-<h3 id="post__v1_authorization-parameters">Parameters</h3>
+<h3 id="postauthorization-parameters">Parameters</h3>
 
 | Name | In   | Type                                                | Required | Description |
 | ---- | ---- | --------------------------------------------------- | -------- | ----------- |
@@ -209,11 +197,11 @@ func main() {
 {
   "tokenType": "Bearer",
   "token": "string",
-  "expires": "2020-04-29T20:42:22Z"
+  "expires": "2020-05-05T00:50:52Z"
 }
 ```
 
-<h3 id="post__v1_authorization-responses">Responses</h3>
+<h3 id="postauthorization-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                                |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------- |
@@ -228,7 +216,7 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## postPersonalReferralLink
+## Create or retrieve a personal URL for a given customer or email address and campaign.
 
 <a id="opIdpostPersonalReferralLink"></a>
 
@@ -238,7 +226,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://mapi.fbot.me/v1/personal-referral-link \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -269,7 +258,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://mapi.fbot.me/v1/personal-referral-link',
@@ -292,7 +282,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://mapi.fbot.me/v1/personal-referral-link',
@@ -307,7 +298,8 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://mapi.fbot.me/v1/personal-referral-link', headers = headers)
@@ -324,6 +316,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -378,6 +371,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -392,8 +386,6 @@ func main() {
 ```
 
 `POST /v1/personal-referral-link`
-
-_Create or retrieve a personal URL for a given customer or email address and campaign._
 
 Generate event
 
@@ -418,7 +410,7 @@ Generate event
 }
 ```
 
-<h3 id="postpersonalreferrallink-parameters">Parameters</h3>
+<h3 id="create-or-retrieve-a-personal-url-for-a-given-customer-or-email-address-and-campaign.-parameters">Parameters</h3>
 
 | Name | In   | Type                                                              | Required | Description |
 | ---- | ---- | ----------------------------------------------------------------- | -------- | ----------- |
@@ -435,7 +427,7 @@ Generate event
 }
 ```
 
-<h3 id="postpersonalreferrallink-responses">Responses</h3>
+<h3 id="create-or-retrieve-a-personal-url-for-a-given-customer-or-email-address-and-campaign.-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                                                | Schema                                                              |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------- |
@@ -446,11 +438,12 @@ Generate event
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                                                          | [Error](#schemaerror)                                               |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure)                               | [Error](#schemaerror)                                               |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-## postPurchaseEvent
+## Generate purchase event.
 
 <a id="opIdpostPurchaseEvent"></a>
 
@@ -460,7 +453,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://mapi.fbot.me/v1/event/purchase \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -501,7 +495,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://mapi.fbot.me/v1/event/purchase',
@@ -524,7 +519,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://mapi.fbot.me/v1/event/purchase',
@@ -539,7 +535,8 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://mapi.fbot.me/v1/event/purchase', headers = headers)
@@ -556,6 +553,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -610,6 +608,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -624,8 +623,6 @@ func main() {
 ```
 
 `POST /v1/event/purchase`
-
-_Generate purchase event._
 
 Generate purchase event
 
@@ -660,7 +657,7 @@ Generate purchase event
 }
 ```
 
-<h3 id="postpurchaseevent-parameters">Parameters</h3>
+<h3 id="generate-purchase-event.-parameters">Parameters</h3>
 
 | Name | In   | Type                                                | Required | Description |
 | ---- | ---- | --------------------------------------------------- | -------- | ----------- |
@@ -677,7 +674,7 @@ Generate purchase event
 }
 ```
 
-<h3 id="postpurchaseevent-responses">Responses</h3>
+<h3 id="generate-purchase-event.-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                                |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------- |
@@ -687,11 +684,12 @@ Generate purchase event
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                 |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                 |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-## postSignUpEvent
+## Generate sign-up event.
 
 <a id="opIdpostSignUpEvent"></a>
 
@@ -701,7 +699,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://mapi.fbot.me/v1/event/account-sign-up \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -730,7 +729,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://mapi.fbot.me/v1/event/account-sign-up',
@@ -753,7 +753,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://mapi.fbot.me/v1/event/account-sign-up',
@@ -768,7 +769,8 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://mapi.fbot.me/v1/event/account-sign-up', headers = headers)
@@ -785,6 +787,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -839,6 +842,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -853,8 +857,6 @@ func main() {
 ```
 
 `POST /v1/event/account-sign-up`
-
-_Generate sign-up event._
 
 Generate sign-up event.
 
@@ -877,7 +879,7 @@ Generate sign-up event.
 }
 ```
 
-<h3 id="postsignupevent-parameters">Parameters</h3>
+<h3 id="generate-sign-up-event.-parameters">Parameters</h3>
 
 | Name | In   | Type                                            | Required | Description |
 | ---- | ---- | ----------------------------------------------- | -------- | ----------- |
@@ -894,7 +896,7 @@ Generate sign-up event.
 }
 ```
 
-<h3 id="postsignupevent-responses">Responses</h3>
+<h3 id="generate-sign-up-event.-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                            |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
@@ -904,11 +906,12 @@ Generate sign-up event.
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                             |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                             |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-## postCustomEvent
+## Generate a custom event where the structure of the general structure of the request body object is defined by the client.
 
 <a id="opIdpostCustomEvent"></a>
 
@@ -918,7 +921,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://mapi.fbot.me/v1/event/custom \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -948,7 +952,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://mapi.fbot.me/v1/event/custom',
@@ -971,7 +976,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://mapi.fbot.me/v1/event/custom',
@@ -986,7 +992,8 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://mapi.fbot.me/v1/event/custom', headers = headers)
@@ -1003,6 +1010,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -1057,6 +1065,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1071,8 +1080,6 @@ func main() {
 ```
 
 `POST /v1/event/custom`
-
-_Generate a custom event where the structure of the general structure of the request body object is defined by the client._
 
 Generate event
 
@@ -1096,7 +1103,7 @@ Generate event
 }
 ```
 
-<h3 id="postcustomevent-parameters">Parameters</h3>
+<h3 id="generate-a-custom-event-where-the-structure-of-the-general-structure-of-the-request-body-object-is-defined-by-the-client.-parameters">Parameters</h3>
 
 | Name | In   | Type                                            | Required | Description |
 | ---- | ---- | ----------------------------------------------- | -------- | ----------- |
@@ -1113,7 +1120,7 @@ Generate event
 }
 ```
 
-<h3 id="postcustomevent-responses">Responses</h3>
+<h3 id="generate-a-custom-event-where-the-structure-of-the-general-structure-of-the-request-body-object-is-defined-by-the-client.-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                            |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
@@ -1123,11 +1130,12 @@ Generate event
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                             |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                             |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-## postCustomer
+## Add a new customer to our records.
 
 <a id="opIdpostCustomer"></a>
 
@@ -1137,7 +1145,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://mapi.fbot.me/v1/customer \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1173,7 +1182,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://mapi.fbot.me/v1/customer',
@@ -1196,7 +1206,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://mapi.fbot.me/v1/customer',
@@ -1211,7 +1222,8 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://mapi.fbot.me/v1/customer', headers = headers)
@@ -1228,6 +1240,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -1282,6 +1295,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1296,8 +1310,6 @@ func main() {
 ```
 
 `POST /v1/customer`
-
-_Add a new customer to our records._
 
 Generate event
 
@@ -1327,7 +1339,7 @@ Generate event
 }
 ```
 
-<h3 id="postcustomer-parameters">Parameters</h3>
+<h3 id="add-a-new-customer-to-our-records.-parameters">Parameters</h3>
 
 | Name | In   | Type                                      | Required | Description |
 | ---- | ---- | ----------------------------------------- | -------- | ----------- |
@@ -1344,7 +1356,7 @@ Generate event
 }
 ```
 
-<h3 id="postcustomer-responses">Responses</h3>
+<h3 id="add-a-new-customer-to-our-records.-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                      |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
@@ -1355,18 +1367,22 @@ Generate event
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                       |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                       |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-## get\_\_v1_user-data
+## getUserData
+
+<a id="opIdgetUserData"></a>
 
 > Code samples
 
 ```shell
 # You can also use wget
 curl -X GET https://mapi.fbot.me/v1/user-data \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1380,6 +1396,7 @@ Accept: application/json
 ```javascript
 const headers = {
   Accept: "application/json",
+  Authorization: "Bearer {access-token}",
 };
 
 fetch("https://mapi.fbot.me/v1/user-data", {
@@ -1400,7 +1417,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://mapi.fbot.me/v1/user-data',
@@ -1414,7 +1432,8 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://mapi.fbot.me/v1/user-data', headers = headers)
@@ -1430,6 +1449,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -1483,6 +1503,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1498,7 +1519,7 @@ func main() {
 
 `GET /v1/user-data`
 
-<h3 id="get__v1_user-data-parameters">Parameters</h3>
+<h3 id="getuserdata-parameters">Parameters</h3>
 
 | Name       | In    | Type          | Required | Description |
 | ---------- | ----- | ------------- | -------- | ----------- |
@@ -1545,7 +1566,7 @@ func main() {
 }
 ```
 
-<h3 id="get__v1_user-data-responses">Responses</h3>
+<h3 id="getuserdata-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                            |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
@@ -1555,18 +1576,22 @@ func main() {
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                             |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                             |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-## delete\_\_v1_user-data
+## deleteUserData
+
+<a id="opIddeleteUserData"></a>
 
 > Code samples
 
 ```shell
 # You can also use wget
 curl -X DELETE https://mapi.fbot.me/v1/user-data \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1580,6 +1605,7 @@ Accept: application/json
 ```javascript
 const headers = {
   Accept: "application/json",
+  Authorization: "Bearer {access-token}",
 };
 
 fetch("https://mapi.fbot.me/v1/user-data", {
@@ -1600,7 +1626,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://mapi.fbot.me/v1/user-data',
@@ -1614,7 +1641,8 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://mapi.fbot.me/v1/user-data', headers = headers)
@@ -1630,6 +1658,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
 );
 
 $client = new \GuzzleHttp\Client();
@@ -1683,6 +1712,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1698,7 +1728,7 @@ func main() {
 
 `DELETE /v1/user-data`
 
-<h3 id="delete__v1_user-data-parameters">Parameters</h3>
+<h3 id="deleteuserdata-parameters">Parameters</h3>
 
 | Name       | In    | Type          | Required | Description |
 | ---------- | ----- | ------------- | -------- | ----------- |
@@ -1715,7 +1745,7 @@ func main() {
 }
 ```
 
-<h3 id="delete__v1_user-data-responses">Responses</h3>
+<h3 id="deleteuserdata-responses">Responses</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                                  |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
@@ -1725,8 +1755,9 @@ func main() {
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                   |
 | 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                   |
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 # Schemas
@@ -1763,7 +1794,7 @@ This operation does not require authentication
 {
   "tokenType": "Bearer",
   "token": "string",
-  "expires": "2020-04-29T20:42:22Z"
+  "expires": "2020-05-05T00:50:52Z"
 }
 ```
 
