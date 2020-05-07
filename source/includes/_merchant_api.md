@@ -1,4 +1,4 @@
-# Merchant API
+# Merchant API Guides
 
 ## Summary
 
@@ -6,12 +6,12 @@ The Friendbuy Merchant API is a REST API that allows for communication directly 
 
 Common use cases for the Merchant API are:
 
-* Create purchases, signups, and custom events
-* Create customer records in Friendbuy
-* Create referral links for a customer or email.
-* Retrieve user data for CCPA and GDPR
-* Delete user data for CCPA and GDPR
-* And many more to come
+- Create purchases, signups, and custom events
+- Create customer records in Friendbuy
+- Create referral links for a customer or email.
+- Retrieve user data for CCPA and GDPR
+- Delete user data for CCPA and GDPR
+- And many more to come
 
 ## Base URL
 
@@ -21,7 +21,7 @@ The base URL for all Friendbuy Merchant API endpoints is https://mapi.fbot.me/v1
 
 ### Summary
 
-The Friendbuy Merchant API uses Bearer Tokens to authorize requests. 
+The Friendbuy Merchant API uses Bearer Tokens to authorize requests.
 
 To get a Bearer Token for authorization:
 
@@ -57,7 +57,7 @@ To get a Bearer Token for authorization:
 
 The Friendbuy Merchant API can be used to generate a personal referral link for a specific advocate/campaign combination. The email of the advocate and the id of the campaign you want the link to be associated with are required. Additional parameters including customer id, first name, and last name can also be provided to associate additional details with the referral link.
 
-To retrieve a personal referral link, make a **POST** request to **/personal-referral-links**. The response will include the personal referral link in the “link” parameter. 
+To retrieve a personal referral link, make a **POST** request to **/personal-referral-links**. The response will include the personal referral link in the “link” parameter.
 
 You can then distribute this link however you wish. Common use cases involve sending a personal referral link to a subset of customers through email to promote the referral program and retrieving a link to be displayed within a mobile app.
 
@@ -137,7 +137,7 @@ To track a purchase, make a **POST** request to **/event/purchase.**
 
 In much the same way that the Friendbuy Merchant API can be used to track purchases, it can also be used to track account signups. Tracking account signups is completely optional, but depending on your campaign settings you may want to track signups if they are an integral part of your referral flow \(i.e. you want to reward signups differently than purchases\). **NOTE: The ability to configure rewards differently for signups is not yet exposed in the Friendbuy Retailer App but can be configured on the backend by Friendbuy.**
 
-Tracking a signup through the API requires an email address and a customer id. You can also optionally pass in customer first name and last name, referral code, and coupon code. 
+Tracking a signup through the API requires an email address and a customer id. You can also optionally pass in customer first name and last name, referral code, and coupon code.
 
 Like with purchases, Friendbuy will attempt to establish attribution if referral code or coupon code is passed in.
 
@@ -171,7 +171,7 @@ To track a signup, make a **POST** request to **/event/account-sign-up**
 
 In addition to tracking purchases and signups, Friendbuy also allows you to track custom event types through the API.
 
-Tracking a custom event through the Merchant API works just like tracking a signup, except that you are also required to pass an eventType. The eventType can be any string that you want to use to denote the event you are tracking. You must configure this event type in your campaign settings in order for it to be properly tracked and attributed to a campaign. 
+Tracking a custom event through the Merchant API works just like tracking a signup, except that you are also required to pass an eventType. The eventType can be any string that you want to use to denote the event you are tracking. You must configure this event type in your campaign settings in order for it to be properly tracked and attributed to a campaign.
 
 As with purchases and signups, Friendbuy will attempt to establish attribution to an advocate if referral code or coupon code is present
 
@@ -246,27 +246,26 @@ To track a customer make a **POST** request to **/customer**
 
 In order to comply with CCPA and GDPR requirements, Friendbuy supports the retrieval of any user data for a given email address or customer id. When a request is made, Friendbuy will return the following data points that we have associated with the email address or customer id:
 
-* Emails
-* Names
-* Customer Ids
-* IP Addresses
-* Languages
-* User Agents
-* Device Data including
-  * Color depths
-  * Platforms
-  * Screen sizes
-* Tracked events
-* Share counts by channel
-* Conversion counts by channel
+- Emails
+- Names
+- Customer Ids
+- IP Addresses
+- Languages
+- User Agents
+- Device Data including
+  - Color depths
+  - Platforms
+  - Screen sizes
+- Tracked events
+- Share counts by channel
+- Conversion counts by channel
 
-  
-****To make a request for user data, make a **GET** request to **/user-data** providing the email or customer id as a query string parameter.
+\***\*To make a request for user data, make a **GET** request to **/user-data\*\* providing the email or customer id as a query string parameter.
 
 ### **Example Requests**
 
 ```text
-GET /user-data?email=test@example.com 
+GET /user-data?email=test@example.com
 GET /user-data?customerID=1554332
 ```
 
@@ -330,7 +329,7 @@ GET /user-data?customerID=1554332
 
 ### **Summary**
 
-In addition to retrieving user data for CCPA or GDPR, the Friendbuy Merchant API also allows you to request the deletion of user data to fulfill deletion requests from end-users. The response body contains a task\_id that can be used for troubleshooting if necessary. All deletion requests run asynchronously, so if the request is successfully registered you will receive a response code of 204. Any other response code indicates an error.
+In addition to retrieving user data for CCPA or GDPR, the Friendbuy Merchant API also allows you to request the deletion of user data to fulfill deletion requests from end-users. The response body contains a task_id that can be used for troubleshooting if necessary. All deletion requests run asynchronously, so if the request is successfully registered you will receive a response code of 204. Any other response code indicates an error.
 
 **NOTE: Once this request is made any data associated with that email or customer id \(as indicated by the GET /user-data endpoint\) will be permanently deleted or redacted as appropriate. This action is completely irreversible, so be sure you want to delete this data before making the request.**
 
@@ -339,7 +338,7 @@ To request data deletion for a given email address or customer id, make a **DELE
 ### Example Requests
 
 ```text
-DELETE /user-data?email=test@example.com 
+DELETE /user-data?email=test@example.com
 DELETE /user-data?customerID=1554332
 ```
 
@@ -350,4 +349,3 @@ DELETE /user-data?customerID=1554332
   "task_id": "47fd3e67-8659-42f2-9d03-192d82a48651"
 }
 ```
-
