@@ -1,6 +1,6 @@
 <!-- Generator: Widdershins v4.0.1 -->
 
-<h1 id="merchant-api-mapi-">Merchant API (MAPI) v1.1.0</h1>
+<h1 id="merchant-api-mapi-">Merchant API Details</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
