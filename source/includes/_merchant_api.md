@@ -15,7 +15,7 @@ Common use cases for the Merchant API are:
 
 ## Base URL
 
-The base URL for all Friendbuy Merchant API endpoints is https://mapi.fbot.me/v1. For full reference documentation, see [https://app.swaggerhub.com/apis/friendbuy/Friendbuy-mapi/1.1.0](https://app.swaggerhub.com/apis/friendbuy/Friendbuy-mapi/1.1.0).
+The base URL for all Friendbuy Merchant API endpoints is https://mapi.fbot.me/v1. For full reference documentation, see [Merchant API Details](#merchant-api-mapi-).
 
 ## Authorization
 
@@ -57,7 +57,7 @@ To get a Bearer Token for authorization:
 
 The Friendbuy Merchant API can be used to generate a personal referral link for a specific advocate/campaign combination. The email of the advocate and the id of the campaign you want the link to be associated with are required. Additional parameters including customer id, first name, and last name can also be provided to associate additional details with the referral link.
 
-To retrieve a personal referral link, make a **POST** request to **/personal-referral-links**. The response will include the personal referral link in the “link” parameter.
+To retrieve a personal referral link, make a **POST** request to **/personal-referral-link**. The response will include the personal referral link in the “link” parameter.
 
 You can then distribute this link however you wish. Common use cases involve sending a personal referral link to a subset of customers through email to promote the referral program and retrieving a link to be displayed within a mobile app.
 
@@ -71,6 +71,9 @@ You can then distribute this link however you wish. Common use cases involve sen
   "firstName": "John",
   "lastName": "Smith",
   "destinationUrlQueryParams": {"vip": true},
+  "ipAddress": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+  "seed": "JohnSmith",
 }
 ```
 

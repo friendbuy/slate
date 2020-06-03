@@ -416,23 +416,23 @@ Generate event
 
 <h3 id="postpersonalreferrallink-parameters">Parameters</h3>
 
-| Name                        | In   | Type                                                              | Required | Description         |
-| --------------------------- | ---- | ----------------------------------------------------------------- | -------- | ------------------- |
-| body                        | body | [personalReferralLinkRequest](#schemapersonalreferrallinkrequest) | false    | none                |
-| » email                     | body | string(email)                                                     | true     | none                |
-| » campaignId                | body | string(uuid)                                                      | true     | none                |
-| » customerId                | body | string                                                            | false    | none                |
-| » firstName                 | body | string                                                            | false    | none                |
-| » lastName                  | body | string                                                            | false    | none                |
-| » destinationUrlQueryParams | body | object                                                            | false    | none                |
-| » vanity                    | body | string                                                            | false    | Specifies the seed. |
-| » channel                   | body | string                                                            | false    | none                |
-| » short                     | body | boolean                                                           | false    | none                |
-| » ipAddress                 | body | string                                                            | false    | none                |
-| » userAgent                 | body | string                                                            | false    | none                |
-| » widgetId                  | body | string(uuid)                                                      | false    | none                |
-| » eventUrl                  | body | string                                                            | false    | none                |
-| » eventPage                 | body | string                                                            | false    | none                |
+| Name                        | In   | Type                                                              | Required | Description                          |
+| --------------------------- | ---- | ----------------------------------------------------------------- | -------- | ------------------------------------ |
+| body                        | body | [personalReferralLinkRequest](#schemapersonalreferrallinkrequest) | false    | none                                 |
+| » email                     | body | string(email)                                                     | true     | none                                 |
+| » campaignId                | body | string(uuid)                                                      | true     | none                                 |
+| » customerId                | body | string                                                            | false    | none                                 |
+| » firstName                 | body | string                                                            | false    | none                                 |
+| » lastName                  | body | string                                                            | false    | none                                 |
+| » destinationUrlQueryParams | body | object                                                            | false    | none                                 |
+| » seed                      | body | string                                                            | false    | Specifies the seed for vanity links. |
+| » channel                   | body | string                                                            | false    | none                                 |
+| » short                     | body | boolean                                                           | false    | none                                 |
+| » ipAddress                 | body | string                                                            | false    | none                                 |
+| » userAgent                 | body | string                                                            | false    | none                                 |
+| » widgetId                  | body | string(uuid)                                                      | false    | none                                 |
+| » eventUrl                  | body | string                                                            | false    | none                                 |
+| » eventPage                 | body | string                                                            | false    | none                                 |
 
 #### Enumerated Values
 
