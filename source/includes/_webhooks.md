@@ -6,18 +6,7 @@ When a Webhook receives a status code that is not a 200, we will attempt to retr
 
 ## Signature Validation
 
-You can verify the authenticity of a webhook request or client API integration from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64-encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key. To verify the signature:
-
-1. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-2. Base64 encode the resulting value.
-3. If the Base64 encoded hash matches the signature header, the request is valid.
-4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-5. Base64 encode the resulting value.
-6. If the Base64 encoded hash matches the signature header, the request is valid.
-
-NodeJS Example:
+> NodeJS Example
 
 ```javascript
 export function verifyWebhook(data, hmacSignature) {
@@ -39,9 +28,42 @@ export function verifyWebhook(data, hmacSignature) {
 }
 ```
 
+You can verify the authenticity of a webhook request or client API integration from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64-encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key. To verify the signature:
+
+1. Calculate an HMAC-SHA-256 composition of the JSON request body:  
+   `HMAC(api_secret, json_body)`
+2. Base64 encode the resulting value.
+3. If the Base64 encoded hash matches the signature header, the request is valid.
+4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
+   `HMAC(api_secret, json_body)`
+5. Base64 encode the resulting value.
+6. If the Base64 encoded hash matches the signature header, the request is valid.
+
 You can get your Webhook secret key by going to Developer Center &gt; Webhooks and copying the Digital Signature in the retailer app.
 
 ## Reward Webhook
+
+> Example Payload
+
+```json
+{
+  "id": "255e4e45-446d-499d-a680-44ab1eca73fb",
+  "type": "advocateReward",
+  "data": [
+    {
+      "rewardId": "73cb50ea-7ac8-4f90-9fe4-f5450866f3c0",
+      "rewardType": "discount",
+      "rewardUnit": "USD",
+      "emailAddress": "test@example.com",
+      "rewardAmount": "20.00",
+      "createdOn": "2019-11-05T01:07:36.720Z",
+      "customerId": "asd123-abcfasdf",
+      "couponCode": "test-coupon-code"
+    }
+  ],
+  "createdOn": "2019-11-05T01:07:38.509Z"
+}
+```
 
 A reward is created after a conversion is evaluated and determined to be rewardable \(i.e. all business rules and fraud checks have been met and the reward falls into a specific tier\).
 
@@ -70,31 +92,32 @@ Reward details will be available in the `data` property of the request with the 
 | createdOn    | ISO timestamp | The date and time the reward was created.                                                                                                                                                        |
 | couponCode   | string        | The coupon code that was distributed with this reward, if any.                                                                                                                                   |
 
-### Example
+## Email Capture Webhook
 
-Here is an example of a reward webhook request:
+> Example Payload
 
-```javascript
+```json
 {
   "id": "255e4e45-446d-499d-a680-44ab1eca73fb",
-  "type": "advocateReward",
+  "type": "emailCapture",
   "data": [
     {
-      "rewardId": "73cb50ea-7ac8-4f90-9fe4-f5450866f3c0",
-      "rewardType": "discount",
-      "rewardUnit": "USD",
+      "eventId": "e6c720d4-b721-4789-a110-0d680777b802",
       "emailAddress": "test@example.com",
-      "rewardAmount": "20.00",
-      "createdOn": "2019-11-05T01:07:36.720Z",
-      "customerId": "asd123-abcfasdf",
-      "couponCode": "test-coupon-code"
+      "campaign": {
+        "id": "8a7b9436-8b91-4022-b830-d405dfcc3964",
+        "name": "Spring Campaign"
+      },
+      "incentive": {
+        "couponCode": "Test couponCode",
+        "amount": 30,
+        "currency": "USD"
+      }
     }
   ],
   "createdOn": "2019-11-05T01:07:38.509Z"
 }
 ```
-
-## Email Capture Webhook
 
 An email capture is created when someone enters their email into a friend incentive widget or the email gate of a referral widget and checks the opt-in checkbox.
 
@@ -135,30 +158,3 @@ The `incentive` object in the payload has the following structure:
 | couponCode | string | The coupon code given to the user for entering their email, if applicable. |
 | amount     | number | The numerical value of the incentive.                                      |
 | currency   | string | The currency of the incentive \(i.e. "USD"\).                              |
-
-### Example
-
-Here is an example of the email capture webhook
-
-```javascript
-{
-  "id": "255e4e45-446d-499d-a680-44ab1eca73fb",
-  "type": "emailCapture",
-  "data": [
-    {
-      "eventId": "e6c720d4-b721-4789-a110-0d680777b802",
-      "emailAddress": "test@example.com",
-      "campaign": {
-        "id": "8a7b9436-8b91-4022-b830-d405dfcc3964",
-        "name": "Spring Campaign",
-      },
-      "incentive": {
-        "couponCode": "Test couponCode",
-        "amount": 30,
-        "currency": "USD",
-      },
-    }
-  ],
-  "createdOn": "2019-11-05T01:07:38.509Z"
-}
-```

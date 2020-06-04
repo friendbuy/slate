@@ -1,5 +1,43 @@
 # Reward Validation Callback
 
+> Example Payload
+
+```javascript
+{
+  "eventType": "purchase",
+  "createdOn": "2019-11-18T23:48:30.017Z",
+  "campaignId": "89d78d25-6a33-4873-8b0e-410e3e7c10fa",
+  "purchase": {
+    "id": "order-66",
+    "amount": 100,
+    "currency": "USD",
+    "isNewCustomer": true,
+    "ipAddress": "12.156.140.124",
+    "date": "2019-11-18T23:48:30.017Z",
+    "email": "test@example.org",
+    "customerId": "123",
+    "ipAddress": "10.523.123.122",
+    "products": [
+      {
+        "sku": "test-product",
+        "name": "Test Product",
+        "quantity": 1,
+        "price": 10.00,
+        "currency": "USD",
+        "description": "A test product",
+        "category": "Apparel",
+        "url": "https://example.org/test-product",
+        "imageUrl": "https://example.org/test-product/image.jpg"
+    ]
+  },
+  "advocate": {
+    "customerId": "66",
+    "email": "britain+test@friendbuy.com",
+    "ipAddress": "12.156.140.124"
+  }
+}
+```
+
 ### Overview
 
 The Reward Validation Callback feature is used to determine whether or not Friendbuy should fulfill the reward for a conversion based on logic in your own system, such as returns or cancellations. This is meant to provide flexibility on top of the fraud checks and reward criteria that Friendbuy provides.
@@ -64,58 +102,9 @@ Product details will be available in the `purchase.products` property of the req
 | url         | string | The url of the product page.                            |
 | imageUrl    | string | The url of the product image.                           |
 
-## Example
-
-```javascript
-{
-  "eventType": "purchase",
-  "createdOn": "2019-11-18T23:48:30.017Z",
-  "campaignId": "89d78d25-6a33-4873-8b0e-410e3e7c10fa",
-  "purchase": {
-    "id": "order-66",
-    "amount": 100,
-    "currency": "USD",
-    "isNewCustomer": true,
-    "ipAddress": "12.156.140.124",
-    "date": "2019-11-18T23:48:30.017Z",
-    "email": "test@example.org",
-    "customerId": "123",
-    "ipAddress": "10.523.123.122",
-    "products": [
-      {
-        "sku": "test-product",
-        "name": "Test Product",
-        "quantity": 1,
-        "price": 10.00,
-        "currency": "USD",
-        "description": "A test product",
-        "category": "Apparel",
-        "url": "https://example.org/test-product",
-        "imageUrl": "https://example.org/test-product/image.jpg"
-    ]
-  },
-  "advocate": {
-    "customerId": "66",
-    "email": "britain+test@friendbuy.com",
-    "ipAddress": "12.156.140.124"
-  }
-}
-```
-
 ### Signature Validation
 
-You can verify the authenticity of a webhook request or client API integration from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64-encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key. To verify the signature:
-
-1. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-2. Base64 encode the resulting value.
-3. If the Base64 encoded hash matches the signature header, the request is valid.
-4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-5. Base64 encode the resulting value.
-6. If the Base64 encoded hash matches the signature header, the request is valid.
-
-NodeJS Example:
+> NodeJS Example
 
 ```javascript
 export function verifyWebhook(data, hmacSignature) {
@@ -136,5 +125,16 @@ export function verifyWebhook(data, hmacSignature) {
   return hashEquals;
 }
 ```
+
+You can verify the authenticity of a webhook request or client API integration from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64-encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key. To verify the signature:
+
+1. Calculate an HMAC-SHA-256 composition of the JSON request body:  
+   `HMAC(api_secret, json_body)`
+2. Base64 encode the resulting value.
+3. If the Base64 encoded hash matches the signature header, the request is valid.
+4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
+   `HMAC(api_secret, json_body)`
+5. Base64 encode the resulting value.
+6. If the Base64 encoded hash matches the signature header, the request is valid.
 
 You can get your Webhook secret key by going to Developer Center &gt; Webhooks and copying the Digital Signature in the retailer app.

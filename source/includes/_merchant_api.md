@@ -19,6 +19,25 @@ The base URL for all Friendbuy Merchant API endpoints is https://mapi.fbot.me/v1
 
 ## Authorization
 
+> Example Request Body
+
+```json
+{
+  "key": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "secret": "95eb1c78-f77e-4c55-828e-17ed3e0163a2"
+}
+```
+
+> Example Response Body
+
+```json
+{
+  "tokenType": "Bearer",
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiO...",
+  "expires": "2020-03-20T22:58:56.588Z"
+}
+```
+
 ### Summary
 
 The Friendbuy Merchant API uses Bearer Tokens to authorize requests.
@@ -32,26 +51,32 @@ To get a Bearer Token for authorization:
 3. The response will contain a bearer token in the “**token**” property and the expiration date of the token
 4. You will use this token to authorize any further API requests.
 
-### Example Request Body
-
-```text
-{
-  "key": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "secret": "95eb1c78-f77e-4c55-828e-17ed3e0163a2"
-}
-```
-
-### Example Response Body
-
-```text
-{
-  "tokenType": "Bearer",
-  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiO...",
-  "expires": "2020-03-20T22:58:56.588Z"
-}
-```
-
 ## Generating Referral Links
+
+> Example Request Body
+
+```json
+{
+  "email": "test@example.com",
+  "campaignId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "customerId": "string",
+  "firstName": "John",
+  "lastName": "Smith",
+  "destinationUrlQueryParams": { "vip": true },
+  "ipAddress": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+  "seed": "JohnSmith"
+}
+```
+
+> Example Response Body
+
+```json
+{
+  "link": "https://fbuy.io/xhaf5hps",
+  "createdOn": "2020-01-05T01:07:38.509Z"
+}
+```
 
 ### Summary
 
@@ -61,32 +86,41 @@ To retrieve a personal referral link, make a **POST** request to **/personal-ref
 
 You can then distribute this link however you wish. Common use cases involve sending a personal referral link to a subset of customers through email to promote the referral program and retrieving a link to be displayed within a mobile app.
 
-### **Example Request Body**
-
-```text
-{
-  "email": "test@example.com",
-  "campaignId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "customerId": "string",
-  "firstName": "John",
-  "lastName": "Smith",
-  "destinationUrlQueryParams": {"vip": true},
-  "ipAddress": "127.0.0.1",
-  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
-  "seed": "JohnSmith",
-}
-```
-
-### **Example Response Body**
-
-```text
-{
-  "link": "https://fbuy.io/xhaf5hps",
-  "createdOn": "2020-01-05T01:07:38.509Z"
-}
-```
-
 ## Tracking a Purchase
+
+> Example Request Body
+
+```json
+{
+  "orderId": "test-order-123",
+  "email": "user@example.com",
+  "customerId": "15534334",
+  "firstName": "Test",
+  "lastName": "User",
+  "amount": 10.0,
+  "currency": "USD",
+  "isNewCustomer": false,
+  "couponCode": "FRIEND-OFFER-244432",
+  "refCode": "xhaf5hps",
+  "products": [
+    {
+      "sku": "SKU123324",
+      "name": "Test Produce",
+      "quantity": 1,
+      "price": 10.0
+    }
+  ]
+}
+```
+
+> Example Response Body
+
+```json
+{
+  "eventId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "createdOn": "2020-03-05T01:07:38.509Z"
+}
+```
 
 ### **Summary**
 
@@ -100,40 +134,6 @@ Lastly, product details may be passed to facilitate rewards based on purchasing 
 
 To track a purchase, make a **POST** request to **/event/purchase.**
 
-### **Example Request Body**
-
-```text
-{
-  "orderId": "test-order-123",
-  "email": "user@example.com",
-  "customerId": "15534334",
-  "firstName": "Test",
-  "lastName": "User",
-  "amount": 10.00,
-  "currency": "USD",
-  "isNewCustomer": false,
-  "couponCode": "FRIEND-OFFER-244432",
-  "refCode": "xhaf5hps",
-  "products": [
-    {
-      "sku": "SKU123324",
-      "name": "Test Produce",
-      "quantity": 1,
-      "price": 10.00
-    }
-  ],
-}
-```
-
-### **Example Response Body**
-
-```javascript
-{
-  "eventId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "createdOn": "2020-03-05T01:07:38.509Z"
-}
-```
-
 ## **Tracking a Signup**
 
 ### **Summary**
@@ -146,22 +146,22 @@ Like with purchases, Friendbuy will attempt to establish attribution if referral
 
 To track a signup, make a **POST** request to **/event/account-sign-up**
 
-### **Example Request Body**
+> Example Request Body
 
-```javascript
+```json
 {
   "email": "user@example.com",
   "customerId": "15529938",
   "firstName": "Test",
   "lastName": "User",
   "refCode": "xhaf5hps",
-  "couponCode": "FRIEND-OFFER-244432",
+  "couponCode": "FRIEND-OFFER-244432"
 }
 ```
 
-### **Example Response Body**
+> Example Response Body
 
-```javascript
+```json
 {
   "eventId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "createdOn": "2020-03-05T01:07:38.509Z"
@@ -170,19 +170,9 @@ To track a signup, make a **POST** request to **/event/account-sign-up**
 
 ## **Tracking a Custom Event**
 
-### **Summary**
+> Example Request Body
 
-In addition to tracking purchases and signups, Friendbuy also allows you to track custom event types through the API.
-
-Tracking a custom event through the Merchant API works just like tracking a signup, except that you are also required to pass an eventType. The eventType can be any string that you want to use to denote the event you are tracking. You must configure this event type in your campaign settings in order for it to be properly tracked and attributed to a campaign.
-
-As with purchases and signups, Friendbuy will attempt to establish attribution to an advocate if referral code or coupon code is present
-
-To track a custom event, make a **POST** request to **/event/custom**.
-
-### Example Request Body
-
-```javascript
+```json
 {
   "email": "user@example.com",
   "eventType": "recurring_order",
@@ -195,28 +185,30 @@ To track a custom event, make a **POST** request to **/event/custom**.
 }
 ```
 
-### Example Response Body
+> Example Response Body
 
-```javascript
+```json
 {
   "eventId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "createdOn": "2020-03-05T01:07:38.509Z"
 }
 ```
 
+### **Summary**
+
+In addition to tracking purchases and signups, Friendbuy also allows you to track custom event types through the API.
+
+Tracking a custom event through the Merchant API works just like tracking a signup, except that you are also required to pass an eventType. The eventType can be any string that you want to use to denote the event you are tracking. You must configure this event type in your campaign settings in order for it to be properly tracked and attributed to a campaign.
+
+As with purchases and signups, Friendbuy will attempt to establish attribution to an advocate if referral code or coupon code is present
+
+To track a custom event, make a **POST** request to **/event/custom**.
+
 ## Tracking Customer Details
 
-### Summary
+> Example Request Body
 
-Many Friendbuy Merchant API endpoints allow for the tracking of limited customer data. In some cases, you may wish to fill in detailed information for all or certain customers. Email and customerId are required values. You can also track the following: isNewCustomer, firstName, lastName, age, gender, zipCode, state, city, category, country, language.
-
-**The primary use case of tracking customer details will be to facilitate widget and reward targeting and segmentation when that feature is released in the future.**
-
-To track a customer make a **POST** request to **/customer**
-
-### **Example Request Body**
-
-```javascript
+```json
 {
   "email": "user@example.com",
   "customerId": "328989893",
@@ -230,79 +222,51 @@ To track a customer make a **POST** request to **/customer**
   "city": "West Hollywood",
   "category": "VIP",
   "country": "USA",
-  "language": "English",
+  "language": "English"
 }
 ```
 
-### **Example Response Body**
+> Example Response Body
 
-```javascript
+```json
 {
   "customerId": "7b5e9a0a-3386-49c8-84d7-6d4047639285",
   "createdOn": "2020-03-05T01:07:38.509Z"
 }
 ```
 
+### Summary
+
+Many Friendbuy Merchant API endpoints allow for the tracking of limited customer data. In some cases, you may wish to fill in detailed information for all or certain customers. Email and customerId are required values. You can also track the following: isNewCustomer, firstName, lastName, age, gender, zipCode, state, city, category, country, language.
+
+**The primary use case of tracking customer details will be to facilitate widget and reward targeting and segmentation when that feature is released in the future.**
+
+To track a customer make a **POST** request to **/customer**
+
 ## Request User Data for CCPA/GDPR
 
-### **Summary**
-
-In order to comply with CCPA and GDPR requirements, Friendbuy supports the retrieval of any user data for a given email address or customer id. When a request is made, Friendbuy will return the following data points that we have associated with the email address or customer id:
-
-- Emails
-- Names
-- Customer Ids
-- IP Addresses
-- Languages
-- User Agents
-- Device Data including
-  - Color depths
-  - Platforms
-  - Screen sizes
-- Tracked events
-- Share counts by channel
-- Conversion counts by channel
-
-\***\*To make a request for user data, make a **GET** request to **/user-data\*\* providing the email or customer id as a query string parameter.
-
-### **Example Requests**
+> Example Requests
 
 ```text
 GET /user-data?email=test@example.com
 GET /user-data?customerID=1554332
 ```
 
-### **Example Response Body**
+> Example Response Body
 
-```javascript
+```json
 {
-  "emails": [
-    "user@example.com", "test@example.com"
-  ],
-  "names": [
-    "Test User", "Other User"
-  ],
-  "customerIds": [
-    "1554332"
-  ],
-  "ipAddresses": [
-    "127.0.0.0.1"
-  ],
-  "languages": [
-    "English", "Spanish"
-  ],
+  "emails": ["user@example.com", "test@example.com"],
+  "names": ["Test User", "Other User"],
+  "customerIds": ["1554332"],
+  "ipAddresses": ["127.0.0.0.1"],
+  "languages": ["English", "Spanish"],
   "userAgents": [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0"
   ],
-  "colorDepths": [
-    0
-  ],
-  "platforms": [
-    "IOS"
-  ],
-  "screenSizes": [
-    "3072x1920"
-  ],
+  "colorDepths": [0],
+  "platforms": ["IOS"],
+  "screenSizes": ["3072x1920"],
   "trackedEvents": [
     {
       "type": "purchase",
@@ -328,7 +292,42 @@ GET /user-data?customerID=1554332
 }
 ```
 
+### **Summary**
+
+In order to comply with CCPA and GDPR requirements, Friendbuy supports the retrieval of any user data for a given email address or customer id. When a request is made, Friendbuy will return the following data points that we have associated with the email address or customer id:
+
+- Emails
+- Names
+- Customer Ids
+- IP Addresses
+- Languages
+- User Agents
+- Device Data including
+  - Color depths
+  - Platforms
+  - Screen sizes
+- Tracked events
+- Share counts by channel
+- Conversion counts by channel
+
+\***\*To make a request for user data, make a **GET** request to **/user-data\*\* providing the email or customer id as a query string parameter.
+
 ## **Deleting User Data for CCPA/GDPR**
+
+> Example Requests
+
+```text
+DELETE /user-data?email=test@example.com
+DELETE /user-data?customerID=1554332
+```
+
+> Example Response
+
+```json
+{
+  "task_id": "47fd3e67-8659-42f2-9d03-192d82a48651"
+}
+```
 
 ### **Summary**
 
@@ -337,18 +336,3 @@ In addition to retrieving user data for CCPA or GDPR, the Friendbuy Merchant API
 **NOTE: Once this request is made any data associated with that email or customer id \(as indicated by the GET /user-data endpoint\) will be permanently deleted or redacted as appropriate. This action is completely irreversible, so be sure you want to delete this data before making the request.**
 
 To request data deletion for a given email address or customer id, make a **DELETE** request to **/user-data** providing the email and/or customer id of the user requesting deletion as a query string parameter
-
-### Example Requests
-
-```text
-DELETE /user-data?email=test@example.com
-DELETE /user-data?customerID=1554332
-```
-
-### **Example Response**
-
-```javascript
-{
-  "task_id": "47fd3e67-8659-42f2-9d03-192d82a48651"
-}
-```
