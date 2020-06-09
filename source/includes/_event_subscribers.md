@@ -2,8 +2,10 @@
 
 > Format
 
-```javascript
-friendbuyAPI.push(["subscribe", "couponReceived", callback]);
+```html
+<script>
+  friendbuyAPI.push(["subscribe", "couponReceived", callback]);
+</script>
 ```
 
 > Example Payload
@@ -14,16 +16,18 @@ friendbuyAPI.push(["subscribe", "couponReceived", callback]);
 
 > Example Invocation
 
-```javascript
-friendbuyAPI.push([
-  "subscribe",
-  "couponReceived",
-  function (coupon) {
-    console.log(coupon); // "20%-off-code"
-    // Perform additional actions, like automatically
-    // applying coupon code to next purchase.
-  },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "subscribe",
+    "couponReceived",
+    function (coupon) {
+      console.log(coupon); // "20%-off-code"
+      // Perform additional actions, like automatically
+      // applying coupon code to next purchase.
+    },
+  ]);
+</script>
 ```
 
 In addition to tracking events and loading widgets, friendbuy's javascript can also be used to establish event listeners on some browser-based friendbuy events.

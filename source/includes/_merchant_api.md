@@ -136,16 +136,6 @@ To track a purchase, make a **POST** request to **/event/purchase.**
 
 ## **Tracking a Signup**
 
-### **Summary**
-
-In much the same way that the Friendbuy Merchant API can be used to track purchases, it can also be used to track account signups. Tracking account signups is completely optional, but depending on your campaign settings you may want to track signups if they are an integral part of your referral flow \(i.e. you want to reward signups differently than purchases\). **NOTE: The ability to configure rewards differently for signups is not yet exposed in the Friendbuy Retailer App but can be configured on the backend by Friendbuy.**
-
-Tracking a signup through the API requires an email address and a customer id. You can also optionally pass in customer first name and last name, referral code, and coupon code.
-
-Like with purchases, Friendbuy will attempt to establish attribution if referral code or coupon code is passed in.
-
-To track a signup, make a **POST** request to **/event/account-sign-up**
-
 > Example Request Body
 
 ```json
@@ -167,6 +157,16 @@ To track a signup, make a **POST** request to **/event/account-sign-up**
   "createdOn": "2020-03-05T01:07:38.509Z"
 }
 ```
+
+### **Summary**
+
+In much the same way that the Friendbuy Merchant API can be used to track purchases, it can also be used to track account signups. Tracking account signups is completely optional, but depending on your campaign settings you may want to track signups if they are an integral part of your referral flow \(i.e. you want to reward signups differently than purchases\). **NOTE: The ability to configure rewards differently for signups is not yet exposed in the Friendbuy Retailer App but can be configured on the backend by Friendbuy.**
+
+Tracking a signup through the API requires an email address and a customer id. You can also optionally pass in customer first name and last name, referral code, and coupon code.
+
+Like with purchases, Friendbuy will attempt to establish attribution if referral code or coupon code is passed in.
+
+To track a signup, make a **POST** request to **/event/account-sign-up**
 
 ## **Tracking a Custom Event**
 

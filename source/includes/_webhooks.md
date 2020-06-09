@@ -8,7 +8,7 @@ When a Webhook receives a status code that is not a 200, we will attempt to retr
 
 > NodeJS Example
 
-```javascript
+```typescript
 export function verifyWebhook(data, hmacSignature) {
   const providedHmac = Buffer.from(hmacSignature, "utf-8");
   const generatedHash = Buffer.from(

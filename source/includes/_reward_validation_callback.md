@@ -106,7 +106,7 @@ Product details will be available in the `purchase.products` property of the req
 
 > NodeJS Example
 
-```javascript
+```typescript
 export function verifyWebhook(data, hmacSignature) {
   const providedHmac = Buffer.from(hmacSignature, "utf-8");
   const generatedHash = Buffer.from(

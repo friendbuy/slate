@@ -13,13 +13,9 @@ Base URLs:
 Email: <a href="mailto:support@friendbuy.com">Support</a>
 License: <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>
 
-# Authentication
+## Authentication Scheme
 
 - HTTP Authentication, scheme: bearer
-
-<h1 id="merchant-api-mapi--public">public</h1>
-
-Public facing API
 
 ## postAuthorization
 

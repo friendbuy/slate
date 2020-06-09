@@ -4,17 +4,19 @@
 
 > Example Track Call
 
-```javascript
-friendbuyAPI.push([
-  "track", // this is a track event
-  "email_capture", // this is an event capture event
-  {
-    email: "john.doe@example.com", // the email
-    name: "John Doe", // the name (optional)
-    age: 55, // the age (custom parameter)
-  },
-  true, // Send custom parameters to friendbuy
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track", // this is a track event
+    "email_capture", // this is an event capture event
+    {
+      email: "john.doe@example.com", // the email
+      name: "John Doe", // the name (optional)
+      age: 55, // the age (custom parameter)
+    },
+    true, // Send custom parameters to friendbuy
+  ]);
+</script>
 ```
 
 Friendbuy comes with some built-in event tracking settings:
@@ -32,7 +34,7 @@ This only means that when you are tracking these events, you are bound to respec
 
 > Example Metadata
 
-```javascript
+```json
 {
   "metadata": {
     "title": "Welcome to Foo Store - Account page",
@@ -77,39 +79,45 @@ This is the journey of an event \(up to our backend public API\).
 
 > Email Capture Code Sample
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "email_capture",
-  { email: "john.doe@example.com" },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "email_capture",
+    { email: "john.doe@example.com" },
+  ]);
+</script>
 ```
 
 > Email Capture with Optional Name Parameter
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "email_capture",
-  {
-    email: "john.doe@example.com",
-    name: "John",
-  },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "email_capture",
+    {
+      email: "john.doe@example.com",
+      name: "John",
+    },
+  ]);
+</script>
 ```
 
 > Email Capture Custom Parameter Example
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "email_capture",
-  {
-    email: "john.doe@example.com",
-    subscribed: "yes", // custom parameter
-  },
-  true, // Send custom parameters to friendbuy
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "email_capture",
+    {
+      email: "john.doe@example.com",
+      subscribed: "yes", // custom parameter
+    },
+    true, // Send custom parameters to friendbuy
+  ]);
+</script>
 ```
 
 | Attribute    | Type   | Required | Example                                  |
@@ -128,7 +136,7 @@ This last `true` parameter will indicate to the merchant SDK that any additional
 
 > Minimal Customer Payload
 
-```javascript
+```json
 {
   "id": "customer-123",
   "email": "john.doe@example.com"
@@ -137,7 +145,7 @@ This last `true` parameter will indicate to the merchant SDK that any additional
 
 > Complete Customer Payload
 
-```javascript
+```json
 {
   "id": "customer-123",
   "email": "john.doe@example.com",
@@ -149,18 +157,20 @@ This last `true` parameter will indicate to the merchant SDK that any additional
 
 > Customer Payload with Custom Parameters
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "customer",
-  {
-    email: "john.doe@example.com",
-    id: "customer-123",
-    name: "John",
-    category: "vip",
-  },
-  true,
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "customer",
+    {
+      email: "john.doe@example.com",
+      id: "customer-123",
+      name: "John",
+      category: "vip",
+    },
+    true,
+  ]);
+</script>
 ```
 
 >
@@ -185,41 +195,45 @@ If you want to provide additional information you must add the boolean `true` as
 
 > Minimal Purchase Payload
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "purchase",
-  {
-    id: "order-123",
-    amount: 57.87,
-    currency: "USD",
-  },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "purchase",
+    {
+      id: "order-123",
+      amount: 57.87,
+      currency: "USD",
+    },
+  ]);
+</script>
 ```
 
 > Detailed Purchase Payload
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "purchase",
-  {
-    id: "order-123",
-    amount: 57.87,
-    currency: "USD",
-    isNewCustomer: true,
-    customer: {
-      email: "john.doe@example.com",
-      name: "John Doe",
-      id: "customer-123",
-      category: "vip",
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "purchase",
+    {
+      id: "order-123",
+      amount: 57.87,
+      currency: "USD",
+      isNewCustomer: true,
+      customer: {
+        email: "john.doe@example.com",
+        name: "John Doe",
+        id: "customer-123",
+        category: "vip",
+      },
+      products: [
+        { sku: "PLU-8542", quantity: 4, price: 5.54, name: "flowers" },
+        { sku: "PLU-8751", quantity: 3, price: 9.48, name: "chocolates" },
+      ],
     },
-    products: [
-      { sku: "PLU-8542", quantity: 4, price: 5.54, name: "flowers" },
-      { sku: "PLU-8751", quantity: 3, price: 9.48, name: "chocolates" },
-    ],
-  },
-]);
+  ]);
+</script>
 ```
 
 | Attribute       | Type    | Required | Example      |
@@ -257,7 +271,7 @@ Purchase event are the most common conversions.
 
 > Minimal Product Format
 
-```javascript
+```json
 {
   "sku": "sku-123",
   "name": "Potatoes"
@@ -266,26 +280,30 @@ Purchase event are the most common conversions.
 
 > Minimal Product Payload Example
 
-```javascript
-friendbuyAPI.push(["track", "product", { sku: "sku-123", name: "Potatoes" }]);
+```html
+<script>
+  friendbuyAPI.push(["track", "product", { sku: "sku-123", name: "Potatoes" }]);
+</script>
 ```
 
 > Detailed Product Payload Example
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "product",
-  {
-    sku: "sku-potats",
-    name: "Potatoes",
-    price: 0.51,
-    currency: "USD",
-    category: "vegetables",
-    url: "https://www.example.com/product/potats",
-    imageUrl: "https://static.example.com/mr-potatoe.jpg",
-  },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "product",
+    {
+      sku: "sku-potats",
+      name: "Potatoes",
+      price: 0.51,
+      currency: "USD",
+      category: "vegetables",
+      url: "https://www.example.com/product/potats",
+      imageUrl: "https://static.example.com/mr-potatoe.jpg",
+    },
+  ]);
+</script>
 ```
 
 | Attribute    | Type   | Required         | Example                                           |
@@ -307,8 +325,10 @@ We allow a merchant to capture a product view using this controlled event captur
 
 > Example Page Event
 
-```javascript
-friendbuyAPI.push(["track", "page", { name: "user account" }]);
+```html
+<script>
+  friendbuyAPI.push(["track", "page", { name: "user account" }]);
+</script>
 ```
 
 | Attribute | Type   | Required | Example          |
@@ -321,15 +341,17 @@ Page event allows you to track the page name. The page name simplifies targeting
 
 > Example Sign Up Event
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "sign_up",
-  {
-    email: "john.doe@example.com",
-    id: "user-123",
-  },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "sign_up",
+    {
+      email: "john.doe@example.com",
+      id: "user-123",
+    },
+  ]);
+</script>
 ```
 
 | Attribute    | Type   | Required | Example                                  |
@@ -345,16 +367,18 @@ When a user creates an account, you can register this event using the `sign_up` 
 
 > Example Custom Event
 
-```javascript
-friendbuyAPI.push([
-  "track",
-  "video-viewed",
-  {
-    id: "welcome-new-user-video",
-    userId: "user-123",
-    email: "john.doe@example.com",
-  },
-]);
+```html
+<script>
+  friendbuyAPI.push([
+    "track",
+    "video-viewed",
+    {
+      id: "welcome-new-user-video",
+      userId: "user-123",
+      email: "john.doe@example.com",
+    },
+  ]);
+</script>
 ```
 
 In addition to the previous "controlled" events, you may decide to add your own custom event. For example you could trigger a "video viewed" custom event at the end of a marketing video or "survey taken" at the end of a quiz.

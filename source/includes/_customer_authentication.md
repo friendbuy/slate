@@ -2,12 +2,14 @@
 
 > Code Samples
 
-```javascript
-const epoch = Math.round(new Date().getTime() / 1000);
-const authString = epoch + ":" + customerEmail + ":" + customerUserId;
-// Example:  epoch + ":test@example.com:57ec28c3-0834-42cc-8522-9ed6dab0e04a";
-const signature = sha256.hmac(secretKey, authString);
-friendbuyAPI.push(["auth", authString, signature]);
+```html
+<script>
+  const epoch = Math.round(new Date().getTime() / 1000);
+  const authString = epoch + ":" + customerEmail + ":" + customerUserId;
+  // Example:  epoch + ":test@example.com:57ec28c3-0834-42cc-8522-9ed6dab0e04a";
+  const signature = sha256.hmac(secretKey, authString);
+  friendbuyAPI.push(["auth", authString, signature]);
+</script>
 ```
 
 ```php
