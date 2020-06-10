@@ -221,6 +221,7 @@ If you want to provide additional information you must add the boolean `true` as
       amount: 57.87,
       currency: "USD",
       isNewCustomer: true,
+      couponCode: "abc-123",
       customer: {
         email: "john.doe@example.com",
         name: "John Doe",
@@ -236,12 +237,14 @@ If you want to provide additional information you must add the boolean `true` as
 </script>
 ```
 
-| Attribute       | Type    | Required | Example      |
-| :-------------- | :------ | :------- | :----------- |
-| `id`            | string  | **yes**  | `"ORD-4586"` |
-| `amount`        | number  | **yes**  | `55.50`      |
-| `currency`      | string  | **yes**  | `"USD"`      |
-| `isNewCustomer` | boolean | no       | `false`      |
+| Attribute       | Type    | Required | Example                  |
+| :-------------- | :------ | :------- | :----------------------- |
+| `id`            | string  | **yes**  | `"ORD-4586"`             |
+| `amount`        | number  | **yes**  | `55.50`                  |
+| `currency`      | string  | **yes**  | `"USD"`                  |
+| `isNewCustomer` | boolean | no       | `false`                  |
+| `couponCode`    | string  | no       | `"abcd1234"`             |
+| `giftCardCodes` | array   | no       | `["abc-123", "xyz-456"]` |
 
 Purchase accepts a sub-attribute `customer`
 

@@ -122,6 +122,8 @@ Optionally, you can also track purchase's customer, in which case, the customer 
       id: "order-1",
       amount: 55.45,
       currency: "USD",
+      isNewCustomer: true,
+      couponCode: "abc-123",
       customer: {
         id: "customer-1",
         email: "jon.doe@example.com",
