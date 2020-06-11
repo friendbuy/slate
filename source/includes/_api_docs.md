@@ -181,11 +181,11 @@ func main() {
 
 <h3 id="postauthorization-parameters">Parameters</h3>
 
-| Name     | In   | Type                                                | Required | Description         |
-| -------- | ---- | --------------------------------------------------- | -------- | ------------------- |
-| body     | body | [authorizationRequest](#schemaauthorizationrequest) | false    | none                |
-| » key    | body | string(uuid)                                        | true     | Your api access key |
-| » secret | body | string                                              | true     | Your api secret key |
+| Name     | In   | Type         | Required | Description         |
+| -------- | ---- | ------------ | -------- | ------------------- |
+| body     | body | object       | false    | none                |
+| » key    | body | string(uuid) | true     | Your api access key |
+| » secret | body | string       | true     | Your api secret key |
 
 > Example responses
 
@@ -201,9 +201,17 @@ func main() {
 
 <h3 id="postauthorization-responses">Responses</h3>
 
+| Name      | Type              | Required | Restrictions | Description                                             |
+| --------- | ----------------- | -------- | ------------ | ------------------------------------------------------- |
+| tokenType | string            | false    | none         | The type of the token generated.                        |
+| token     | string(byte)      | false    | none         | The token generated. You will use this to authenticate. |
+| expires   | string(date-time) | false    | none         | Expires 24 hours after registered.                      |
+
+<h3>Response Codes</h3>
+
 | Status | Meaning                                                                    | Description                                  | Schema                                                |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful authorization request.            | [authorizationResponse](#schemaauthorizationresponse) |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful authorization request.            | [authorizationResponse](#postauthorization-responses) |
 | 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                                 |
 | 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)            | Unauthorized                                 | [Error](#schemaerror)                                 |
 | 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                 |
@@ -412,23 +420,19 @@ Generate event
 
 <h3 id="postpersonalreferrallink-parameters">Parameters</h3>
 
-| Name                        | In   | Type                                                              | Required | Description                                                                                      |
-| --------------------------- | ---- | ----------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
-| body                        | body | [personalReferralLinkRequest](#schemapersonalreferrallinkrequest) | false    | none                                                                                             |
-| » email                     | body | string(email)                                                     | true     | Email of the advocate.                                                                           |
-| » campaignId                | body | string(uuid)                                                      | true     | ID of the campaign to use to generate the link.                                                  |
-| » customerId                | body | string                                                            | false    | Your customer id for the advocate.                                                               |
-| » firstName                 | body | string                                                            | false    | First name of the advocate.                                                                      |
-| » lastName                  | body | string                                                            | false    | Last name of the advocate.                                                                       |
-| » destinationUrlQueryParams | body | object                                                            | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
-| » seed                      | body | string                                                            | false    | Specifies what the vanity url will be based on if provided.                                      |
-| » channel                   | body | string                                                            | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
-| » short                     | body | boolean                                                           | false    | none                                                                                             |
-| » ipAddress                 | body | string                                                            | false    | IP Address of the advocate. Used for fraud checks.                                               |
-| » userAgent                 | body | string                                                            | false    | User Agent of the advocate. Used for fraud checks.                                               |
-| » widgetId                  | body | string(uuid)                                                      | false    | none                                                                                             |
-| » eventUrl                  | body | string                                                            | false    | none                                                                                             |
-| » eventPage                 | body | string                                                            | false    | none                                                                                             |
+| Name                        | In   | Type          | Required | Description                                                                                      |
+| --------------------------- | ---- | ------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| body                        | body | object        | false    | none                                                                                             |
+| » email                     | body | string(email) | true     | Email of the advocate.                                                                           |
+| » campaignId                | body | string(uuid)  | true     | ID of the campaign to use to generate the link.                                                  |
+| » customerId                | body | string        | false    | Your customer id for the advocate.                                                               |
+| » firstName                 | body | string        | false    | First name of the advocate.                                                                      |
+| » lastName                  | body | string        | false    | Last name of the advocate.                                                                       |
+| » destinationUrlQueryParams | body | object        | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
+| » seed                      | body | string        | false    | Specifies what the vanity url will be based on if provided.                                      |
+| » channel                   | body | string        | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
+| » ipAddress                 | body | string        | false    | IP Address of the advocate. Used for fraud checks.                                               |
+| » userAgent                 | body | string        | false    | User Agent of the advocate. Used for fraud checks.                                               |
 
 #### Enumerated Values
 
@@ -456,10 +460,16 @@ Generate event
 ```
 
 <h3 id="postpersonalreferrallink-responses">Responses</h3>
+| Name      | Type             | Required | Restrictions | Description |
+| --------- | ---------------- | -------- | ------------ | ----------- |
+| link      | string           | true     | none         | The link created.       |
+| createdOn | string(datetime) | true     | none         | When the link was created        |
+
+<h3>Response Codes</h3>
 
 | Status | Meaning                                                                    | Description                                                                | Schema                                                              |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Personal referral link already exists - returning the pre-existing record. | [personalReferralLinkResponse](#schemapersonalreferrallinkresponse) |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Personal referral link already exists - returning the pre-existing record. | [personalReferralLinkResponse](#postpersonalreferrallink-responses) |
 | 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                                              | [Error](#schemaerror)                                               |
 | 404    | [Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)             | Not found - campaign does not exist or is inactive.                        | [Error](#schemaerror)                                               |
 | 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                                                       | [Error](#schemaerror)                                               |
@@ -689,30 +699,34 @@ Generate purchase event
 
 <h3 id="postpurchaseevent-parameters">Parameters</h3>
 
-| Name                        | In   | Type                                                                    | Required | Description                                                                                          |
-| --------------------------- | ---- | ----------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
-| body                        | body | [purchaseEventRequest](#schemapurchaseeventrequest)                     | false    | none                                                                                                 |
-| » orderId                   | body | string                                                                  | true     | Unique order id for the purchase.                                                                    |
-| » email                     | body | string(email)                                                           | false    | Email of the customer making the purchase.                                                           |
-| » customerId                | body | string                                                                  | true     | Customer ID of the customer making the purchase.                                                     |
-| » firstName                 | body | string                                                                  | false    | First name of the customer making the purchase.                                                      |
-| » lastName                  | body | string                                                                  | false    | Last name of the customer making the purchase.                                                       |
-| » amount                    | body | number                                                                  | true     | The order total for the purchase.                                                                    |
-| » currency                  | body | string                                                                  | true     | The currency used for the purchase (i.e. USD).                                                       |
-| » isNewCustomer             | body | boolean                                                                 | false    | Whether or not the customer making the purchase has made a previous purchase.                        |
-| » couponCode                | body | string                                                                  | false    | The coupon code used in the purchase, if any. Can be used to establish attribution with an advocate. |
-| » refCode                   | body | string                                                                  | false    | The referral code from the advocate's referral link, if any.                                         |
-| » additionalProperties      | body | object                                                                  | false    | Any additional properties you wish to track with the purchase.                                       |
-| »» **additionalProperties** | body | string                                                                  | false    | A key value pair indicating the property name and value.                                             |
-| » ipAddress                 | body | string                                                                  | false    | IP address of the customer making the purchase.                                                      |
-| » userAgent                 | body | string                                                                  | false    | User Agent of the customer making the purchase.                                                      |
-| » products                  | body | [[purchaseEventRequest_products](#schemapurchaseeventrequest_products)] | false    | An array of purchased products.                                                                      |
-| »» sku                      | body | string                                                                  | true     | The SKU of the product.                                                                              |
-| »» name                     | body | string                                                                  | false    | The name of the product.                                                                             |
-| »» quantity                 | body | integer                                                                 | false    | The number of this product bought.                                                                   |
-| »» price                    | body | integer                                                                 | false    | The individual price of this product.                                                                |
-|                             |
+| Name                      | In                   | Type                           | Required | Description                                                                                          |
+| ------------------------- | -------------------- | ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- |
+| body                      | body                 | object                         | false    | none                                                                                                 |
+| » orderId                 | body                 | string                         | true     | Unique order id for the purchase.                                                                    |
+| » email                   | body                 | string(email)                  | false    | Email of the customer making the purchase.                                                           |
+| » customerId              | body                 | string                         | true     | Customer ID of the customer making the purchase.                                                     |
+| » firstName               | body                 | string                         | false    | First name of the customer making the purchase.                                                      |
+| » lastName                | body                 | string                         | false    | Last name of the customer making the purchase.                                                       |
+| » amount                  | body                 | number                         | true     | The order total for the purchase.                                                                    |
+| » currency                | body                 | string                         | true     | The currency used for the purchase (i.e. USD).                                                       |
+| » isNewCustomer           | body                 | boolean                        | false    | Whether or not the customer making the purchase has made a previous purchase.                        |
+| » couponCode              | body                 | string                         | false    | The coupon code used in the purchase, if any. Can be used to establish attribution with an advocate. |
+| » refCode                 | body                 | string                         | false    | The referral code from the advocate's referral link, if any.                                         |
+| » additionalProperties    | body                 | object                         | false    | Any additional properties you wish to track with the purchase.                                       |
+| »» **additionalProperty** | additionalProperties | string                         | false    | A key value pair indicating the property name and value.                                             |
+| » ipAddress               | body                 | string                         | false    | IP address of the customer making the purchase.                                                      |
+| » userAgent               | body                 | string                         | false    | User Agent of the customer making the purchase.                                                      |
+| » products                | body                 | [product](#product-parameters) | false    | An array of purchased products.                                                                      |
 
+<h3 id="product-parameters">Product Parameters</h3>
+| Name     | Type    | Required | Restrictions | Description |
+| -------- | ------- | -------- | ------------ | ----------- |
+| sku      | string  | true     | none         | none        |
+| name     | string  | false    | none         | none        |
+| quantity | integer | false    | none         | none        |
+| price    | integer | false    | none         | none        |
+
+<h3 id="postpurchaseevent-responses">Responses</h3>
 > Example responses
 
 > 201 Response
@@ -724,11 +738,16 @@ Generate purchase event
 }
 ```
 
-<h3 id="postpurchaseevent-responses">Responses</h3>
+| Name      | Type             | Required | Restrictions | Description                      |
+| --------- | ---------------- | -------- | ------------ | -------------------------------- |
+| eventId   | string(uuid)     | true     | none         | The Friendbuy id for this event. |
+| createdOn | string(datetime) | true     | none         | When this event was created.     |
+
+<h3>Response Codes</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                                |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Post event created                           | [purchaseEventResponse](#schemapurchaseeventresponse) |
+| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Post event created                           | [purchaseEventResponse](#postpurchaseevent-responses) |
 | 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                                 |
 | 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                 |
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                 |
@@ -908,8 +927,6 @@ func main() {
 
 `POST /v1/event/account-sign-up`
 
-_Generate sign-up event._
-
 Generate sign-up event.
 
 > Body parameter
@@ -933,19 +950,19 @@ Generate sign-up event.
 
 <h3 id="postsignupevent-parameters">Parameters</h3>
 
-| Name                        | In   | Type                                            | Required | Description                                                                                        |
-| --------------------------- | ---- | ----------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| body                        | body | [signUpEventRequest](#schemasignupeventrequest) | false    | none                                                                                               |
-| » email                     | body | string(email)                                   | true     | Email of the user signing up.                                                                      |
-| » customerId                | body | string                                          | true     | Customer id of the user.                                                                           |
-| » firstName                 | body | string                                          | false    | First name of the user.                                                                            |
-| » lastName                  | body | string                                          | false    | Last name of the user.                                                                             |
-| » refCode                   | body | string                                          | false    | The referral code from the advocate's referral link, if any.                                       |
-| » couponCode                | body | string                                          | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
-| » additionalProperties      | body | object                                          | false    | Any additional properties you wish to track with this signup.                                      |
-| »» **additionalProperties** | body | string                                          | false    | A key value pair representing the name of the property and the value.                              |
-| » ipAddress                 | body | string                                          | false    | The IP address of the user.                                                                        |
-| » userAgent                 | body | string                                          | false    | The User Agent of the user.                                                                        |
+| Name                      | In                   | Type          | Required | Description                                                                                        |
+| ------------------------- | -------------------- | ------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| body                      | body                 | object        | false    | none                                                                                               |
+| » email                   | body                 | string(email) | true     | Email of the user signing up.                                                                      |
+| » customerId              | body                 | string        | true     | Customer id of the user.                                                                           |
+| » firstName               | body                 | string        | false    | First name of the user.                                                                            |
+| » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
+| » refCode                 | body                 | string        | false    | The referral code from the advocate's referral link, if any.                                       |
+| » couponCode              | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
+| » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with this signup.                                      |
+| »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and the value.                              |
+| » ipAddress               | body                 | string        | false    | The IP address of the user.                                                                        |
+| » userAgent               | body                 | string        | false    | The User Agent of the user.                                                                        |
 
 > Example responses
 
@@ -959,10 +976,16 @@ Generate sign-up event.
 ```
 
 <h3 id="postsignupevent-responses">Responses</h3>
+| Name      | Type             | Required | Restrictions | Description |
+| --------- | ---------------- | -------- | ------------ | ----------- |
+| eventId   | string(uuid)     | true     | none         | The Friendbuy id for this event.        |
+| createdOn | string(datetime) | true     | none         | When this event was created.        |
+
+<h3>Response Codes</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                            |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Post event created                           | [signUpEventResponse](#schemasignupeventresponse) |
+| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Post event created                           | [signUpEventResponse](#postsignupevent-responses) |
 | 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                             |
 | 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                             |
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                             |
@@ -1169,20 +1192,20 @@ Generate event
 
 <h3 id="postcustomevent-parameters">Parameters</h3>
 
-| Name                        | In   | Type                                            | Required | Description                                                                                        |
-| --------------------------- | ---- | ----------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| body                        | body | [customEventRequest](#schemacustomeventrequest) | false    | none                                                                                               |
-| » email                     | body | string(email)                                   | true     | Email of the user performing the event.                                                            |
-| » eventType                 | body | string                                          | true     | The type of the event you are tracking (i.e. "newsletter signup", "video view", etc).              |
-| » isNewCustomer             | body | boolean                                         | false    | Whether or not the user is a new customer.                                                         |
-| » firstName                 | body | string                                          | false    | First name of the user.                                                                            |
-| » lastName                  | body | string                                          | false    | Last name of the user.                                                                             |
-| » refCode                   | body | string                                          | false    | The referral code from the advocate's referral link, if any.                                       |
-| » couponCode                | body | string                                          | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
-| » additionalProperties      | body | object                                          | false    | Any additional properties you wish to track with the event.                                        |
-| »» **additionalProperties** | body | string                                          | false    | A key value pair representing the name and value of the additional property.                       |
-| » ipAddress                 | body | string                                          | false    | IP Address of the user.                                                                            |
-| » userAgent                 | body | string                                          | false    | User Agent of the user.                                                                            |
+| Name                      | In                   | Type          | Required | Description                                                                                        |
+| ------------------------- | -------------------- | ------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| body                      | body                 | object        | false    | none                                                                                               |
+| » email                   | body                 | string(email) | true     | Email of the user performing the event.                                                            |
+| » eventType               | body                 | string        | true     | The type of the event you are tracking (i.e. "newsletter signup", "video view", etc).              |
+| » isNewCustomer           | body                 | boolean       | false    | Whether or not the user is a new customer.                                                         |
+| » firstName               | body                 | string        | false    | First name of the user.                                                                            |
+| » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
+| » refCode                 | body                 | string        | false    | The referral code from the advocate's referral link, if any.                                       |
+| » couponCode              | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
+| » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with the event.                                        |
+| »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name and value of the additional property.                       |
+| » ipAddress               | body                 | string        | false    | IP Address of the user.                                                                            |
+| » userAgent               | body                 | string        | false    | User Agent of the user.                                                                            |
 
 > Example responses
 
@@ -1197,9 +1220,16 @@ Generate event
 
 <h3 id="postcustomevent-responses">Responses</h3>
 
+| Name      | Type             | Required | Restrictions | Description                      |
+| --------- | ---------------- | -------- | ------------ | -------------------------------- |
+| eventId   | string(uuid)     | true     | none         | The Friendbuy id for this event. |
+| createdOn | string(datetime) | true     | none         | When this event was created.     |
+
+<h3>Response Codes</h3>
+
 | Status | Meaning                                                                    | Description                                  | Schema                                            |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Post event created                           | [customEventResponse](#schemacustomeventresponse) |
+| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Post event created                           | [customEventResponse](#postcustomevent-responses) |
 | 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                             |
 | 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                             |
 | 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                             |
@@ -1418,26 +1448,26 @@ Generate event
 
 <h3 id="postcustomer-parameters">Parameters</h3>
 
-| Name                        | In   | Type                                      | Required | Description                                                           |
-| --------------------------- | ---- | ----------------------------------------- | -------- | --------------------------------------------------------------------- |
-| body                        | body | [customerRequest](#schemacustomerrequest) | false    | none                                                                  |
-| » email                     | body | string(email)                             | true     | Email of the customer.                                                |
-| » customerId                | body | string                                    | true     | Your id for the customer.                                             |
-| » isNewCustomer             | body | boolean                                   | false    | Whether or not the customer has purchsed before.                      |
-| » firstName                 | body | string                                    | false    | First name of the customer.                                           |
-| » lastName                  | body | string                                    | false    | Last name of the customer.                                            |
-| » age                       | body | integer                                   | false    | Age of the customer.                                                  |
-| » gender                    | body | string                                    | false    | Gender of the customer.                                               |
-| » zipCode                   | body | string                                    | false    | Zip code of the customer.                                             |
-| » state                     | body | string                                    | false    | State the customer lives in.                                          |
-| » city                      | body | string                                    | false    | The customer's city.                                                  |
-| » category                  | body | string                                    | false    | The category the customer is in, if any.                              |
-| » country                   | body | string                                    | false    | The customer's country.                                               |
-| » language                  | body | string                                    | false    | The customer's preferred language.                                    |
-| » additionalProperties      | body | object                                    | false    | Any additional properties you wish to track with this customer.       |
-| »» **additionalProperties** | body | string                                    | false    | A key value pair representing the name of the property and its value. |
-| » ipAddress                 | body | string                                    | false    | IP address of the customer.                                           |
-| » userAgent                 | body | string                                    | false    | User Agent of the customer.                                           |
+| Name                      | In                   | Type          | Required | Description                                                           |
+| ------------------------- | -------------------- | ------------- | -------- | --------------------------------------------------------------------- |
+| body                      | body                 | object        | false    | none                                                                  |
+| » email                   | body                 | string(email) | true     | Email of the customer.                                                |
+| » customerId              | body                 | string        | true     | Your id for the customer.                                             |
+| » isNewCustomer           | body                 | boolean       | false    | Whether or not the customer has purchsed before.                      |
+| » firstName               | body                 | string        | false    | First name of the customer.                                           |
+| » lastName                | body                 | string        | false    | Last name of the customer.                                            |
+| » age                     | body                 | integer       | false    | Age of the customer.                                                  |
+| » gender                  | body                 | string        | false    | Gender of the customer.                                               |
+| » zipCode                 | body                 | string        | false    | Zip code of the customer.                                             |
+| » state                   | body                 | string        | false    | State the customer lives in.                                          |
+| » city                    | body                 | string        | false    | The customer's city.                                                  |
+| » category                | body                 | string        | false    | The category the customer is in, if any.                              |
+| » country                 | body                 | string        | false    | The customer's country.                                               |
+| » language                | body                 | string        | false    | The customer's preferred language.                                    |
+| » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with this customer.       |
+| »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and its value. |
+| » ipAddress               | body                 | string        | false    | IP address of the customer.                                           |
+| » userAgent               | body                 | string        | false    | User Agent of the customer.                                           |
 
 > Example responses
 
@@ -1452,9 +1482,16 @@ Generate event
 
 <h3 id="postcustomer-responses">Responses</h3>
 
+| Name       | Type             | Required | Restrictions | Description                         |
+| ---------- | ---------------- | -------- | ------------ | ----------------------------------- |
+| customerId | string           | true     | none         | The Friendbuy id for this customer. |
+| createdOn  | string(datetime) | true     | none         | When this customer was created.     |
+
+<h3>Response Codes</h3>
+
 | Status | Meaning                                                                    | Description                                  | Schema                                      |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Customer already exists - updated            | [customerResponse](#schemacustomerresponse) |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Customer already exists - updated            | [customerResponse](#postcustomer-responses) |
 | 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)               | Customer created                             | [customerResponse](#schemacustomerresponse) |
 | 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                       |
 | 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                       |
@@ -1662,13 +1699,49 @@ func main() {
 
 <h3 id="getuserdata-responses">Responses</h3>
 
-| Status | Meaning                                                                    | Description                                  | Schema                                            |
-| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful user data get request.            | [userDataGetResponse](#schemauserdatagetresponse) |
-| 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                             |
-| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                             |
-| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                             |
-| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                             |
+| Name          | Type                                                                            | Required | Restrictions | Description |
+| ------------- | ------------------------------------------------------------------------------- | -------- | ------------ | ----------- |
+| emails        | [string]                                                                        | false    | none         | none        |
+| names         | [string]                                                                        | false    | none         | none        |
+| customerIds   | [string]                                                                        | false    | none         | none        |
+| ipAddresses   | [string]                                                                        | false    | none         | none        |
+| languages     | [string]                                                                        | false    | none         | none        |
+| userAgents    | [string]                                                                        | false    | none         | none        |
+| colorDepths   | [number]                                                                        | false    | none         | none        |
+| platforms     | [string]                                                                        | false    | none         | none        |
+| screenSizes   | [string]                                                                        | false    | none         | none        |
+| trackedEvents | [[userDataGetResponse_trackedEvents](#schemauserdatagetresponse_trackedevents)] | false    | none         | none        |
+| shares        | [userDataGetResponse_shares](#tracked_shares_and_conversions_response)          | false    | none         | none        |
+| conversions   | [userDataGetResponse_shares](#tracked_shares_and_conversions_response)          | false    | none         | none        |
+
+<h3 id="#schemauserdatagetresponse_trackedevents">Tracked Event Response</h3>
+| Name | Type   | Required | Restrictions | Description |
+| ---- | ------ | -------- | ------------ | ----------- |
+| type | string | false    | none         | The type of the event.        |
+| url  | string | false    | none         | none        |
+
+<h3 id="#tracked_shares_and_conversions_response">Tracked Share/Conversion Response</h3>
+
+The same schema applies to both tracked shares and tracked conversions.
+
+| Name      | Type    | Required | Restrictions | Description                                    |
+| --------- | ------- | -------- | ------------ | ---------------------------------------------- |
+| email     | integer | false    | none         | The number of email shares or conversions.     |
+| facebook  | integer | false    | none         | The number of facebook shares or conversions.  |
+| messenger | integer | false    | none         | The number of messenger shares or conversions. |
+| sms       | integer | false    | none         | The number of sms shares or conversions.       |
+| twitter   | integer | false    | none         | The number of twitter shares or conversions.   |
+| purl      | integer | false    | none         | The number of purl shares or conversions.      |
+
+<h3>Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                          |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful user data get request.            | [userDataGetResponse](#schemauserdatagetresponse_trackedevents) |
+| 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                                           |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                           |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                           |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                           |
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1841,15 +1914,32 @@ func main() {
 
 <h3 id="deleteuserdata-responses">Responses</h3>
 
-| Status | Meaning                                                                    | Description                                  | Schema                                                  |
-| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful user data delete request.         | [userDataDeleteResponse](#schemauserdatadeleteresponse) |
-| 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                                   |
-| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                   |
-| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                   |
-| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                   |
+| Name  | Type         | Required | Restrictions | Description                                                                |
+| ----- | ------------ | -------- | ------------ | -------------------------------------------------------------------------- |
+| jobId | string(uuid) | false    | none         | The id of the task to delete the data. Used for troubleshooting if needed. |
+
+<h3>Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                              |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful user data delete request.         | [userDataDeleteResponse](#deleteuserdata-responses) |
+| 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                | [Error](#schemaerror)                               |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                               |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                               |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                               |
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
+
+## Errors
+
+<a id="schemaerror"></a>
+
+| Name      | Type   | Required | Restrictions | Description                                                     |
+| --------- | ------ | -------- | ------------ | --------------------------------------------------------------- |
+| error     | string | false    | none         | The error name.                                                 |
+| message   | string | false    | none         | The error details.                                              |
+| code      | number | false    | none         | The status code of the error.                                   |
+| reference | string | false    | none         | A reference string that can be sent to friendbuy for debugging. |
