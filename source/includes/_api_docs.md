@@ -1718,7 +1718,7 @@ func main() {
 | Name | Type   | Required | Restrictions | Description |
 | ---- | ------ | -------- | ------------ | ----------- |
 | type | string | false    | none         | The type of the event.        |
-| url  | string | false    | none         | none        |
+| url  | string | false    | none         | The url of the page the event was tracked on.        |
 
 <h3 id="#tracked_shares_and_conversions_response">Tracked Share/Conversion Response</h3>
 

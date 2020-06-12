@@ -2,7 +2,7 @@
 
 > Example Payload
 
-```javascript
+```json
 {
   "eventType": "purchase",
   "createdOn": "2019-11-18T23:48:30.017Z",

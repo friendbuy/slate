@@ -40,7 +40,9 @@ This only means that when you are tracking these events, you are bound to respec
     "title": "Welcome to Foo Store - Account page",
     "name": "account page",
     "url": "https://www.foo-store.com/account/user-1234",
-    "widgetDisplayName": "widget foo bar baz"
+    "widgetDisplayName": "widget foo bar baz",
+    "origin": "https://www.foo-store.com",
+    "pathname": "/account/user-1234"
   },
   "payload": {
     "type": "foo",
@@ -55,6 +57,8 @@ Every event sends the metadata of the current state. The metadata contains:
 - Page name \(through the track page event\)
 - the name of the widget \(under `widgetDisplayName` when relevant\)
 - the page URL
+- The origin of the track call (the base domain of the url)
+- The pathname of the track call (the path of the url)
 
 An example of metadata format is to the right:
 
@@ -120,11 +124,10 @@ This is the journey of an event \(up to our backend public API\).
 </script>
 ```
 
-| Attribute    | Type   | Required | Example                                  |
-| :----------- | :----- | :------- | :--------------------------------------- |
-| `email`      | string | **yes**  | `"john.doe@example.com"`                 |
-| `name`       | string | no       | `"John Doe"`                             |
-| `campaignId` | string | no       | `"572d3386-fa76-4d21-9190-2ac712b74428"` |
+| Attribute | Type   | Required | Example                  |
+| :-------- | :----- | :------- | :----------------------- |
+| `email`   | string | **yes**  | `"john.doe@example.com"` |
+| `name`    | string | no       | `"John Doe"`             |
 
 The only required field for an email capture event is the `email` field. A minimal email capture event is defined as followed:
 
@@ -151,7 +154,9 @@ This last `true` parameter will indicate to the merchant SDK that any additional
   "email": "john.doe@example.com",
   "firstName": "John",
   "lastName": "Doe",
-  "isNewCustomer": false
+  "isNewCustomer": false,
+  "customerSince": "2020-06-12T17:58:44.000Z",
+  "age": 26
 }
 ```
 
@@ -179,11 +184,12 @@ This last `true` parameter will indicate to the merchant SDK that any additional
 | :-------------- | :------ | :------- | :--------------------------------------- |
 | `id`            | string  | **yes**  | `"c42526a0-86bb-4b2b-8015-3c88e5502fb3"` |
 | `email`         | string  | **yes**  | `"john.doe@example.com"`                 |
-| `name`          | string  | no       | `"Johnny"`                               |
+| `name`          | string  | no       | `"John Doe"`                             |
 | `firstName`     | string  | no       | `"John"`                                 |
 | `lastName`      | string  | no       | `"Doe"`                                  |
 | `isNewCustomer` | boolean | no       | `false`                                  |
-| `campaignId`    | string  | no       | `"572d3386-fa76-4d21-9190-2ac712b74428"` |
+| `customerSince` | string  | no       | `"2020-06-12T17:58:44.000Z"`             |
+| `age`           | integer | no       | 26                                       |
 
 You can track a customer using the track customer endpoints. Track customer requires a least both an `id` and a valid `email`. You may also add the `isNewCustomer` information.
 
@@ -227,6 +233,8 @@ If you want to provide additional information you must add the boolean `true` as
         name: "John Doe",
         id: "customer-123",
         category: "vip",
+        age: 32,
+        customerSince: "2020-06-12T17:58:44.000Z",
       },
       products: [
         { sku: "PLU-8542", quantity: 4, price: 5.54, name: "flowers" },
@@ -246,25 +254,29 @@ If you want to provide additional information you must add the boolean `true` as
 | `couponCode`    | string  | no       | `"abcd1234"`             |
 | `giftCardCodes` | array   | no       | `["abc-123", "xyz-456"]` |
 
-Purchase accepts a sub-attribute `customer`
+Purchase accepts a sub-attribute `customer`. The required fields below are only required if customer data is provided.
 
-| Customer sub-attribute | Type   | Required | Example                                               |
-| :--------------------- | :----- | :------- | :---------------------------------------------------- |
-| `customer`             | object | no       | _Below fields are required only if customer provided_ |
-| `customer.id`          | string | _yes_    | `"CUST-3821"`                                         |
-| `customer.email`       | string | _yes_    | `"john.doe@gmail.com"`                                |
-| `customer.name`        | string | _yes_    | `"John Doe"`                                          |
+| Customer sub-attribute   | Type    | Required | Example                      |
+| :----------------------- | :------ | :------- | :--------------------------- |
+| `customer.id`            | string  | _yes_    | `"CUST-3821"`                |
+| `customer.email`         | string  | _yes_    | `"john.doe@gmail.com"`       |
+| `customer.name`          | string  | _yes_    | `"John Doe"`                 |
+| `customer.isNewCustomer` | boolean | _no_     | false                        |
+| `customer.customerSince` | string  | _no_     | `"2020-06-12T17:58:44.000Z"` |
+| `customer.age`           | integer | _no_     | `26`                         |
 
-and a sub-attribute `products` \(as an array\)
+and a sub-attribute `products` \(as an array of objects\)
 
-| Products sub-attribute | Type   | Required | Example                                    |
-| :--------------------- | :----- | :------- | :----------------------------------------- |
-| `products`             | array  | no       | _An array of product objects as follows_   |
-| `products[0].sku`      | string | no       | `"PLU-8324-187"` or default to `"unknown"` |
-| `products[0].name`     | string | no       | `"Yellow Jacket`                           |
-| `products[0].quantity` | number | _yes_    | `5`                                        |
-| `products[0].price`    | number | _yes_    | `28.99`                                    |
-| `campaignId`           | string | no       | `"572d3386-fa76-4d21-9190-2ac712b74428"`   |
+| Products sub-attribute    | Type   | Required | Example                                    |
+| :------------------------ | :----- | :------- | :----------------------------------------- |
+| `products[0].sku`         | string | no       | `"PLU-8324-187"` or default to `"unknown"` |
+| `products[0].name`        | string | no       | `"Yellow Jacket`                           |
+| `products[0].quantity`    | number | _yes_    | `5`                                        |
+| `products[0].price`       | number | _yes_    | `28.99`                                    |
+| `products[0].description` | string | _no_     | `"Test Product"`                           |
+| `products[0].category`    | string | _no_     | `"Apparel"`                                |
+| `products[0].url`         | string | _no_     | `"https://example.com/apparel"`            |
+| `products[0].imageUrl`    | string | _no_     | `"https://example.com/images/1234"`        |
 
 Purchase event are the most common conversions.
 
@@ -309,16 +321,16 @@ Purchase event are the most common conversions.
 </script>
 ```
 
-| Attribute    | Type   | Required         | Example                                           |
-| :----------- | :----- | :--------------- | :------------------------------------------------ |
-| `sku`        | string | **yes**          | `"PLU-846871"`                                    |
-| `name`       | string | **yes**          | `"Yogurt"`                                        |
-| `price`      | number | no               | `10.52`                                           |
-| `currency`   | string | _yes_ if `price` | `"USD"`                                           |
-| `category`   | string | no               | `"dairy"`                                         |
-| `url`        | string | no               | `"https://www.example.com/product/846871"`        |
-| `imageUrl`   | string | no               | `"https://static.example.com/product-846871.jpg"` |
-| `campaignId` | string | no               | `"572d3386-fa76-4d21-9190-2ac712b74428"`          |
+| Attribute     | Type   | Required         | Example                                           |
+| :------------ | :----- | :--------------- | :------------------------------------------------ |
+| `sku`         | string | **yes**          | `"PLU-846871"`                                    |
+| `name`        | string | **yes**          | `"Yogurt"`                                        |
+| `price`       | number | no               | `10.52`                                           |
+| `currency`    | string | _yes_ if `price` | `"USD"`                                           |
+| `category`    | string | no               | `"dairy"`                                         |
+| `url`         | string | no               | `"https://www.example.com/product/846871"`        |
+| `imageUrl`    | string | no               | `"https://static.example.com/product-846871.jpg"` |
+| `description` | string | no               | `"Plain yogurt"`                                  |
 
 We allow a merchant to capture a product view using this controlled event capture method.
 
@@ -352,17 +364,18 @@ Page event allows you to track the page name. The page name simplifies targeting
     {
       email: "john.doe@example.com",
       id: "user-123",
+      age: 40,
     },
   ]);
 </script>
 ```
 
-| Attribute    | Type   | Required | Example                                  |
-| :----------- | :----- | :------- | :--------------------------------------- |
-| `id`         | string | **yes**  | `"CUST-8348"`                            |
-| `email`      | string | **yes**  | `"john.doe@example.com"`                 |
-| `name`       | string | no       | `"John"`                                 |
-| `campaignId` | string | no       | `"572d3386-fa76-4d21-9190-2ac712b74428"` |
+| Attribute | Type    | Required | Example                  |
+| :-------- | :------ | :------- | :----------------------- |
+| `id`      | string  | **yes**  | `"CUST-8348"`            |
+| `email`   | string  | **yes**  | `"john.doe@example.com"` |
+| `name`    | string  | no       | `"John"`                 |
+| `age`     | integer | no       | `40`                     |
 
 When a user creates an account, you can register this event using the `sign_up` event type. Note that a signup event will consider the user to be a new user \(as opposed to a [track customer event](customer-event)\). The controlled fields for a sign up event are `id`, `email`, `name`, `campaignId`.
 
