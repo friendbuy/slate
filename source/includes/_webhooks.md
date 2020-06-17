@@ -1,0 +1,160 @@
+# Webhooks
+
+## Retry Behavior
+
+When a Webhook receives a status code that is not a 200, we will attempt to retry the request every 15 minutes until 24 hours have passed or a response code of 200 is received.
+
+## Signature Validation
+
+> NodeJS Example
+
+```typescript
+export function verifyWebhook(data, hmacSignature) {
+  const providedHmac = Buffer.from(hmacSignature, "utf-8");
+  const generatedHash = Buffer.from(
+    crypto
+      .createHmac("sha256", FRIENDBUY_SECRET_KEY)
+      .update(data)
+      .digest("base64"),
+    "utf-8"
+  );
+  let hashEquals = false;
+  try {
+    hashEquals = crypto.timingSafeEqual(generatedHash, providedHmac);
+  } catch (e) {
+    hashEquals = false;
+  }
+  return hashEquals;
+}
+```
+
+You can verify the authenticity of a webhook request or client API integration from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64-encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key. To verify the signature:
+
+1. Calculate an HMAC-SHA-256 composition of the JSON request body:  
+   `HMAC(api_secret, json_body)`
+2. Base64 encode the resulting value.
+3. If the Base64 encoded hash matches the signature header, the request is valid.
+4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
+   `HMAC(api_secret, json_body)`
+5. Base64 encode the resulting value.
+6. If the Base64 encoded hash matches the signature header, the request is valid.
+
+You can get your Webhook secret key by going to Developer Center &gt; Webhooks and copying the Digital Signature in the retailer app.
+
+## Reward Webhook
+
+> Example Payload
+
+```json
+{
+  "id": "255e4e45-446d-499d-a680-44ab1eca73fb",
+  "type": "advocateReward",
+  "data": [
+    {
+      "rewardId": "73cb50ea-7ac8-4f90-9fe4-f5450866f3c0",
+      "rewardType": "discount",
+      "rewardUnit": "USD",
+      "emailAddress": "test@example.com",
+      "rewardAmount": "20.00",
+      "createdOn": "2019-11-05T01:07:36.720Z",
+      "customerId": "asd123-abcfasdf",
+      "couponCode": "test-coupon-code"
+    }
+  ],
+  "createdOn": "2019-11-05T01:07:38.509Z"
+}
+```
+
+A reward is created after a conversion is evaluated and determined to be rewardable \(i.e. all business rules and fraud checks have been met and the reward falls into a specific tier\).
+
+The Reward Webhook is the preferred method for depositing credit or points into an Advocate’s account in your system.
+
+After a reward is created, friendbuy will send a POST request to your system with data about the reward.
+
+### Payload
+
+| Property  | type             | Description                                                                                                                           |
+| :-------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| id        | string           | The id of the webhook. Useful for troubleshooting.                                                                                    |
+| createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                       |
+| data      | array of objects | An array of webhook payloads, see definition below. Multiple rewards may fire in the same webhook if they happen in quick succession. |
+
+Reward details will be available in the `data` property of the request with the following format:
+
+| Property     | Type          | Description                                                                                                                                                                                      |
+| :----------- | :------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rewardId     | string        | The id of the reward. Useful for troubleshooting and preventing duplicate reward distributions.                                                                                                  |
+| rewardType   | string        | The type of the reward. One of `"discount", "credit", "giftCard", "cash", "product", "other", "ledger", or "integration"`                                                                        |
+| rewardUnit   | string        | The unit of the reward applicable to the `rewardType`currency code \(e.g. "USD"\), percent \("%"\), or product SKU                                                                               |
+| customerId   | string        | The customer id of the advocate to be rewarded, if provided. Note: this is your customer ID provided to friendbuy through the javascript integration, not an internal ID generated by friendbuy. |
+| emailAddress | string        | The email address of the advocate to be rewarded.                                                                                                                                                |
+| amount       | number        | The numerical value of the reward. Typically the value of the coupon or the amount of credit to deposit.                                                                                         |
+| createdOn    | ISO timestamp | The date and time the reward was created.                                                                                                                                                        |
+| couponCode   | string        | The coupon code that was distributed with this reward, if any.                                                                                                                                   |
+
+## Email Capture Webhook
+
+> Example Payload
+
+```json
+{
+  "id": "255e4e45-446d-499d-a680-44ab1eca73fb",
+  "type": "emailCapture",
+  "data": [
+    {
+      "eventId": "e6c720d4-b721-4789-a110-0d680777b802",
+      "emailAddress": "test@example.com",
+      "campaign": {
+        "id": "8a7b9436-8b91-4022-b830-d405dfcc3964",
+        "name": "Spring Campaign"
+      },
+      "incentive": {
+        "couponCode": "Test couponCode",
+        "amount": 30,
+        "currency": "USD"
+      }
+    }
+  ],
+  "createdOn": "2019-11-05T01:07:38.509Z"
+}
+```
+
+An email capture is created when someone enters their email into a friend incentive widget or the email gate of a referral widget and checks the opt-in checkbox.
+
+The email capture webhook can be used to funnel these emails into your system to add them into your mailing list or for internal record keeping amongst other uses.
+
+After an email capture is created, Friendbuy will send a POST request to your system with data about the captured email.
+
+**NOTE: The email capture widget will only fire if someone checks the opt-in checkbox before submitting their email address.**
+
+### Payload
+
+| Property  | Type             | Description                                                                                                                           |
+| :-------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| id        | string           | The id of the webhook. Useful for troubleshooting.                                                                                    |
+| createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                       |
+| data      | array of objects | An array of webhook payloads, see definition below. Multiple rewards may fire in the same webhook if they happen in quick succession. |
+
+Email Capture details will be available in the `data` property of the request with the following format:
+
+| Property     | Type   | Description                                                        |
+| :----------- | :----- | :----------------------------------------------------------------- |
+| eventId      | string | The id of the email capture event. Useful for troubleshooting.     |
+| emailAddress | string | The email address entered into the email field.                    |
+| campaign     | object | The campaign details for the campaign the email was captured with. |
+| incentive    | object | The incentive associated with the email capture, if any.           |
+
+The `campaign` object in the payload has the following structure:
+
+| Property | Type   | Description                                         |
+| :------- | :----- | :-------------------------------------------------- |
+| id       | string | The id of the campaign used to capture the email.   |
+| name     | string | The name of the campaign used to capture the email. |
+
+The `incentive` object in the payload has the following structure:
+
+| Property   | Type   | Description                                                                |
+| :--------- | :----- | :------------------------------------------------------------------------- |
+| couponCode | string | The coupon code given to the user for entering their email, if applicable. |
+| amount     | number | The numerical value of the incentive.                                      |
+| currency   | string | The currency of the incentive \(i.e. "USD"\).                              |
