@@ -2,12 +2,19 @@
 
 > Code Samples
 
-```html
-<script>
-  const epoch = Math.round(new Date().getTime() / 1000);
-  const authString = epoch + ":" + customerEmail + ":" + customerUserId;
-  // Example:  epoch + ":test@example.com:57ec28c3-0834-42cc-8522-9ed6dab0e04a";
-  const signature = sha256.hmac(secretKey, authString);
+```javascript
+// Important! Only generate this signature in your site's backend. 
+const epoch = Math.round(new Date().getTime() / 1000);
+const authString = epoch + ":" + customerEmail + ":" + customerUserId;
+// Example: epoch + ":test@example.com:57ec28c3-0834-42cc-8522-9ed6dab0e04a";
+const signature = sha256.hmac(secretKey, authString);
+
+<script>  
+  const authString = "[ authString generated from site's backend code ]";
+  const signature = "[ signature generated from site's backend code ]";
+
+  window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
+
   friendbuyAPI.push(["auth", authString, signature]);
 </script>
 ```
@@ -30,7 +37,6 @@ window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
 
 friendbuyAPI.push(["auth", authString, signature]);
 </script>
-
 ```
 
 ## **Summary**
