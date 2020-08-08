@@ -249,7 +249,7 @@ To track a customer make a **POST** request to **/customer**
 
 ```text
 GET /user-data?email=test@example.com
-GET /user-data?customerID=1554332
+GET /user-data?customerId=1554332
 ```
 
 > Example Response Body
@@ -318,7 +318,7 @@ In order to comply with CCPA and GDPR requirements, Friendbuy supports the retri
 
 ```text
 DELETE /user-data?email=test@example.com
-DELETE /user-data?customerID=1554332
+DELETE /user-data?customerId=1554332
 ```
 
 > Example Response
