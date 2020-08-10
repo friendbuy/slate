@@ -230,7 +230,7 @@ To track a custom event, make a **POST** request to **/event/custom**.
 
 ```json
 {
-  "customerId": "7b5e9a0a-3386-49c8-84d7-6d4047639285",
+  "eventId": "7b5e9a0a-3386-49c8-84d7-6d4047639285",
   "createdOn": "2020-03-05T01:07:38.509Z"
 }
 ```
