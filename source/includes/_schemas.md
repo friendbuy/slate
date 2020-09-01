@@ -216,7 +216,7 @@
   "currency": "string",
   "isNewCustomer": false,
   "couponCode": "string",
-  "refCode": "string",
+  "attributionId": "string",
   "products": [
     {
       "sku": "string",
@@ -247,7 +247,7 @@
 | currency                   | string                                                                  | true     | none         | none        |
 | isNewCustomer              | boolean                                                                 | false    | none         | none        |
 | couponCode                 | string                                                                  | false    | none         | none        |
-| refCode                    | string                                                                  | false    | none         | none        |
+| attributionId              | string                                                                  | false    | none         | none        |
 | products                   | [[purchaseEventRequest_products](#schemapurchaseeventrequest_products)] | false    | none         | none        |
 | additionalProperties       | object                                                                  | false    | none         | none        |
 | » **additionalProperties** | string                                                                  | false    | none         | none        |
@@ -289,7 +289,7 @@
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
-  "refCode": "string",
+  "attributionId": "string",
   "couponCode": "string",
   "additionalProperties": {
     "property1": "string",
@@ -309,7 +309,7 @@
 | isNewCustomer              | boolean       | false    | none         | none        |
 | firstName                  | string        | false    | none         | none        |
 | lastName                   | string        | false    | none         | none        |
-| refCode                    | string        | false    | none         | none        |
+| attributionId              | string        | false    | none         | none        |
 | couponCode                 | string        | false    | none         | none        |
 | additionalProperties       | object        | false    | none         | none        |
 | » **additionalProperties** | string        | false    | none         | none        |
@@ -350,7 +350,7 @@
   "customerId": "string",
   "firstName": "string",
   "lastName": "string",
-  "refCode": "string",
+  "attributionId": "string",
   "couponCode": "string",
   "additionalProperties": {
     "property1": "string",
@@ -369,7 +369,7 @@
 | customerId                 | string        | true     | none         | none        |
 | firstName                  | string        | false    | none         | none        |
 | lastName                   | string        | false    | none         | none        |
-| refCode                    | string        | false    | none         | none        |
+| attributionId              | string        | false    | none         | none        |
 | couponCode                 | string        | false    | none         | none        |
 | additionalProperties       | object        | false    | none         | none        |
 | » **additionalProperties** | string        | false    | none         | none        |

@@ -86,6 +86,47 @@ To retrieve a personal referral link, make a **POST** request to **/personal-ref
 
 You can then distribute this link however you wish. Common use cases involve sending a personal referral link to a subset of customers through email to promote the referral program and retrieving a link to be displayed within a mobile app.
 
+## Decoding the Attribution ID
+
+> Code Samples
+
+````javascript
+// This example uses KJUR open source cryptographic library
+<script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>;
+
+// Validate fbuy data with public key
+const urlParams = new URLSearchParams(window.location.search);
+const fbuy = urlParams.get("fbuy");
+
+const publicKey = ```-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCv+UDAAmI0GyM9obO1P+N8LGfI
+If6m+LgQirR1fQLTcQyu+lrQkqa+BhVa/nouoiPm+ZUKVtFMJJ44xxa4OPvXv3tB
+UPyhJJGYvA8ARqXedzXo13AvSmhKBKG1LxpdU1KGTQNj9En7dmlyeXF5UXAddqoo
+JizmTNzQy1wmQw14DwIDAQAB
+-----END PUBLIC KEY-----```;
+
+const isValid = KJUR.jws.JWS.verify(fbuy, publicKey, ["RS256"]);
+
+// Decode fbuy data
+const decoded = KJUR.jws.JWS.parse(fbuy);
+const [
+  merchantId,
+  profileId,
+  globalId,
+  attributionId,
+  domain,
+  epoch,
+  customerId,
+  email,
+] = decoded.payloadPP.split(":");
+````
+
+### Summary
+
+An `attributionId` will link an event, like a purchase or sign up event, to a referral, allowing Friendbuy to attribute the event to the advocate.
+
+When a Friendbuy referral link is followed, Friendbuy adds the GET parameter `fbuy` to the destination URL. The `fbuy` parameter contains an encoded string, containing the `attributionId` as well as other information relating to the referral. The following event tracking endpoints can use this `attributionId` decoded from the `fbuy` parameter.
+
 ## Tracking a Purchase
 
 > Example Request Body
@@ -101,7 +142,7 @@ You can then distribute this link however you wish. Common use cases involve sen
   "currency": "USD",
   "isNewCustomer": false,
   "couponCode": "FRIEND-OFFER-244432",
-  "refCode": "xhaf5hps",
+  "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
   "products": [
     {
       "sku": "SKU123324",
@@ -144,7 +185,7 @@ To track a purchase, make a **POST** request to **/event/purchase.**
   "customerId": "15529938",
   "firstName": "Test",
   "lastName": "User",
-  "refCode": "xhaf5hps",
+  "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
   "couponCode": "FRIEND-OFFER-244432"
 }
 ```
@@ -180,7 +221,7 @@ To track a signup, make a **POST** request to **/event/account-sign-up**
   "isNewCustomer": false,
   "firstName": "Test",
   "lastName": "User",
-  "refCode": "xhaf5hps",
+  "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
   "couponCode": "FRIEND-OFFER-244432",
 }
 ```
