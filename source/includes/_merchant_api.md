@@ -90,7 +90,7 @@ You can then distribute this link however you wish. Common use cases involve sen
 
 > Code Samples
 
-````javascript
+```javascript
 // This example uses KJUR open source cryptographic library
 <script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>;
 
@@ -98,12 +98,12 @@ You can then distribute this link however you wish. Common use cases involve sen
 const urlParams = new URLSearchParams(window.location.search);
 const fbuy = urlParams.get("fbuy");
 
-const publicKey = ```-----BEGIN PUBLIC KEY-----
+const publicKey = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCv+UDAAmI0GyM9obO1P+N8LGfI
 If6m+LgQirR1fQLTcQyu+lrQkqa+BhVa/nouoiPm+ZUKVtFMJJ44xxa4OPvXv3tB
 UPyhJJGYvA8ARqXedzXo13AvSmhKBKG1LxpdU1KGTQNj9En7dmlyeXF5UXAddqoo
 JizmTNzQy1wmQw14DwIDAQAB
------END PUBLIC KEY-----```;
+-----END PUBLIC KEY-----`;
 
 const isValid = KJUR.jws.JWS.verify(fbuy, publicKey, ["RS256"]);
 
@@ -119,7 +119,7 @@ const [
   customerId,
   email,
 ] = decoded.payloadPP.split(":");
-````
+```
 
 ### Summary
 
