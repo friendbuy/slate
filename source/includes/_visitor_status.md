@@ -107,11 +107,11 @@
 
 Visitor Status returns relevant data we have captured around the current user.
 
-The `callback` parameter in the event subscription command is a function that will receive different values depending on the type of event.
-This function will be called in response to the subscribed event being triggered.
+The `callback` parameter in the `getVisitorStatus` command is a function that will receive an object containing the
+visitor status `payload` and a `signature` to verify the authenticity of the `payload`.
 
 ### Verifying the Visitor Status Payload
 
 You may wish to distribute rewards or do some other desirable action for the user based on their visitor status response.
 To prevent fraud you can verify the payload validates against the signature provided in the response. Please see the section
-<a href="#signature-validation">Signature Validation</a> for instructions
+<a href="#signature-validation">Signature Validation</a> for instructions.
