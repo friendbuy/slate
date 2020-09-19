@@ -67,7 +67,6 @@
       }
     }
   },
-  "isNewCustomer": false,
   "signature": "tg6aAgZVJSR3azdquln+gte+e3UEv7mky7HAb+cuhJ4="
 }
 ```
