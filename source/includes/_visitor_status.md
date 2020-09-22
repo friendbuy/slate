@@ -32,6 +32,7 @@
   "payload": {
     "globalId": "dd61f81a-e590-4b69-b3b9-96a3c56238ea",
     "profileId": "155adb3c-196d-4f22-8e21-4e39c81ddc17",
+    "customerId": "CUST01234",
     "attributionId": "278dcca0-fc4d-4ace-9e79-d8254b867ac7",
     "isSelfReferral": false,
     "referralCode": "8yykmns3",
@@ -79,6 +80,7 @@
   "payload": {
     "globalId": "e3d60027-e176-41cd-9fc8-8e44bd2c0bfa",
     "profileId": "c95b77f5-c9a8-44eb-bff3-56b61febff2f",
+    "customerId": "CUST01234",
     "attributionId": "964224f0-c22c-46eb-a0c4-6b20f11bddfb",
     "isSelfReferral": false,
     "referralCode": "8yykmns3",
