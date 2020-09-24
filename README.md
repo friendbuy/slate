@@ -69,9 +69,9 @@ bundle exec middleman build --clean --no-parallel
 2. Deploy
 
 Login to the AWS console and upload files to:  
-`https://console.aws.amazon.com/s3/buckets/docs.fbot.me/slate/?region=us-east-1`
-IMPORTANT: Do not give files public access.
-You can view the docs here: https://docs.fbot.me/slate/index.html
+`https://console.aws.amazon.com/s3/buckets/developers.fbot.me/slate/?region=us-east-1`
+
+You can view the docs here: https://developers.friendbuy.io
 
 Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/slatedocs/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/slatedocs/slate/wiki/Deploying-Slate).
 
