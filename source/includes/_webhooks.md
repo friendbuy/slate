@@ -13,8 +13,8 @@ export function verifyWebhook(data, hmacSignature) {
   const providedHmac = Buffer.from(hmacSignature, "utf-8");
   const generatedHash = Buffer.from(
     crypto
-      .createHmac("sha256", FRIENDBUY_SECRET_KEY)
-      .update(data)
+      .createHmac("sha256", FRIENDBUY_WEBHOOK_SECRET_KEY)
+      .update(JSON.stringify(data))
       .digest("base64"),
     "utf-8"
   );
@@ -34,12 +34,8 @@ You can verify the authenticity of a webhook request or client API integration f
    `HMAC(api_secret, json_body)`
 2. Base64 encode the resulting value.
 3. If the Base64 encoded hash matches the signature header, the request is valid.
-4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-5. Base64 encode the resulting value.
-6. If the Base64 encoded hash matches the signature header, the request is valid.
 
-You can get your Webhook secret key by going to Developer Center &gt; Webhooks and copying the Digital Signature in the retailer app.
+You can get your Webhook secret key by going to the retailer app, Developer Center &gt; Webhooks and copy the Secret Key https://retailer.fbot-sandbox.me/developers/webhooks
 
 ## Reward Webhook
 
