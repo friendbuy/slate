@@ -107,18 +107,22 @@
 }
 ```
 
-Visitor Status returns relevant data we have captured around the current user.
+Visitor Status allows friendbuy to pass details about a user visiting your website to a callback function. This data includes whether the visitor has clicked on a friendbuy referral link into the site, and if so, the source of the click, whether or not the click is a self-referral, and whether or not the referral code is blocked.
 
 The `callback` parameter in the `getVisitorStatus` command is a function that will receive an object containing the
 visitor status `payload` and a `signature` to verify the authenticity of the `payload`.
 
 ## Common Use Cases for Visitor Status:
 
-Applying an account credit or session based discount for referrals. If you wish to give your customers a discount if they came through a friendbuy referral you can check both `isSelfReferral` and `referralCodeBlocked`. If both are false the referral is valid.
+Depositing a session-based credit into a referred user’s shopping cart.
 
-Getting information about the referral advocate. The advocate first name is provided as well as the advocate customer ID to allow you to customize a message the friend receives when arriving at your site.
+Determining if a friend offer email capture widget should be shown.
 
-Issuing an advocate reward. The advocate reward info shows if we have determined whether the advocate meets the criteria for a reward.
+Obtaining and storing the referral code for for future use, such as in a call to the POST /purchases API endpoint.
+
+Advocate’s first name and customer ID are provided so you can personalize a message that the friend receives after clicking on a referral link.
+
+Determine whether to reward an Advocate after their friend has converted.
 
 ## Verifying the Visitor Status Payload
 
