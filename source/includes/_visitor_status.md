@@ -24,6 +24,20 @@
 
 > Example responses
 
+> Self-referral detected
+
+```json
+{
+  "status": "success",
+  "payload": {
+    "referralCode": "csb5ag6y",
+    "referralCodeBlocked": false,
+    "isSelfReferral": true
+  },
+  "signature": "As+Q8yayyFMGVjRLQ494s7DebeWnB2mWWB36CdYRxF8="
+}
+```
+
 > Failed reward criteria
 
 ```json
