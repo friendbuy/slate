@@ -6,6 +6,10 @@
 
 ```html
 <script>
+  // Replace .yoursitedomain.com with your top level domain.
+  // e.g. If your site loads at www.yoursitedomain.com, this should be
+  const tld = ".yoursitedomain.com";
+
   window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
 
   // registers your merchant using your merchant ID found in the
@@ -25,6 +29,28 @@
     "https://static.fbot.me/friendbuy.js",
     "https://campaign.fbot.me/" + friendbuyAPI.merchantId + "/campaigns.js",
   ]);
+
+  function getCookie(name) {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+  }
+
+  const host = window.location.host;
+  const urlParams = new URLSearchParams(window.location.search);
+  const fbuy = urlParams.get("fbuy");
+  if (fbuy) {
+    document.cookie = "fbuy=" + fbuy + ";domain=" + tld + ";path=/";
+    document.cookie = "fbuy_hosts=" + host + ";domain=" + tld + ";path=/";
+  }
+
+  const fbuyCookie = getCookie("fbuy");
+  const fbuyCookieHosts = getCookie("fbuy_hosts").split(",");
+  if (fbuyCookie && fbuyCookieHosts.indexOf(host) === -1) {
+    friendbuyAPI.push(["setTracker", fbuyCookie]);
+    fbuyCookieHosts.push(host);
+    document.cookie = "fbuy_hosts=" + fbuyCookieHosts.join(",") + ";domain=" + tld + ";path=/";
+  }
 </script>
 ```
 
