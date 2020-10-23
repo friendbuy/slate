@@ -6,9 +6,9 @@
 
 ```html
 <script>
-  // Replace .yoursitedomain.com with your top level domain.
+  // Replace yoursitedomain.com with your root domain.
   // e.g. If your site loads at www.yoursitedomain.com, this should be
-  const tld = ".yoursitedomain.com";
+  const rootDomain = "yoursitedomain.com";
 
   window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
 
@@ -40,8 +40,8 @@
   const urlParams = new URLSearchParams(window.location.search);
   const fbuy = urlParams.get("fbuy");
   if (fbuy) {
-    document.cookie = "fbuy=" + fbuy + ";domain=" + tld + ";path=/";
-    document.cookie = "fbuy_hosts=" + host + ";domain=" + tld + ";path=/";
+    document.cookie = "fbuy=" + fbuy + ";domain=." + rootDomain + ";path=/";
+    document.cookie = "fbuy_hosts=" + host + ";domain=." + rootDomain + ";path=/";
   }
 
   const fbuyCookie = getCookie("fbuy");
@@ -49,7 +49,7 @@
   if (fbuyCookie && fbuyCookieHosts.indexOf(host) === -1) {
     friendbuyAPI.push(["setTracker", fbuyCookie]);
     fbuyCookieHosts.push(host);
-    document.cookie = "fbuy_hosts=" + fbuyCookieHosts.join(",") + ";domain=" + tld + ";path=/";
+    document.cookie = "fbuy_hosts=" + fbuyCookieHosts.join(",") + ";domain=." + rootDomain + ";path=/";
   }
 </script>
 ```
