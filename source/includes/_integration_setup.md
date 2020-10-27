@@ -6,18 +6,17 @@
 
 ```html
 <script>
+  window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
+
   // Replace yoursitedomain.com with your root domain.
   // e.g. If your site loads at www.yoursitedomain.com, this should be
-  const rootDomain = "yoursitedomain.com";
-
-  window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
+  friendbuyAPI.rootDomain = "yoursitedomain.com";
 
   // registers your merchant using your merchant ID found in the
   // retailer app https://retailer.fbot.me/settings/general
   friendbuyAPI.merchantId = "REPLACE_WITH_YOUR_MERCHANT_ID";
-  friendbuyAPI.push(["merchant", friendbuyAPI.merchantId]);
 
-  // load the merchant SDK and your campaigns
+  friendbuyAPI.push(["merchant", friendbuyAPI.merchantId]);
   (function (f, r, n, d, b, u, y) {
     while ((u = n.shift())) {
       (b = f.createElement(r)), (y = f.getElementsByTagName(r)[0]);
@@ -40,8 +39,8 @@
   const urlParams = new URLSearchParams(window.location.search);
   const fbuy = urlParams.get("fbuy");
   if (fbuy) {
-    document.cookie = "fbuy=" + fbuy + ";domain=." + rootDomain + ";path=/";
-    document.cookie = "fbuy_hosts=" + host + ";domain=." + rootDomain + ";path=/";
+    document.cookie = "fbuy=" + fbuy + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+    document.cookie = "fbuy_hosts=" + host + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
   }
 
   const fbuyCookie = getCookie("fbuy");
@@ -49,7 +48,7 @@
   if (fbuyCookie && fbuyCookieHosts.indexOf(host) === -1) {
     friendbuyAPI.push(["setTracker", fbuyCookie]);
     fbuyCookieHosts.push(host);
-    document.cookie = "fbuy_hosts=" + fbuyCookieHosts.join(",") + ";domain=." + rootDomain + ";path=/";
+    document.cookie = "fbuy_hosts=" + fbuyCookieHosts.join(",") + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
   }
 </script>
 ```
