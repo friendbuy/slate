@@ -1,5 +1,21 @@
 # Reward Validation Callback
 
+## Overview
+
+The Reward Validation Callback feature is used to determine whether or not friendbuy should fulfill the reward for a conversion based on logic in your own system, such as returns or cancellations. This is meant to provide flexibility on top of the fraud checks and reward criteria that Friendbuy provides.
+
+## How it Works
+
+When validating a reward, we will make an HTTP POST request to the url provided in the Validation URL configuration of Reward Criteria. The HTTP response code returned by your system will indicate if the reward should be fulfilled or not. A response code of 200 will validate the reward. A response code of 400 will invalidate the reward. Any other response code will result be interpreted as an error and will trigger our retry protocol.
+
+The request body will include details about the purchase that generated the conversion, such as Advocate data, purchase date, order id, and more. The full data included is described below.
+
+## Retry Behavior
+
+When the Reward Validation Callback receives a status code that is not a 200 or a 400, we will attempt to retry the request every 15 minutes until 72 hours have passed or the reward is approved or rejected, whichever comes first. If at the end of 72 hours the response code is still something other than 200 or 400, we will reject the reward and note that status as an error.
+
+## Payload
+
 > Example Payload
 
 ```json
@@ -38,22 +54,6 @@
   }
 }
 ```
-
-## Overview
-
-The Reward Validation Callback feature is used to determine whether or not friendbuy should fulfill the reward for a conversion based on logic in your own system, such as returns or cancellations. This is meant to provide flexibility on top of the fraud checks and reward criteria that Friendbuy provides.
-
-## How it Works <a id="how-it-works"></a>
-
-When validating a reward, we will make an HTTP POST request to the url provided in the Validation URL configuration of Reward Criteria. The HTTP response code returned by your system will indicate if the reward should be fulfilled or not. A response code of 200 will validate the reward. A response code of 400 will invalidate the reward. Any other response code will result be interpreted as an error and will trigger our retry protocol.
-
-The request body will include details about the purchase that generated the conversion, such as Advocate data, purchase date, order id, and more. The full data included is described below.
-
-## Retry Behavior
-
-When the Reward Validation Callback receives a status code that is not a 200 or a 400, we will attempt to retry the request every 15 minutes until 72 hours have passed or the reward is approved or rejected, whichever comes first. If at the end of 72 hours the response code is still something other than 200 or 400, we will reject the reward and note that status as an error.
-
-## Payload
 
 ### advocate
 
