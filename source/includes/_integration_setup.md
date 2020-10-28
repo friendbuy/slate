@@ -29,7 +29,7 @@
     "https://campaign.fbot.me/" + friendbuyAPI.merchantId + "/campaigns.js",
   ]);
 
-  function getCookie(name) {
+  function getValByName(name) {
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
     return (value !== null) ? unescape(value[1]) : "";
@@ -43,12 +43,12 @@
     document.cookie = "fbuy_hosts=" + host + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
   }
 
-  const fbuyCookie = getCookie("fbuy");
-  const fbuyCookieHosts = getCookie("fbuy_hosts").split(",");
-  if (fbuyCookie && fbuyCookieHosts.indexOf(host) === -1) {
-    friendbuyAPI.push(["setTracker", fbuyCookie]);
-    fbuyCookieHosts.push(host);
-    document.cookie = "fbuy_hosts=" + fbuyCookieHosts.join(",") + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+  const fbuyVal = getValByName("fbuy");
+  const fbuyHosts = getValByName("fbuy_hosts").split(",");
+  if (fbuyVal && fbuyHosts.indexOf(host) === -1) {
+    friendbuyAPI.push(["setTracker", fbuyVal]);
+    fbuyHosts.push(host);
+    document.cookie = "fbuy_hosts=" + fbuyHosts.join(",") + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
   }
 </script>
 ```
