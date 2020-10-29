@@ -44,7 +44,7 @@ The Friendbuy Merchant API uses Bearer Tokens to authorize requests.
 
 To get a Bearer Token for authorization:
 
-1. Get your access key and secret key from the retailer app
+1. Contact Friendbuy support for your key and secret.
 2. Make a POST request to **/authorization**:
    1. Set the **Content-Type** header to **application/json**
    2. The body for the request should be json containing two parameters, access key and secret key
