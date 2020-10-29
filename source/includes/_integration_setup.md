@@ -39,16 +39,16 @@
   const urlParams = new URLSearchParams(window.location.search);
   const fbuy = urlParams.get("fbuy");
   if (fbuy) {
-    document.cookie = "fbuy=" + fbuy + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
-    document.cookie = "fbuy_hosts=" + host + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+    document.cookie = "fby_fbuy=" + fbuy + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+    document.cookie = "fby_hosts=" + host + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
   }
 
-  const fbuyVal = getValByName("fbuy");
-  const fbuyHosts = getValByName("fbuy_hosts").split(",");
+  const fbuyVal = getValByName("fby_fbuy");
+  const fbuyHosts = getValByName("fby_hosts").split(",");
   if (fbuyVal && fbuyHosts.indexOf(host) === -1) {
     friendbuyAPI.push(["setTracker", fbuyVal]);
     fbuyHosts.push(host);
-    document.cookie = "fbuy_hosts=" + fbuyHosts.join(",") + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+    document.cookie = "fby_hosts=" + fbuyHosts.join(",") + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
   }
 </script>
 ```
