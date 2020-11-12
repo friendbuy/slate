@@ -45,6 +45,7 @@
   "status": "success",
   "payload": {
     "attributionId": "278dcca0-fc4d-4ace-9e79-d8254b867ac7",
+    "campaignId": "e69b367f-d6a5-42b6-a438-56d837ffd1de",
     "referralCode": "8yykmns3",
     "referralCodeBlocked": false,
     "isSelfReferral": false,
@@ -93,6 +94,7 @@
   "status": "success",
   "payload": {
     "attributionId": "964224f0-c22c-46eb-a0c4-6b20f11bddfb",
+    "campaignId": "e69b367f-d6a5-42b6-a438-56d837ffd1de",
     "referralCode": "8yykmns3",
     "referralCodeBlocked": false,
     "isSelfReferral": false,
