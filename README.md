@@ -68,7 +68,7 @@ bundle exec middleman build --clean --no-parallel
 
 2. Deploy
 
-Login to the AWS console and upload files to:  
+Login to the AWS console and upload files in the build folder to the root of:  
 `https://console.aws.amazon.com/s3/buckets/developers.fbot.me/?region=us-east-1`
 
 Make sure all files are uploaded with object read permission enabled for everybody.
