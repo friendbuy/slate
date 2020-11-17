@@ -65,7 +65,7 @@ To get a Bearer Token for authorization:
   "destinationUrlQueryParams": { "vip": true },
   "ipAddress": "127.0.0.1",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
-  "seed": "JohnSmith"
+  "seed": "johnsmith"
 }
 ```
 
@@ -73,7 +73,7 @@ To get a Bearer Token for authorization:
 
 ```json
 {
-  "link": "https://fbuy.io/xhaf5hps",
+  "link": "https://fbuy.io/alias/johnsmith",
   "createdOn": "2020-01-05T01:07:38.509Z"
 }
 ```
