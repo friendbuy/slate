@@ -248,19 +248,15 @@ Accept: application/json
 ```javascript
 const inputBody = '{
   "email": "test@example.com",
-  "campaignId": "string",
-  "customerId": "string",
+  "campaignId": "ef9befc6-18f1-418c-8914-5ee8d09bb5aa",
+  "customerId": "CUST1234",
   "firstName": "John",
   "lastName": "Smith",
   "destinationUrlQueryParams": {},
-  "vanity": "string",
+  "seed": "johnsmith",
   "channel": "purl",
-  "short": false,
-  "ipAddress": "string",
-  "userAgent": "Mozilla/5.0...",
-  "widgetId": "string",
-  "eventUrl": "string",
-  "eventPage": "string"
+  "ipAddress": "127.0.0.1",
+  "userAgent": "Mozilla/5.0..."
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -402,19 +398,15 @@ Generate event
 ```json
 {
   "email": "test@example.com",
-  "campaignId": "string",
-  "customerId": "string",
+  "campaignId": "ef9befc6-18f1-418c-8914-5ee8d09bb5aa",
+  "customerId": "CUST1234",
   "firstName": "John",
   "lastName": "Smith",
   "destinationUrlQueryParams": {},
-  "vanity": "string",
+  "seed": "johnsmith",
   "channel": "purl",
-  "short": false,
-  "ipAddress": "string",
-  "userAgent": "Mozilla/5.0...",
-  "widgetId": "string",
-  "eventUrl": "string",
-  "eventPage": "string"
+  "ipAddress": "127.0.0.1",
+  "userAgent": "Mozilla/5.0..."
 }
 ```
 
