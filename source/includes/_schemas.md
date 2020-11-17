@@ -59,14 +59,11 @@
   "firstName": "John",
   "lastName": "Smith",
   "destinationUrlQueryParams": {},
-  "vanity": "string",
+  "seed": "string",
   "channel": "purl",
   "short": false,
   "ipAddress": "string",
-  "userAgent": "api",
-  "widgetId": "string",
-  "eventUrl": "string",
-  "eventPage": "string"
+  "userAgent": "api"
 }
 ```
 
@@ -80,7 +77,7 @@
 | firstName                 | string        | false    | none         | none                |
 | lastName                  | string        | false    | none         | none                |
 | destinationUrlQueryParams | object        | false    | none         | none                |
-| vanity                    | string        | false    | none         | Specifies the seed. |
+| seed                      | string        | false    | none         | Specifies the seed. |
 | channel                   | string        | false    | none         | none                |
 | short                     | boolean       | false    | none         | none                |
 | ipAddress                 | string        | false    | none         | none                |
