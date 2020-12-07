@@ -1032,6 +1032,7 @@ Accept: application/json
 const inputBody = '{
   "email": "user@example.com",
   "eventType": "string",
+  "customerId": "string",
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
@@ -1185,6 +1186,7 @@ Generate event
 {
   "email": "user@example.com",
   "eventType": "string",
+  "customerId": "string",
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
@@ -1206,6 +1208,7 @@ Generate event
 | body                      | body                 | object        | false    | none                                                                                               |
 | » email                   | body                 | string(email) | true     | Email of the user performing the event.                                                            |
 | » eventType               | body                 | string        | true     | The type of the event you are tracking (i.e. "newsletter signup", "video view", etc).              |
+| » customerId              | body                 | string        | false    | Customer id of the user performing the event.                                                      |
 | » isNewCustomer           | body                 | boolean       | false    | Whether or not the user is a new customer.                                                         |
 | » firstName               | body                 | string        | false    | First name of the user.                                                                            |
 | » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
