@@ -24,7 +24,7 @@
 
 > Example responses
 
-> Self-referral detected
+> Invalid referral (self-referral detected)
 
 ```json
 {
@@ -38,56 +38,7 @@
 }
 ```
 
-> Failed reward criteria
-
-```json
-{
-  "status": "success",
-  "payload": {
-    "attributionId": "278dcca0-fc4d-4ace-9e79-d8254b867ac7",
-    "campaignId": "e69b367f-d6a5-42b6-a438-56d837ffd1de",
-    "referralCode": "8yykmns3",
-    "referralCodeBlocked": false,
-    "isSelfReferral": false,
-    "advocate": {
-      "customerId": "9843534588704",
-      "firstName": "Sam",
-      "rewardInfo": {
-        "requirementsFailed": [
-          {
-            "name": "new customer",
-            "message": "Customer is known as 3078574637120, found matching purchase: 2112707199040"
-          },
-          {
-            "name": "new customer",
-            "message": "Customer is known as jeremy+test@friendbuy.com, found matching purchase: 2112707199040, 987398472938749, 780927840912740, 98279871294"
-          },
-          {
-            "name": "new customer",
-            "message": "Customer is known as jeremy+friend@friendbuy.com, found matching purchase: 2112710377536"
-          }
-        ],
-        "integrationRequirementsFailed": [],
-        "tiersCheckResult": {
-          "conversionCount": 1,
-          "tierIndex": 0,
-          "nextTier": null,
-          "tier": {
-            "delivery": "codeBank",
-            "couponBankId": "f299e6ca-0266-4a1e-8b0e-65fb9ef629b2",
-            "rewardType": "discount"
-          },
-          "message": "Found a reward config for 1 conversions",
-          "tierStatus": "pass"
-        }
-      }
-    }
-  },
-  "signature": "ajKYw+By3o9TthxDUsOuTsmCzsvJVsLKVBIhQKvdnco="
-}
-```
-
-> Passed reward criteria
+> Valid referral
 
 ```json
 {
@@ -100,23 +51,7 @@
     "isSelfReferral": false,
     "advocate": {
       "customerId": "9843534588704",
-      "firstName": "Sam",
-      "rewardInfo": {
-        "requirementsFailed": [],
-        "integrationRequirementsFailed": [],
-        "tiersCheckResult": {
-          "conversionCount": 1,
-          "tierIndex": 0,
-          "nextTier": null,
-          "tier": {
-            "delivery": "codeBank",
-            "couponBankId": "f299e6ca-0266-4a1e-8b0e-65fb9ef629b2",
-            "rewardType": "discount"
-          },
-          "message": "Found a reward config for 1 conversions",
-          "tierStatus": "pass"
-        }
-      }
+      "firstName": "Sam"
     }
   },
   "signature": "ZpQV4uZAPLl0hOdqsLpTen9AoWOcWqfGYI9VPFZbgR8="
@@ -137,8 +72,6 @@ Determining if a friend offer email capture widget should be shown.
 Obtaining and storing the referral code for for future use, such as in a call to the POST /purchases API endpoint.
 
 Advocate’s first name and customer ID are provided so you can personalize a message that the friend receives after clicking on a referral link.
-
-Determine whether to reward an Advocate after their friend has converted.
 
 ## Verifying the Visitor Status Payload
 
