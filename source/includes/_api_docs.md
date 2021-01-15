@@ -248,19 +248,15 @@ Accept: application/json
 ```javascript
 const inputBody = '{
   "email": "test@example.com",
-  "campaignId": "string",
-  "customerId": "string",
+  "campaignId": "ef9befc6-18f1-418c-8914-5ee8d09bb5aa",
+  "customerId": "CUST1234",
   "firstName": "John",
   "lastName": "Smith",
   "destinationUrlQueryParams": {},
-  "vanity": "string",
+  "seed": "johnsmith",
   "channel": "purl",
-  "short": false,
-  "ipAddress": "string",
-  "userAgent": "api",
-  "widgetId": "string",
-  "eventUrl": "string",
-  "eventPage": "string"
+  "ipAddress": "127.0.0.1",
+  "userAgent": "Mozilla/5.0..."
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -402,19 +398,15 @@ Generate event
 ```json
 {
   "email": "test@example.com",
-  "campaignId": "string",
-  "customerId": "string",
+  "campaignId": "ef9befc6-18f1-418c-8914-5ee8d09bb5aa",
+  "customerId": "CUST1234",
   "firstName": "John",
   "lastName": "Smith",
   "destinationUrlQueryParams": {},
-  "vanity": "string",
+  "seed": "johnsmith",
   "channel": "purl",
-  "short": false,
-  "ipAddress": "string",
-  "userAgent": "api",
-  "widgetId": "string",
-  "eventUrl": "string",
-  "eventPage": "string"
+  "ipAddress": "127.0.0.1",
+  "userAgent": "Mozilla/5.0..."
 }
 ```
 
@@ -529,7 +521,7 @@ const inputBody = '{
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0..."
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -693,7 +685,7 @@ Generate purchase event
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0..."
 }
 ```
 
@@ -794,7 +786,13 @@ const inputBody = '{
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0...",
+  "timezone": "America/Los_Angeles",
+  "birthday": {
+    "day": 1,
+    "month": 10,
+    "year": 1980,
+  }
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -944,7 +942,13 @@ Generate sign-up event.
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0...",
+  "timezone": "America/Los_Angeles",
+  "birthday": {
+    "day": 1,
+    "month": 10,
+    "year": 1980
+  }
 }
 ```
 
@@ -963,6 +967,11 @@ Generate sign-up event.
 | »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and the value.                              |
 | » ipAddress               | body                 | string        | false    | The IP address of the user.                                                                        |
 | » userAgent               | body                 | string        | false    | The User Agent of the user.                                                                        |
+| » timezone                | body                 | string        | false    | Timezone of the customer. See [Timezones](#tocS_Timezone)                                          |
+| » birthday                | body                 | object        | false    | Birthday of the customer                                                                           |
+| »» day                    | birthday             | integer       | true     | Day the event should trigger. 1 - 31.                                                              |
+| »» month                  | birthday             | integer       | true     | Month the event should trigger. 1 - 12.                                                            |
+| »» year                   | birthday             | integer       | false    | Year the event will trigger (YYYY).                                                                |
 
 > Example responses
 
@@ -1023,6 +1032,7 @@ Accept: application/json
 const inputBody = '{
   "email": "user@example.com",
   "eventType": "string",
+  "customerId": "string",
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
@@ -1033,7 +1043,7 @@ const inputBody = '{
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0..."
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -1176,6 +1186,7 @@ Generate event
 {
   "email": "user@example.com",
   "eventType": "string",
+  "customerId": "string",
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
@@ -1186,7 +1197,7 @@ Generate event
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0..."
 }
 ```
 
@@ -1197,6 +1208,7 @@ Generate event
 | body                      | body                 | object        | false    | none                                                                                               |
 | » email                   | body                 | string(email) | true     | Email of the user performing the event.                                                            |
 | » eventType               | body                 | string        | true     | The type of the event you are tracking (i.e. "newsletter signup", "video view", etc).              |
+| » customerId              | body                 | string        | false    | Customer id of the user performing the event.                                                      |
 | » isNewCustomer           | body                 | boolean       | false    | Whether or not the user is a new customer.                                                         |
 | » firstName               | body                 | string        | false    | First name of the user.                                                                            |
 | » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
@@ -1283,7 +1295,13 @@ const inputBody = '{
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0...",
+  "timezone": "America/Los_Angeles",
+  "birthday": {
+    "day": 1,
+    "month": 10,
+    "year": 1980,
+  }
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -1442,7 +1460,13 @@ Generate event
     "property2": "string"
   },
   "ipAddress": "string",
-  "userAgent": "api"
+  "userAgent": "Mozilla/5.0...",
+  "timezone": "America/Los_Angeles",
+  "birthday": {
+    "day": 1,
+    "month": 10,
+    "year": 1980
+  }
 }
 ```
 
@@ -1468,6 +1492,11 @@ Generate event
 | »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and its value. |
 | » ipAddress               | body                 | string        | false    | IP address of the customer.                                           |
 | » userAgent               | body                 | string        | false    | User Agent of the customer.                                           |
+| » timezone                | body                 | string        | false    | Timezone of the customer. See [Timezones](#tocS_Timezone)             |
+| » birthday                | body                 | object        | false    | Birthday of the customer                                              |
+| »» day                    | birthday             | integer       | true     | Day the event should trigger. 1 - 31.                                 |
+| »» month                  | birthday             | integer       | true     | Month the event should trigger. 1 - 12                                |
+| »» year                   | birthday             | integer       | false    | Year the event will trigger (YYYY).                                   |
 
 > Example responses
 
@@ -1475,17 +1504,17 @@ Generate event
 
 ```json
 {
-  "customerId": "string",
+  "eventId": "string",
   "createdOn": "string"
 }
 ```
 
 <h3 id="postcustomer-responses">Responses</h3>
 
-| Name       | Type             | Required | Restrictions | Description                         |
-| ---------- | ---------------- | -------- | ------------ | ----------------------------------- |
-| customerId | string           | true     | none         | The Friendbuy id for this customer. |
-| createdOn  | string(datetime) | true     | none         | When this customer was created.     |
+| Name      | Type             | Required | Restrictions | Description                                             |
+| --------- | ---------------- | -------- | ------------ | ------------------------------------------------------- |
+| eventId   | string           | true     | none         | The Friendbuy id for the event to process the customer. |
+| createdOn | string(datetime) | true     | none         | When this customer was created.                         |
 
 <h3>Response Codes</h3>
 
@@ -1933,6 +1962,255 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## timeBasedRegister
+
+<a id="opIdtimeBasedRegister"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://mapi.fbot.me/v1/time-based-event/register \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://mapi.fbot.me/v1/time-based-event/register HTTP/1.1
+Host: mapi.fbot.me
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "customerId": "string",
+  "date": {
+    "day": 0,
+    "month": 0,
+    "year": 0,
+    "timezone": "America/Adak"
+  },
+  "metadata": {},
+  "configId": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://mapi.fbot.me/v1/time-based-event/register',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://mapi.fbot.me/v1/time-based-event/register',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://mapi.fbot.me/v1/time-based-event/register', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://mapi.fbot.me/v1/time-based-event/register', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/time-based-event/register");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://mapi.fbot.me/v1/time-based-event/register", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /v1/time-based-event/register`
+
+_Scheduling an event to be scheduled some time in the future._
+
+Regisdter time based event.
+
+> Body parameter
+
+```json
+{
+  "customerId": "string",
+  "date": {
+    "day": 0,
+    "month": 0,
+    "year": 0,
+    "timezone": "America/Adak"
+  },
+  "metadata": {},
+  "configId": "string"
+}
+```
+
+<h3 id="timebasedregister-parameters">Parameters</h3>
+
+| Name          | In   | Type    | Required    | Description                                                                      |
+| ------------- | ---- | ------- | ----------- | -------------------------------------------------------------------------------- |
+| body          | body | any     | true        | none                                                                             |
+| » customerId  | body | string  | true        | Customer id of the user.                                                         |
+| » date        | body | object  | true        | The date the event is scheduled.                                                 |
+| »» day        | date | integer | true        | Day the event should trigger. 1 - 31.                                            |
+| »» month      | date | integer | true        | Month the event should trigger. 1 - 12                                           |
+| »» year       | date | integer | false       | Year the event will trigger (YYYY).                                              |
+| » metadata    | body | object  | false       | Any metadata to be included.                                                     |
+| » configId \* | body | string  | conditional | Id of the configuration. Required if kind is not provided.                       |
+| » kind \*     | body | string  | conditional | One of "birthday", "anniversary", "other". Required if configId is not provided. |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "event": {
+    "id": "string",
+    "configId": "string",
+    "merchantId": "string",
+    "orphaned": true,
+    "createdOn": "string",
+    "registryId": "string",
+    "customerId": "string",
+    "originalDate": {
+      "day": 0,
+      "month": 0,
+      "year": 0,
+      "timezone": "America/Adak"
+    },
+    "expiresDate": {
+      "day": 0,
+      "month": 0,
+      "year": 0,
+      "timezone": "America/Adak"
+    },
+    "expireOn": 0,
+    "metadata": {},
+    "attempt": 0
+  }
+}
+```
+
+<h3 id="timebasedregister-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                                     | Schema                                                        |
+| ------ | -------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Event is either created or updated (depends on related config). | [TimeBasedRegisterResponse](#schematimebasedregisterresponse) |
+| 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                                   | [Error](#schemaerror)                                         |
+| 409    | [Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)              | Conflict                                                        | [Error](#schemaerror)                                         |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                                            | [Error](#schemaerror)                                         |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                                               | [Error](#schemaerror)                                         |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure)                    | [Error](#schemaerror)                                         |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 ## Errors
 
 <a id="schemaerror"></a>
@@ -1943,3 +2221,169 @@ bearerAuth
 | message   | string | false    | none         | The error details.                                              |
 | code      | number | false    | none         | The status code of the error.                                   |
 | reference | string | false    | none         | A reference string that can be sent to friendbuy for debugging. |
+
+<h2 id="tocS_Timezone">Timezones</h2>
+<!-- backwards compatibility -->
+<a id="schematimezone"></a>
+<a id="schema_Timezone"></a>
+<a id="tocStimezone"></a>
+<a id="tocstimezone"></a>
+
+```json
+"America/Adak"
+```
+
+### Properties
+
+| Name        | Type   | Required | Restrictions | Description |
+| ----------- | ------ | -------- | ------------ | ----------- |
+| _anonymous_ | string | false    | none         | none        |
+
+#### Enumerated Values
+
+| Property    | Value                  |
+| ----------- | ---------------------- |
+| _anonymous_ | America/Adak           |
+| _anonymous_ | America/Anchorage      |
+| _anonymous_ | America/Anguilla       |
+| _anonymous_ | America/Antigua        |
+| _anonymous_ | America/Araguaina      |
+| _anonymous_ | America/Argentina      |
+| _anonymous_ | America/Aruba          |
+| _anonymous_ | America/Asuncion       |
+| _anonymous_ | America/Atikokan       |
+| _anonymous_ | America/Atka           |
+| _anonymous_ | America/Bahia          |
+| _anonymous_ | America/Bahia_Banderas |
+| _anonymous_ | America/Barbados       |
+| _anonymous_ | America/Belem          |
+| _anonymous_ | America/Belize         |
+| _anonymous_ | America/Blanc          |
+| _anonymous_ | America/Boa_Vista      |
+| _anonymous_ | America/Bogota         |
+| _anonymous_ | America/Boise          |
+| _anonymous_ | America/Buenos_Aires   |
+| _anonymous_ | America/Cambridge_Bay  |
+| _anonymous_ | America/Campo_Grande   |
+| _anonymous_ | America/Cancun         |
+| _anonymous_ | America/Caracas        |
+| _anonymous_ | America/Catamarca      |
+| _anonymous_ | America/Cayenne        |
+| _anonymous_ | America/Cayman         |
+| _anonymous_ | America/Chicago        |
+| _anonymous_ | America/Chihuahua      |
+| _anonymous_ | America/Coral_Harbour  |
+| _anonymous_ | America/Cordoba        |
+| _anonymous_ | America/Costa_Rica     |
+| _anonymous_ | America/Creston        |
+| _anonymous_ | America/Cuiaba         |
+| _anonymous_ | America/Curacao        |
+| _anonymous_ | America/Danmarkshavn   |
+| _anonymous_ | America/Dawson         |
+| _anonymous_ | America/Dawson_Creek   |
+| _anonymous_ | America/Denver         |
+| _anonymous_ | America/Detroit        |
+| _anonymous_ | America/Dominica       |
+| _anonymous_ | America/Edmonton       |
+| _anonymous_ | America/Eirunepe       |
+| _anonymous_ | America/El_Salvador    |
+| _anonymous_ | America/Ensenada       |
+| _anonymous_ | America/Fortaleza      |
+| _anonymous_ | America/Fort_Nelson    |
+| _anonymous_ | America/Fort_Wayne     |
+| _anonymous_ | America/Glace_Bay      |
+| _anonymous_ | America/Godthab        |
+| _anonymous_ | America/Goose_Bay      |
+| _anonymous_ | America/Grand_Turk     |
+| _anonymous_ | America/Grenada        |
+| _anonymous_ | America/Guadeloupe     |
+| _anonymous_ | America/Guatemala      |
+| _anonymous_ | America/Guayaquil      |
+| _anonymous_ | America/Guyana         |
+| _anonymous_ | America/Halifax        |
+| _anonymous_ | America/Havana         |
+| _anonymous_ | America/Hermosillo     |
+| _anonymous_ | America/Indiana        |
+| _anonymous_ | America/Indianapolis   |
+| _anonymous_ | America/Inuvik         |
+| _anonymous_ | America/Iqaluit        |
+| _anonymous_ | America/Jamaica        |
+| _anonymous_ | America/Jujuy          |
+| _anonymous_ | America/Juneau         |
+| _anonymous_ | America/Kentucky       |
+| _anonymous_ | America/Knox_IN        |
+| _anonymous_ | America/Kralendijk     |
+| _anonymous_ | America/La_Paz         |
+| _anonymous_ | America/Lima           |
+| _anonymous_ | America/Los_Angeles    |
+| _anonymous_ | America/Louisville     |
+| _anonymous_ | America/Lower_Princes  |
+| _anonymous_ | America/Maceio         |
+| _anonymous_ | America/Managua        |
+| _anonymous_ | America/Manaus         |
+| _anonymous_ | America/Marigot        |
+| _anonymous_ | America/Martinique     |
+| _anonymous_ | America/Matamoros      |
+| _anonymous_ | America/Mazatlan       |
+| _anonymous_ | America/Mendoza        |
+| _anonymous_ | America/Menominee      |
+| _anonymous_ | America/Merida         |
+| _anonymous_ | America/Metlakatla     |
+| _anonymous_ | America/Mexico_City    |
+| _anonymous_ | America/Miquelon       |
+| _anonymous_ | America/Moncton        |
+| _anonymous_ | America/Monterrey      |
+| _anonymous_ | America/Montevideo     |
+| _anonymous_ | America/Montreal       |
+| _anonymous_ | America/Montserrat     |
+| _anonymous_ | America/Nassau         |
+| _anonymous_ | America/New_York       |
+| _anonymous_ | America/Nipigon        |
+| _anonymous_ | America/Nome           |
+| _anonymous_ | America/Noronha        |
+| _anonymous_ | America/North_Dakota   |
+| _anonymous_ | America/Ojinaga        |
+| _anonymous_ | America/Panama         |
+| _anonymous_ | America/Pangnirtung    |
+| _anonymous_ | America/Paramaribo     |
+| _anonymous_ | America/Phoenix        |
+| _anonymous_ | America/Port           |
+| _anonymous_ | America/Porto_Acre     |
+| _anonymous_ | America/Porto_Velho    |
+| _anonymous_ | America/Port_of_Spain  |
+| _anonymous_ | America/Puerto_Rico    |
+| _anonymous_ | America/Punta_Arenas   |
+| _anonymous_ | America/Rainy_River    |
+| _anonymous_ | America/Rankin_Inlet   |
+| _anonymous_ | America/Recife         |
+| _anonymous_ | America/Regina         |
+| _anonymous_ | America/Resolute       |
+| _anonymous_ | America/Rio_Branco     |
+| _anonymous_ | America/Rosario        |
+| _anonymous_ | America/Santarem       |
+| _anonymous_ | America/Santa_Isabel   |
+| _anonymous_ | America/Santiago       |
+| _anonymous_ | America/Santo_Domingo  |
+| _anonymous_ | America/Sao_Paulo      |
+| _anonymous_ | America/Scoresbysund   |
+| _anonymous_ | America/Shiprock       |
+| _anonymous_ | America/Sitka          |
+| _anonymous_ | America/St_Barthelemy  |
+| _anonymous_ | America/St_Johns       |
+| _anonymous_ | America/St_Kitts       |
+| _anonymous_ | America/St_Lucia       |
+| _anonymous_ | America/St_Thomas      |
+| _anonymous_ | America/St_Vincent     |
+| _anonymous_ | America/Swift_Current  |
+| _anonymous_ | America/Tegucigalpa    |
+| _anonymous_ | America/Thule          |
+| _anonymous_ | America/Thunder_Bay    |
+| _anonymous_ | America/Tijuana        |
+| _anonymous_ | America/Toronto        |
+| _anonymous_ | America/Tortola        |
+| _anonymous_ | America/Vancouver      |
+| _anonymous_ | America/Virgin         |
+| _anonymous_ | America/Whitehorse     |
+| _anonymous_ | America/Winnipeg       |
+| _anonymous_ | America/Yakutat        |
+| _anonymous_ | America/Yellowknife    |

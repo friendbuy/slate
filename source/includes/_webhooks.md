@@ -4,42 +4,11 @@
 
 When a Webhook receives a status code that is not a 200, we will attempt to retry the request every 15 minutes until 24 hours have passed or a response code of 200 is received.
 
-## Signature Validation
+## Validating the Payload
 
-> NodeJS Example
+You can verify the authenticity of a webhook request from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64 encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key.
 
-```typescript
-export function verifyWebhook(data, hmacSignature) {
-  const providedHmac = Buffer.from(hmacSignature, "utf-8");
-  const generatedHash = Buffer.from(
-    crypto
-      .createHmac("sha256", FRIENDBUY_SECRET_KEY)
-      .update(data)
-      .digest("base64"),
-    "utf-8"
-  );
-  let hashEquals = false;
-  try {
-    hashEquals = crypto.timingSafeEqual(generatedHash, providedHmac);
-  } catch (e) {
-    hashEquals = false;
-  }
-  return hashEquals;
-}
-```
-
-You can verify the authenticity of a webhook request or client API integration from friendbuy by analyzing its cryptographic signature. When friendbuy sends a request to your endpoints, a signature is placed in the X-Friendbuy-Hmac-SHA256 header, and is computed by Base64-encoding the HMAC-SHA1 hash of the request body with your friendbuy secret key. To verify the signature:
-
-1. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-2. Base64 encode the resulting value.
-3. If the Base64 encoded hash matches the signature header, the request is valid.
-4. Calculate an HMAC-SHA-256 composition of the JSON request body:  
-   `HMAC(api_secret, json_body)`
-5. Base64 encode the resulting value.
-6. If the Base64 encoded hash matches the signature header, the request is valid.
-
-You can get your Webhook secret key by going to Developer Center &gt; Webhooks and copying the Digital Signature in the retailer app.
+See <a href="#signature-validation">Signature Validation</a> for instructions on validating the signature.
 
 ## Reward Webhook
 
