@@ -2211,6 +2211,1744 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## getWidgetViews
+
+<a id="opIdgetWidgetViews"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/widget-views',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/widget-views', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/widget-views', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/widget-views", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/widget-views`
+
+_Endpoint to retrieve widget views_
+
+Get widget views.
+
+<h3 id="getWidgetViews-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description                                                                                                         |
+| ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
+| zone       | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
+| campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| widgetName | query | string            | false    | Widget Name to filter on.                                                                                           |
+| widgetType | query | string            | false    | Widget type to filter on (advocateShare or friendIncentive).                                                        |
+| pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize   | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "customerId": "string",
+      "email": "user@example.com",
+      "widgetName": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "string",
+      "ipAddress": "192.168.0.1"
+    }
+  ]
+}
+```
+
+<h3 id="getWidgetViews-responses">Responses</h3>
+
+| Name         | Type              | Required | Restrictions | Description                                                  |
+| ------------ | ----------------- | -------- | ------------ | ------------------------------------------------------------ |
+| customerId   | string            | false    | none         | Customer Id of the user who viewed the widget, if available. |
+| email        | string(email)     | false    | none         | Email of the user who viewed the widget, if available.       |
+| widgetName   | string            | false    | none         | Name of the viewed widget.                                   |
+| campaignId   | string(uuid)      | false    | none         | Campaign Id associated with the viewed widget.               |
+| campaignName | string            | false    | none         | Name of the campaign associated with the viewed widget.      |
+| createdOn    | string(date-time) | false    | none         | Date and time the widget was viewed.                         |
+| userAgent    | string            | false    | none         | User Agent of the user who viewed the widget.                |
+| ipAddress    | string(ipv4)      | false    | none         | IP Address of the user who viewed the widget.                |
+
+<h3 id="getWidgetViews-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                  |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getWidgetViewsResponse](#schemagetWidgetViewsresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                   |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                   |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                   |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getShares
+
+<a id="opIdgetShares"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/shares',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/shares', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/shares', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/shares", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/shares`
+
+_Endpoint to retrieve shares_
+
+Get shares.
+
+<h3 id="getShares-parameters">Parameters</h3>
+
+| Name               | In    | Type              | Required | Description |
+| ------------------ | ----- | ----------------- | -------- | ----------- |
+| fromDate           | query | string(date-time) | true     | none        |
+| toDate             | query | string(date-time) | true     | none        |
+| zone               | query | string            | true     | none        |
+| campaignId         | query | string(uuid)      | false    | none        |
+| advocateEmail      | query | string(email)     | false    | none        |
+| advocateCustomerId | query | string            | false    | none        |
+| channel            | query | string            | false    | none        |
+| pageToken          | query | string            | false    | none        |
+| pageSize           | query | string            | false    | none        |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "advocateCustomerId": "string",
+      "advocateEmail": "user@example.com",
+      "advocateName": "string",
+      "cid": "string",
+      "channel": "string",
+      "referralCode": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "string",
+      "ipAddress": "192.168.0.1"
+    }
+  ]
+}
+```
+
+<h3 id="getShares-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                        |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getSharesResponse](#schemagetSharesresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                         |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                         |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                         |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getClicks
+
+<a id="opIdgetClicks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/clicks',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/clicks', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/clicks', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/clicks", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/clicks`
+
+_Endpoint to retrieve valid clicks_
+
+Get valid clicks.
+
+<h3 id="getClicks-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description |
+| ---------- | ----- | ----------------- | -------- | ----------- |
+| fromDate   | query | string(date-time) | true     | none        |
+| toDate     | query | string(date-time) | true     | none        |
+| zone       | query | string            | true     | none        |
+| campaignId | query | string(uuid)      | false    | none        |
+| channel    | query | string            | false    | none        |
+| pageToken  | query | string            | false    | none        |
+| pageSize   | query | string            | false    | none        |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "advocateCustomerId": "string",
+      "advocateEmail": "user@example.com",
+      "advocateName": "string",
+      "cid": "string",
+      "channel": "string",
+      "referralCode": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "string",
+      "ipAddress": "192.168.0.1",
+      "destinationUrl": "string"
+    }
+  ]
+}
+```
+
+<h3 id="getClicks-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                        |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getClicksResponse](#schemagetClicksresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                         |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                         |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                         |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getSignups
+
+<a id="opIdgetSignups"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/signups',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/signups', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/signups', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/signups", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/signups`
+
+_Endpoint to retrieve referral signups_
+
+Get referral signups.
+
+<h3 id="getSignups-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description |
+| ---------- | ----- | ----------------- | -------- | ----------- |
+| fromDate   | query | string(date-time) | true     | none        |
+| toDate     | query | string(date-time) | true     | none        |
+| zone       | query | string            | true     | none        |
+| campaignId | query | string(uuid)      | false    | none        |
+| customerId | query | string            | false    | none        |
+| email      | query | string(email)     | false    | none        |
+| pageToken  | query | string            | false    | none        |
+| pageSize   | query | string            | false    | none        |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "customerId": "string",
+      "email": "user@example.com",
+      "name": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "string",
+      "ipAddress": "192.168.0.1",
+      "advocateName": "string",
+      "advocateEmail": "user@example.com",
+      "advocateCustomerId": "string",
+      "cid": "string",
+      "newCustomer": true,
+      "referralCode": "string"
+    }
+  ]
+}
+```
+
+<h3 id="getSignups-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                          |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getSignupsResponse](#schemagetSignupsresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                           |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                           |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                           |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getPurchases
+
+<a id="opIdgetPurchases"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/purchases',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/purchases', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/purchases', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/purchases", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/purchases`
+
+_Endpoint to retrieve referral purchases_
+
+Get referral purchases.
+
+<h3 id="getPurchases-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description |
+| ---------- | ----- | ----------------- | -------- | ----------- |
+| fromDate   | query | string(date-time) | true     | none        |
+| toDate     | query | string(date-time) | true     | none        |
+| zone       | query | string            | true     | none        |
+| campaignId | query | string(uuid)      | false    | none        |
+| customerId | query | string            | false    | none        |
+| email      | query | string(email)     | false    | none        |
+| pageToken  | query | string            | false    | none        |
+| pageSize   | query | string            | false    | none        |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "customerId": "string",
+      "email": "user@example.com",
+      "name": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "ipAddress": "192.168.0.1",
+      "advocateName": "string",
+      "advocateEmail": "user@example.com",
+      "advocateCustomerId": "string",
+      "cid": "string",
+      "newCustomer": true,
+      "referralCode": "string",
+      "totalAmount": 0,
+      "couponCode": "string",
+      "nextPageToken": "string",
+      "products": [
+        {
+          "sku": "string",
+          "name": "string",
+          "quantity": 0,
+          "price": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="getPurchases-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                              |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getPurchasesResponse](#schemagetPurchasesresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                               |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                               |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                               |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getDistributedAdvocateRewards
+
+<a id="opIdgetDistributedAdvocateRewards"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/distributed-advocate-rewards`
+
+_Endpoint to retrieve distributed advocate rewards_
+
+Get distributed advocate rewards.
+
+<h3 id="getDistributedAdvocateRewards-parameters">Parameters</h3>
+
+| Name               | In    | Type              | Required | Description |
+| ------------------ | ----- | ----------------- | -------- | ----------- |
+| fromDate           | query | string(date-time) | true     | none        |
+| toDate             | query | string(date-time) | true     | none        |
+| zone               | query | string            | true     | none        |
+| campaignId         | query | string(uuid)      | false    | none        |
+| advocateCustomerId | query | string            | false    | none        |
+| advocateEmail      | query | string(email)     | false    | none        |
+| pageToken          | query | string            | false    | none        |
+| pageSize           | query | string            | false    | none        |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "createdOn": "string",
+      "rewardType": "string",
+      "rewardAmount": 0,
+      "couponCode": "string",
+      "trigger": "string",
+      "advocateEmail": "string",
+      "advocateName": "string",
+      "advocateCustomerId": "string",
+      "referralCode": "string",
+      "channel": "string",
+      "friendEmail": "string",
+      "friendName": "string",
+      "friendCustomerId": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "cid": "string"
+    }
+  ]
+}
+```
+
+<h3 id="getDistributedAdvocateRewards-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                                |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [distributedRewardsGetResponse](#schemadistributedrewardsgetresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                                 |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                                 |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                                 |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getDistributedFriendIncentives
+
+<a id="opIdgetDistributedFriendIncentives"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/distributed-friend-incentives',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/distributed-friend-incentives', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/distributed-friend-incentives', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/distributed-friend-incentives", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/distributed-friend-incentives`
+
+_Endpoint to retrieve distributed friend incentives_
+
+Get distributed friend incentives.
+
+<h3 id="getDistributedFriendIncentives-parameters">Parameters</h3>
+
+| Name             | In    | Type              | Required | Description |
+| ---------------- | ----- | ----------------- | -------- | ----------- |
+| fromDate         | query | string(date-time) | true     | none        |
+| toDate           | query | string(date-time) | true     | none        |
+| zone             | query | string            | true     | none        |
+| campaignId       | query | string(uuid)      | false    | none        |
+| friendCustomerId | query | string            | false    | none        |
+| friendEmail      | query | string(email)     | false    | none        |
+| pageToken        | query | string            | false    | none        |
+| pageSize         | query | string            | false    | none        |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "createdOn": "string",
+      "rewardType": "string",
+      "rewardAmount": 0,
+      "couponCode": "string",
+      "trigger": "string",
+      "advocateEmail": "string",
+      "advocateName": "string",
+      "advocateCustomerId": "string",
+      "referralCode": "string",
+      "channel": "string",
+      "friendEmail": "string",
+      "friendName": "string",
+      "friendCustomerId": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "cid": "string"
+    }
+  ]
+}
+```
+
+<h3 id="getDistributedFriendIncentives-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                                |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [distributedRewardsGetResponse](#schemadistributedrewardsgetresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                                 |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                                 |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                                 |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getEmailCaptures
+
+<a id="opIdgetEmailCaptures"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/email-captures',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)',
+'zone' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/email-captures', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/email-captures', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/email-captures", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/email-captures`
+
+_Endpoint to retrieve email captures_
+
+Get email captures.
+
+<h3 id="getEmailCaptures-parameters">Parameters</h3>
+
+| Name             | In    | Type              | Required | Description |
+| ---------------- | ----- | ----------------- | -------- | ----------- |
+| fromDate         | query | string(date-time) | true     | none        |
+| toDate           | query | string(date-time) | true     | none        |
+| zone             | query | string            | true     | none        |
+| campaignId       | query | string(uuid)      | false    | none        |
+| emailCaptureType | query | string            | false    | none        |
+| email            | query | string(email)     | false    | none        |
+| pageToken        | query | string            | false    | none        |
+| pageSize         | query | string            | false    | none        |
+
+#### Enumerated Values
+
+| Parameter        | Value    |
+| ---------------- | -------- |
+| emailCaptureType | advocate |
+| emailCaptureType | friend   |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "string",
+  "totalResults": 0,
+  "results": [
+    {
+      "name": "string",
+      "email": "user@example.com",
+      "widgetName": "string",
+      "campaignId": "string",
+      "campaignName": "string",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "ipAddress": "192.168.0.1",
+      "emailCaptureType": "advocate",
+      "newsletterOptIn": true
+    }
+  ]
+}
+```
+
+<h3 id="getEmailCaptures-responses">Responses</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                      |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getEmailCapturesResponse](#schemagetEmailCapturesresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                       |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                       |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                       |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 ## Errors
 
 <a id="schemaerror"></a>
