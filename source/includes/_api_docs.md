@@ -2393,13 +2393,13 @@ Get widget views.
   "totalResults": 0,
   "results": [
     {
-      "customerId": "string",
+      "customerId": "ad39255f-b7e6-4c8b-baa8-5c7aa0c3e241",
       "email": "user@example.com",
-      "widgetName": "string",
-      "campaignId": "string",
-      "campaignName": "string",
+      "widgetName": "Post Purchase Overlay",
+      "campaignId": "st27d77a60-c446-4629-81a9-cc2eaa08738ering",
+      "campaignName": "Evergreen Campaign",
       "createdOn": "2021-02-23T01:20:14Z",
-      "userAgent": "string",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
       "ipAddress": "192.168.0.1"
     }
   ]
@@ -2612,20 +2612,19 @@ Get shares.
 
 ```json
 {
-  "nextPageToken": "string",
-  "totalResults": 0,
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
   "results": [
     {
-      "advocateCustomerId": "string",
+      "advocateCustomerId": "c9a58f97-7d2c-4cfd-a8e7-ed404038d2b2",
       "advocateEmail": "user@example.com",
-      "advocateName": "string",
-      "cid": "string",
-      "channel": "string",
-      "referralCode": "string",
-      "campaignId": "string",
-      "campaignName": "string",
+      "advocateName": "Test Advocate",
+      "channel": "email",
+      "referralCode": "abc123",
+      "campaignId": "ad39255f-b7e6-4c8b-baa8-5c7aa0c3e241",
+      "campaignName": "Evergreen Campaign",
       "createdOn": "2021-02-23T01:20:14Z",
-      "userAgent": "string",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
       "ipAddress": "192.168.0.1"
     }
   ]
@@ -2633,6 +2632,21 @@ Get shares.
 ```
 
 <h3 id="getShares-responses">Responses</h3>
+
+| Name               | Type              | Required | Restrictions | Description                                                               |
+| ------------------ | ----------------- | -------- | ------------ | ------------------------------------------------------------------------- |
+| advocateCustomerId | string            | false    | none         | Customer Id of the advocate who shared.                                   |
+| advocateEmail      | string(email)     | false    | none         | Email of the advocate who shared.                                         |
+| advocateName       | string            | false    | none         | Name of the advocate who shared.                                          |
+| channel            | string            | false    | none         | The channel the user shared through (e.g. email, facebook, twitter, purl) |
+| referralCode       | string            | false    | none         | The referral code of the share.                                           |
+| campaignId         | string(uuid)      | false    | none         | The id of the campaign the share originated from.                         |
+| campaignName       | string            | false    | none         | The name of the campaign the share originated from.                       |
+| createdOn          | string(date-time) | false    | none         | The date the share was made.                                              |
+| userAgent          | string            | false    | none         | The user agent of the advocate who shared.                                |
+| ipAddress          | string(ipv4)      | false    | none         | The ip address of the advocate who shared.                                |
+
+<h3 id="getShares-response-codes">Response Codes</h3>
 
 | Status | Meaning                                                                    | Description                                  | Schema                                        |
 | ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------- |
