@@ -4085,7 +4085,7 @@ Get email captures.
 ```json
 {
   "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
-  "totalResults": 0,
+  "totalResults": 1,
   "results": [
     {
       "name": "Test Customer",
