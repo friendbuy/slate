@@ -142,6 +142,8 @@ The GET Widget Views endpoint allows you to retrieve all widget views within a g
 
 To retrieve widget views, make a **GET** request to **/analytics/widget-views**.
 
+View Merchant API details [here](#merchant-api-guides-getwidgetviews)
+
 ## GET Shares
 
 > Example Request
@@ -182,6 +184,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07
 The GET Shares endpoint allows you to retrieve all shares within a given time frame, optionally filtered by **campaignId**, **advocateEmail**, **advocateCustomerId**, or **channel**. Shares, like many other records, contain a referralCode that is unique to the share. Referral codes can be used to link different types of events together to create a more complete picture of referral behavior.
 
 To retrieve shares, make a **GET** request to **/analytics/shares**.
+
+View Merchant API details [here](#merchant-api-guides-getshares)
 
 ## GET Clicks
 
@@ -224,6 +228,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07
 The GET Clicks endpoint allows you to retrieve all valid clicks within a given time frame, optionally filtered by **campaignId** and/or **channel**. Clicks, like many other records, contain a referralCode that is unique to the share the click came from. Referral codes can be used to link different types of events together to create a more complete picture of referral behavior.
 
 To retrieve clicks, make a **GET** request to **/analytics/clicks**.
+
+View Merchant API details [here](#merchant-api-guides-getclicks)
 
 ## GET Signups
 
@@ -268,6 +274,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A0
 The GET Signups endpoint allows you to retrieve all referral signups within a given time frame, optionally filtered by **campaignId**, **customerId**, or **email**. Signups, like many other records, contain a referralCode that is unique to the share the user clicked on before signing up. Referral codes can be used to link different types of events together to create a more complete picture of referral behavior.
 
 To retrieve signups, make a **GET** request to **/analytics/signups**.
+
+View Merchant API details [here](#merchant-api-guides-getsignups)
 
 ## GET Purchases
 
@@ -322,6 +330,8 @@ The GET Purchases endpoint allows you to retrieve all referral purchases within 
 
 To retrieve purchases, make a **GET** request to **/analytics/purchases**.
 
+View Merchant API details [here](#merchant-api-guides-getpurchases)
+
 ## GET Distributed Advocate Rewards
 
 > Example Request
@@ -369,6 +379,8 @@ The GET Distributed Advocate Rewards endpoint allows you to retrieve all rewards
 **NOTE This endpoint only returns rewards that we have successfully distributed to advocates. It does not include rewards that have been rejected or rewards distributed to friends. For rewards distributed to friends, use the GET Distributed Friend Incentives endpoint.**
 
 To retrieve distributed advocate rewards, make a **GET** request to **/analytics/distributed-advocate-rewards**.
+
+View Merchant API details [here](#merchant-api-guides-getdistributedadvocaterewards)
 
 ## GET Distributed Friend Incentives
 
@@ -418,6 +430,8 @@ The GET Distributed Friend Incentives endpoint allows you to retrieve all incent
 
 To retrieve distributed friend incentives, make a **GET** request to **/analytics/distributed-friend-incentives**.
 
+View Merchant API details [here](#merchant-api-guides-getdistributedfriendincentives)
+
 ## GET Email Captures
 
 > Example Request
@@ -457,6 +471,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05
 The GET Email Captures endpoint allows you to retrieve all emails captured by Friendbuy within a given time frame, optionally filtered by **campaignId**, **emailCaptureType**, or **email**. **emailCaptureType** can be either **advocate** or **friend**. **advocate** will retrieve all emails captured by the email gate on a referral widget. **friend** will retrieve all emails captured by friend incentive widgets.
 
 To retrieve email captures, make a **GET** request to **/analytics/email-captures**.
+
+View Merchant API details [here](#merchant-api-guides-getemailcaptures)
 
 ## Generating Referral Links
 
