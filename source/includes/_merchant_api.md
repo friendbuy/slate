@@ -237,7 +237,7 @@ View Merchant API details [here](#merchant-api-guides-getclicks)
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -273,7 +273,7 @@ curl -X GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A0
 
 The GET Signups endpoint allows you to retrieve all referral signups within a given time frame, optionally filtered by **campaignId**, **customerId**, or **email**. Signups, like many other records, contain a referralCode that is unique to the share the user clicked on before signing up. Referral codes can be used to link different types of events together to create a more complete picture of referral behavior.
 
-To retrieve signups, make a **GET** request to **/analytics/signups**.
+To retrieve signups, make a **GET** request to **/analytics/account-sign-ups**.
 
 View Merchant API details [here](#merchant-api-guides-getsignups)
 

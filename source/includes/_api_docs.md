@@ -2919,14 +2919,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -2939,7 +2939,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
   {
     method: "GET",
 
@@ -2963,7 +2963,7 @@ headers = {
   'Authorization' => 'Bearer {access-token}'
 }
 
-result = RestClient.get 'https://mapi.fbot.me/v1/analytics/signups',
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/account-sign-ups',
   params: {
   'fromDate' => 'string(date-time)',
 'toDate' => 'string(date-time)',
@@ -2981,7 +2981,7 @@ headers = {
   'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://mapi.fbot.me/v1/analytics/signups', params={
+r = requests.get('https://mapi.fbot.me/v1/analytics/account-sign-ups', params={
   'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
 }, headers = headers)
 
@@ -3005,7 +3005,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/signups', array(
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/account-sign-ups', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -3022,7 +3022,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/signups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -3054,7 +3054,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/signups", data)
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/account-sign-ups", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -3064,7 +3064,7 @@ func main() {
 
 ```
 
-`GET /v1/analytics/signups`
+`GET /v1/analytics/account-sign-ups`
 
 _Endpoint to retrieve referral signups_
 
