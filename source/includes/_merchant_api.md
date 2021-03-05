@@ -86,6 +86,8 @@ To retrieve a personal referral link, make a **POST** request to **/personal-ref
 
 You can then distribute this link however you wish. Common use cases involve sending a personal referral link to a subset of customers through email to promote the referral program and retrieving a link to be displayed within a mobile app.
 
+Please note - in the event that you need to generate a large amount of personal referral links, we do provide a batching endpoint which can process up to 10 links in a single request.
+
 ## Decoding the Attribution ID
 
 > Code Samples
