@@ -705,13 +705,13 @@ Generate event
 
 <h3 id="postpersonalreferrallinkbatch-responses">Responses</h3>
 
-| Name       | Type             | Required | Restrictions | Description |
-| ---------- | ---------------- | -------- | ------------ | ----------- |
-| link       | string           | false    | none         | none        |
-| createdOn  | string(datetime) | false    | none         | none        |
-| email      | string(email)    | false    | none         | none        |
-| campaignId | string(uuid)     | false    | none         | none        |
-| customerId | string           | false    | none         | none        |
+| Name       | Type             | Required | Restrictions | Description                                                |
+| ---------- | ---------------- | -------- | ------------ | ---------------------------------------------------------- |
+| link       | string           | true     | none         | The personal referral link that was created.               |
+| createdOn  | string(datetime) | true     | none         | Timestamp for when the link was created.                   |
+| email      | string(email)    | true     | none         | Email for the personal referral link in question.          |
+| campaignId | string(uuid)     | true     | none         | Campaign ID the personal referral link is associated with. |
+| customerId | string           | false    | none         | Customer ID the personal referral link is associated with. |
 
 <h3>Response Codes</h3>
 
