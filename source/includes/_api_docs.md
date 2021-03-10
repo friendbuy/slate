@@ -2379,7 +2379,7 @@ Get widget views.
 | zone       | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | widgetName | query | string            | false    | Widget Name to filter on.                                                                                           |
-| widgetType | query | string            | false    | Widget type to filter on (advocateShare or friendIncentive).                                                        |
+| widgetType | query | string            | false    | Widget type to filter on (advocateShare or emailCapture).                                                           |
 | pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
 | pageSize   | query | string            | false    | Page size limit.                                                                                                    |
 

@@ -97,9 +97,9 @@ Unless otherwise noted, all of our GET endpoints support pagination using a page
 
 When making the request for the first page, you just need to pass in a fromDate, toDate, and zone. You can also optionally pass in a page size limit as pageSize.
 
-If there are more total results than the page size, the response body will contain a nextPageToken attribute.
+If results are found, the response body will contain a nextPageToken attribute.
 
-For subsequent requests, passing in nextPageToken from the previous response as pageToken will return the next page of results.
+For subsequent requests, passing in nextPageToken from the previous response as pageToken will return the next page of results. A response that does not have a nextPageToken and results indicates the end of the query.
 
 **Note: While using a page token, date ranges and page sizes will be locked to the initial request.**
 
