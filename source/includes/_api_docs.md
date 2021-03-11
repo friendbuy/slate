@@ -473,6 +473,262 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## postPersonalReferralLinkBatch
+
+<a id="opIdpostPersonalReferralLinkBatch"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://mapi.fbot.me/v1/personal-referral-link-batch \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+```
+
+```http
+POST https://mapi.fbot.me/v1/personal-referral-link-batch HTTP/1.1
+Host: mapi.fbot.me
+Content-Type: application/json
+Accept: application/json
+```
+
+```javascript
+const inputBody = '{
+  "requests": [
+    {
+      "email": "test@example.com",
+      "campaignId": "string",
+      "customerId": "string",
+      "firstName": "John",
+      "lastName": "Smith",
+      "destinationUrlQueryParams": {},
+      "seed": "string",
+      "prefix": "string",
+      "channel": "purl",
+      "short": false,
+      "ipAddress": "string",
+      "userAgent": "api",
+      "widgetId": "string",
+      "eventUrl": "string",
+      "eventPage": "string"
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+fetch('https://mapi.fbot.me/v1/personal-referral-link-batch',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+result = RestClient.post 'https://mapi.fbot.me/v1/personal-referral-link-batch',
+  params: {
+  }, headers: headers
+p JSON.parse(result)
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+r = requests.post('https://mapi.fbot.me/v1/personal-referral-link-batch', headers = headers)
+print(r.json())
+```
+
+```php
+<?php
+require 'vendor/autoload.php';
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+$client = new \GuzzleHttp\Client();
+// Define array of request body.
+$request_body = array();
+try {
+    $response = $client->request('POST','https://mapi.fbot.me/v1/personal-referral-link-batch', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+ // ...
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/personal-referral-link-batch");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+```
+
+```go
+package main
+import (
+       "bytes"
+       "net/http"
+)
+func main() {
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://mapi.fbot.me/v1/personal-referral-link-batch", data)
+    req.Header = headers
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+```
+
+`POST /v1/personal-referral-link-batch`
+
+_Create or retrieve a personal URL for a given customer or email address and campaign. The URL provided uses input for seed and prefix from the campaign however those attributes can be overridden by the corresponding attributes within the request body._
+
+Generate event
+
+> Body parameter
+
+```json
+{
+  "requests": [
+    {
+      "email": "test@example.com",
+      "campaignId": "string",
+      "customerId": "string",
+      "firstName": "John",
+      "lastName": "Smith",
+      "destinationUrlQueryParams": {},
+      "seed": "string",
+      "prefix": "string",
+      "channel": "purl",
+      "short": false,
+      "ipAddress": "string",
+      "userAgent": "api",
+      "widgetId": "string",
+      "eventUrl": "string",
+      "eventPage": "string"
+    }
+  ]
+}
+```
+
+<h3 id="postpersonalreferrallinkbatch-parameters">Parameters</h3>
+
+| Name                         | In       | Type          | Required | Description                                                                                      |
+| ---------------------------- | -------- | ------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| body                         | body     | object        | true     | none                                                                                             |
+| » requests                   | body     | array         | true     | Array of PURL requests.                                                                          |
+| »» email                     | requests | string(email) | true     | Email of the advocate.                                                                           |
+| »» campaignId                | requests | string(uuid)  | true     | ID of the campaign to use to generate the link.                                                  |
+| »» customerId                | requests | string        | false    | Your customer id for the advocate.                                                               |
+| »» firstName                 | requests | string        | false    | First name of the advocate.                                                                      |
+| »» lastName                  | requests | string        | false    | Last name of the advocate.                                                                       |
+| »» destinationUrlQueryParams | requests | object        | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
+| »» seed                      | requests | string        | false    | Specifies what the vanity url will be based on if provided.                                      |
+| »» channel                   | requests | string        | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
+| »» ipAddress                 | requests | string        | false    | IP Address of the advocate. Used for fraud checks.                                               |
+| »» userAgent                 | requests | string        | false    | User Agent of the advocate. Used for fraud checks.                                               |
+
+#### Enumerated Values
+
+| Parameter | Value     |
+| --------- | --------- |
+| » channel | email     |
+| » channel | facebook  |
+| » channel | generic   |
+| » channel | instagram |
+| » channel | messenger |
+| » channel | sms       |
+| » channel | snap      |
+| » channel | twitter   |
+| » channel | purl      |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "purls": [
+    {
+      "link": "string",
+      "createdOn": "string",
+      "email": "user@example.com",
+      "campaignId": "string",
+      "customerId": "string"
+    }
+  ]
+}
+```
+
+<h3 id="postpersonalreferrallinkbatch-responses">Responses</h3>
+
+| Name       | Type             | Required | Restrictions | Description                                                |
+| ---------- | ---------------- | -------- | ------------ | ---------------------------------------------------------- |
+| link       | string           | true     | none         | The personal referral link that was created.               |
+| createdOn  | string(datetime) | true     | none         | Timestamp for when the link was created.                   |
+| email      | string(email)    | true     | none         | Email for the personal referral link in question.          |
+| campaignId | string(uuid)     | true     | none         | Campaign ID the personal referral link is associated with. |
+| customerId | string           | false    | none         | Customer ID the personal referral link is associated with. |
+
+<h3>Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                                                             | Schema                                                                        |
+| ------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | Successful request, returning either pre-existing or generated personal referral links. | [personalReferralLinkBatchResponse](#schemapersonalreferrallinkbatchresponse) |
+| 400    | [Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)           | Invalid input, object invalid                                                           | [Error](#schemaerror)                                                         |
+| 404    | [Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)             | Not found - campaign does not exist or is inactive.                                     | [Error](#schemaerror)                                                         |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                                                                    | [Error](#schemaerror)                                                         |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                                                                       | [Error](#schemaerror)                                                         |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure)                                            | [Error](#schemaerror)                                                         |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 ## postPurchaseEvent
 
 <a id="opIdpostPurchaseEvent"></a>

@@ -86,6 +86,52 @@ To retrieve a personal referral link, make a **POST** request to **/personal-ref
 
 You can then distribute this link however you wish. Common use cases involve sending a personal referral link to a subset of customers through email to promote the referral program and retrieving a link to be displayed within a mobile app.
 
+Please note - in the event that you need to generate a large amount of personal referral links, we do provide a batching endpoint which can process up to 10 links in a single request.
+
+## Generating Referral Links - Batching
+
+> Example Request Body
+
+```json
+{
+  "requests": [
+    {
+      "email": "test@example.com",
+      "campaignId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "customerId": "example-customer-id",
+      "firstName": "John",
+      "lastName": "Smith",
+      "destinationUrlQueryParams": { "vip": true },
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+      "seed": "johnsmith"
+    }
+  ]
+}
+```
+
+> Example Response Body
+
+```json
+{
+  "purls": [
+    {
+      "link": "https://fbuy.io/alias/johnsmith",
+      "createdOn": "2020-01-05T01:07:38.509Z",
+      "email": "test@example.com",
+      "campaignId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "customerId": "example-customer-id"
+    }
+  ]
+}
+```
+
+### Summary
+
+In the event that numerous personal referral links need to be generated we suggest to use the personal referral link batching endpoint. It allows for sending up to 10 purl requests at once and thereby cuts down on network latency when creating a large amount of purls.
+
+In order to use the purl patching endpoint, make a **POST** request to **/personal-referral-link-batch**. The response will include an object with an array of personal referral links in the “response” parameter.
+
 ## Decoding the Attribution ID
 
 > Code Samples
