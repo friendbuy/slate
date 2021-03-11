@@ -263,7 +263,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-
       "advocateEmail": "advocate@example.com",
       "advocateCustomerId": "61dbe3d5-8134-4a96-80e4-540f2df678b2",
       "newCustomer": true,
-      "referralCode": "abc123"
+      "referralCode": "abc123",
+      "channel": "purl"
     }
   ]
 }

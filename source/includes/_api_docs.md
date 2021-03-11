@@ -3121,21 +3121,22 @@ Get referral signups.
 
 <h3 id="getSignups-results">Results</h3>
 
-| Name               | Type              | Required | Restrictions | Description                                                            |
-| ------------------ | ----------------- | -------- | ------------ | ---------------------------------------------------------------------- |
-| customerId         | string            | false    | none         | The customer id of the user who signed up.                             |
-| email              | string(email)     | false    | none         | Email of the user who signed up.                                       |
-| name               | string            | false    | none         | Name of the user who signed up.                                        |
-| campaignId         | string            | false    | none         | Id of the campaign that the user who signed up was referred through.   |
-| campaignName       | string            | false    | none         | Name of the campaign that the user who signed up was referred through. |
-| createdOn          | string(date-time) | false    | none         | Timestamp of the signup.                                               |
-| userAgent          | string            | false    | none         | User agent of the user who signed up.                                  |
-| ipAddress          | string(ipv4)      | false    | none         | IP address of the user who signed up.                                  |
-| advocateName       | string            | false    | none         | Name of the advocate who referred the user that signed up.             |
-| advocateEmail      | string(email)     | false    | none         | Email of the advocate who referred the user that signed up.            |
-| advocateCustomerId | string            | false    | none         | Customer id of the advocate who referred the user that signed up.      |
-| newCustomer        | boolean           | false    | none         | Indicates whether or not the user who signed up was a new customer.    |
-| referralCode       | string            | false    | none         | The referral code of the link the user who signed up clicked on.       |
+| Name               | Type              | Required | Restrictions | Description                                                                                   |
+| ------------------ | ----------------- | -------- | ------------ | --------------------------------------------------------------------------------------------- |
+| customerId         | string            | false    | none         | The customer id of the user who signed up.                                                    |
+| email              | string(email)     | false    | none         | Email of the user who signed up.                                                              |
+| name               | string            | false    | none         | Name of the user who signed up.                                                               |
+| campaignId         | string            | false    | none         | Id of the campaign that the user who signed up was referred through.                          |
+| campaignName       | string            | false    | none         | Name of the campaign that the user who signed up was referred through.                        |
+| createdOn          | string(date-time) | false    | none         | Timestamp of the signup.                                                                      |
+| userAgent          | string            | false    | none         | User agent of the user who signed up.                                                         |
+| ipAddress          | string(ipv4)      | false    | none         | IP address of the user who signed up.                                                         |
+| advocateName       | string            | false    | none         | Name of the advocate who referred the user that signed up.                                    |
+| advocateEmail      | string(email)     | false    | none         | Email of the advocate who referred the user that signed up.                                   |
+| advocateCustomerId | string            | false    | none         | Customer id of the advocate who referred the user that signed up.                             |
+| newCustomer        | boolean           | false    | none         | Indicates whether or not the user who signed up was a new customer.                           |
+| referralCode       | string            | false    | none         | The referral code of the link the user who signed up clicked on.                              |
+| channel            | string            | false    | none         | The channel of the link the user who signed up clicked on (e.g. email, purl, facebook, etc.). |
 
 <h3 id="getSignups-response-codes">Response Codes</h3>
 
