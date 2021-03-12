@@ -2219,14 +2219,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -2239,7 +2239,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -2266,8 +2266,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/widget-views',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -2282,7 +2281,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/widget-views', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -2322,7 +2321,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -2376,7 +2375,6 @@ Get widget views.
 | ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone       | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | widgetName | query | string            | false    | Widget Name to filter on.                                                                                           |
 | widgetType | query | string            | false    | Widget type to filter on (advocateShare or emailCapture).                                                           |
@@ -2449,14 +2447,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -2469,7 +2467,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -2496,8 +2494,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/shares',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -2512,7 +2509,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/shares', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -2552,7 +2549,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -2606,7 +2603,6 @@ Get shares.
 | ------------------ | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate           | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate             | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone               | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId         | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | advocateEmail      | query | string(email)     | false    | Advocate email to filter on.                                                                                        |
 | advocateCustomerId | query | string            | false    | Advocate customer id to filter on.                                                                                  |
@@ -2684,14 +2680,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -2704,7 +2700,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -2731,8 +2727,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/clicks',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -2747,7 +2742,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/clicks', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -2787,7 +2782,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -2841,7 +2836,6 @@ Get valid clicks.
 | ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone       | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | channel    | query | string            | false    | Filter for clicks that came from a specific channel.                                                                |
 | pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
@@ -2919,14 +2913,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -2939,7 +2933,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -2966,9 +2960,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/account-sign-ups',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
-}, headers: headers
+'toDate' => 'string(date-time)'
 
 p JSON.parse(result)
 
@@ -2982,7 +2974,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/account-sign-ups', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -3022,7 +3014,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -3076,7 +3068,6 @@ Get referral signups.
 | ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone       | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | customerId | query | string            | false    | Customer id to filter on. This will filter based on the customer id of the user who signed up.                      |
 | email      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the user who signed up.                                  |
@@ -3160,14 +3151,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -3180,7 +3171,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -3207,8 +3198,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/purchases',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -3223,7 +3213,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/purchases', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -3263,7 +3253,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -3317,7 +3307,6 @@ Get referral purchases.
 | ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone       | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | customerId | query | string            | false    | Customer id to filter on. This will filter based on the customer id of the user who signed up.                      |
 | email      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the user who signed up.                                  |
@@ -3420,14 +3409,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -3440,7 +3429,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -3467,8 +3456,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -3483,7 +3471,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -3523,7 +3511,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -3577,7 +3565,6 @@ Get distributed advocate rewards.
 | ------------------ | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate           | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate             | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone               | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId         | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | advocateCustomerId | query | string            | false    | Customer id to filter on. This will filter based on the customer id of the advocate who received the reward.        |
 | advocateEmail      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the advocate who received the reward.                    |
@@ -3664,14 +3651,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -3684,7 +3671,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -3711,8 +3698,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/distributed-friend-incentives',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -3727,7 +3713,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/distributed-friend-incentives', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -3767,7 +3753,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -3821,7 +3807,6 @@ Get distributed friend incentives.
 | ---------------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate         | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate           | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone             | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId       | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | friendCustomerId | query | string            | false    | Customer Id to filter on. This will filter based on the customer id of the user who received the incentive.         |
 | friendEmail      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the user who received the incentive.                     |
@@ -3908,14 +3893,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles HTTP/1.1
+GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
 Host: mapi.fbot.me
 Accept: application/json
 
@@ -3928,7 +3913,7 @@ const headers = {
 };
 
 fetch(
-  "https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles",
+  "https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
   {
     method: "GET",
 
@@ -3955,8 +3940,7 @@ headers = {
 result = RestClient.get 'https://mapi.fbot.me/v1/analytics/email-captures',
   params: {
   'fromDate' => 'string(date-time)',
-'toDate' => 'string(date-time)',
-'zone' => 'string'
+'toDate' => 'string(date-time)'
 }, headers: headers
 
 p JSON.parse(result)
@@ -3971,7 +3955,7 @@ headers = {
 }
 
 r = requests.get('https://mapi.fbot.me/v1/analytics/email-captures', params={
-  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z',  'zone': 'America/Los_Angeles'
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
 }, headers = headers)
 
 print(r.json())
@@ -4011,7 +3995,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles");
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -4065,7 +4049,6 @@ Get email captures.
 | ---------------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | fromDate         | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
 | toDate           | query | string(date-time) | true     | End of the search period.                                                                                           |
-| zone             | query | string            | true     | Timezone to use for the search period (e.g. America/Los_Angeles).                                                   |
 | campaignId       | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
 | emailCaptureType | query | string            | false    | The type of email capture to filter on. One of "advocate" or "friend".                                              |
 | email            | query | string(email)     | false    | Email to filter on. This will filter based on the email captured.                                                   |

@@ -55,15 +55,15 @@ To get a Bearer Token for authorization:
 
 ### Requirements
 
-Unless otherwise stated, all GET endpoints require a toDate, fromDate, and zone to be passed in the query string for the request.
+Unless otherwise stated, all GET endpoints require either a toDate and fromDate or a pageToken. If a pageToken is provided, the toDate, fromDate, and pageSize are derived from the token.
 
-The toDate and fromDate parameters should be an ISO format date string. For example: "2021-02-23T01:20:14Z". The zone identifies which time zone to use with the toDate and FromDate.
+The toDate and fromDate parameters should be an ISO format date string. For example: "2021-02-23T01:20:14Z".
 
 > Example Request with Pagination
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles&pageToken=eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0 \
+curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&pageToken=eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -95,7 +95,7 @@ curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05
 
 Unless otherwise noted, all of our GET endpoints support pagination using a pageToken query string parameter.
 
-When making the request for the first page, you just need to pass in a fromDate, toDate, and zone. You can also optionally pass in a page size limit as pageSize.
+When making the request for the first page, you just need to pass in a fromDate and fromDate. You can also optionally pass in a page size limit as pageSize.
 
 If results are found, the response body will contain a nextPageToken attribute.
 
@@ -109,7 +109,7 @@ For subsequent requests, passing in nextPageToken from the previous response as 
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -150,7 +150,7 @@ View Merchant API details [here](#merchant-api-guides-getwidgetviews)
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -193,7 +193,7 @@ View Merchant API details [here](#merchant-api-guides-getshares)
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -237,7 +237,7 @@ View Merchant API details [here](#merchant-api-guides-getclicks)
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -284,7 +284,7 @@ View Merchant API details [here](#merchant-api-guides-getsignups)
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -339,7 +339,7 @@ View Merchant API details [here](#merchant-api-guides-getpurchases)
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -389,7 +389,7 @@ View Merchant API details [here](#merchant-api-guides-getdistributedadvocaterewa
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -439,7 +439,7 @@ View Merchant API details [here](#merchant-api-guides-getdistributedfriendincent
 
 ```curl
 # You can also use wget
-curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z&zone=America%2FLos_Angeles \
+curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
