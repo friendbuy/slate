@@ -404,8 +404,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?from
   "results": [
     {
       "createdOn": "2021-02-23T23:18:59Z",
-      "rewardType": "Coupon Code",
-      "rewardAmount": 10.0,
+      "incentiveType": "Coupon Code",
+      "incentiveAmount": 10.0,
       "couponCode": "test-coupon-1",
       "trigger": "purchase",
       "advocateEmail": "advocate@example.com",
