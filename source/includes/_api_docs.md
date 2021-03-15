@@ -2654,7 +2654,8 @@ Get widget views.
       "campaignName": "Evergreen Campaign",
       "createdOn": "2021-02-23T01:20:14Z",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
-      "ipAddress": "192.168.0.1"
+      "ipAddress": "192.168.0.1",
+      "widgetType": "advocateShare"
     }
   ]
 }
@@ -2670,16 +2671,17 @@ Get widget views.
 
 <h3 id="getWidgetViews-results">Results</h3>
 
-| Name         | Type              | Required | Restrictions | Description                                                  |
-| ------------ | ----------------- | -------- | ------------ | ------------------------------------------------------------ |
-| customerId   | string            | false    | none         | Customer Id of the user who viewed the widget, if available. |
-| email        | string(email)     | false    | none         | Email of the user who viewed the widget, if available.       |
-| widgetName   | string            | false    | none         | Name of the viewed widget.                                   |
-| campaignId   | string(uuid)      | false    | none         | Campaign Id associated with the viewed widget.               |
-| campaignName | string            | false    | none         | Name of the campaign associated with the viewed widget.      |
-| createdOn    | string(date-time) | false    | none         | Date and time the widget was viewed.                         |
-| userAgent    | string            | false    | none         | User Agent of the user who viewed the widget.                |
-| ipAddress    | string(ipv4)      | false    | none         | IP Address of the user who viewed the widget.                |
+| Name         | Type              | Required | Restrictions | Description                                                          |
+| ------------ | ----------------- | -------- | ------------ | -------------------------------------------------------------------- |
+| customerId   | string            | false    | none         | Customer Id of the user who viewed the widget, if available.         |
+| email        | string(email)     | false    | none         | Email of the user who viewed the widget, if available.               |
+| widgetName   | string            | false    | none         | Name of the viewed widget.                                           |
+| campaignId   | string(uuid)      | false    | none         | Campaign Id associated with the viewed widget.                       |
+| campaignName | string            | false    | none         | Name of the campaign associated with the viewed widget.              |
+| createdOn    | string(date-time) | false    | none         | Date and time the widget was viewed.                                 |
+| userAgent    | string            | false    | none         | User Agent of the user who viewed the widget.                        |
+| ipAddress    | string(ipv4)      | false    | none         | IP Address of the user who viewed the widget.                        |
+| widgetType   | string            | false    | none         | Type of the widget viewed. Either "advocateShare" or "emailCapture". |
 
 <h3 id="getWidgetViews-response-codes">Response Codes</h3>
 
@@ -3591,7 +3593,7 @@ Get referral purchases.
       "advocateCustomerId": "da6c99b7-4040-4677-a152-ef7bebc13b99",
       "newCustomer": true,
       "referralCode": "abc123",
-      "totalAmount": 50.0,
+      "amount": 50.0,
       "couponCode": "test-coupon-1",
       "products": [
         {
@@ -3630,7 +3632,7 @@ Get referral purchases.
 | advocateCustomerId | string                                      | false    | none         | Customer id of the advocate who referred the user who made a purchase.     |
 | newCustomer        | boolean                                     | false    | none         | Indicates whether or not the user who made the purchase is a new customer. |
 | referralCode       | string                                      | false    | none         | The referral code of the link the user who made the purchase clicked on.   |
-| totalAmount        | number                                      | false    | none         | Total amount of the purchase.                                              |
+| amount             | number                                      | false    | none         | Total amount of the purchase.                                              |
 | couponCode         | string                                      | false    | none         | Any coupon code used on the purchase.                                      |
 | products           | [[product](#getPurchases-product-response)] | false    | none         | Any products contained in the purchase.                                    |
 

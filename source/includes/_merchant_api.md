@@ -130,7 +130,8 @@ curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T0
       "campaignName": "Evergreen Campaign",
       "createdOn": "2021-02-23T01:20:14Z",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
-      "ipAddress": "192.168.0.1"
+      "ipAddress": "192.168.0.1",
+      "widgetType": "advocateShare"
     }
   ]
 }
@@ -310,7 +311,7 @@ curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3
       "advocateCustomerId": "da6c99b7-4040-4677-a152-ef7bebc13b99",
       "newCustomer": true,
       "referralCode": "abc123",
-      "totalAmount": 50.0,
+      "amount": 50.0,
       "couponCode": "test-coupon-1",
       "products": [
         {
