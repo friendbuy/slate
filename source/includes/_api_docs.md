@@ -2467,6 +2467,1917 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## getWidgetViews
+
+<a id="opIdgetWidgetViews"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/widget-views',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/widget-views', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/widget-views', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/widget-views?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/widget-views", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/widget-views`
+
+_Endpoint to retrieve widget views_
+
+Get widget views.
+
+<h3 id="getWidgetViews-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description                                                                                                         |
+| ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| widgetName | query | string            | false    | Widget Name to filter on.                                                                                           |
+| widgetType | query | string            | false    | Widget type to filter on (advocateShare or emailCapture).                                                           |
+| pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize   | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 0,
+  "results": [
+    {
+      "customerId": "ad39255f-b7e6-4c8b-baa8-5c7aa0c3e241",
+      "email": "user@example.com",
+      "widgetName": "Post Purchase Overlay",
+      "campaignId": "st27d77a60-c446-4629-81a9-cc2eaa08738ering",
+      "campaignName": "Evergreen Campaign",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
+      "ipAddress": "192.168.0.1"
+    }
+  ]
+}
+```
+
+<h3 id="getWidgetViews-responses">Responses</h3>
+
+| Name          | Type                                                        | Required | Restrictions | Description                                                                                            |
+| ------------- | ----------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                                      | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                                      | false    | none         | The total number of results.                                                                           |
+| results       | [[widgetViewsGetResponse_results](#getWidgetViews-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getWidgetViews-results">Results</h3>
+
+| Name         | Type              | Required | Restrictions | Description                                                  |
+| ------------ | ----------------- | -------- | ------------ | ------------------------------------------------------------ |
+| customerId   | string            | false    | none         | Customer Id of the user who viewed the widget, if available. |
+| email        | string(email)     | false    | none         | Email of the user who viewed the widget, if available.       |
+| widgetName   | string            | false    | none         | Name of the viewed widget.                                   |
+| campaignId   | string(uuid)      | false    | none         | Campaign Id associated with the viewed widget.               |
+| campaignName | string            | false    | none         | Name of the campaign associated with the viewed widget.      |
+| createdOn    | string(date-time) | false    | none         | Date and time the widget was viewed.                         |
+| userAgent    | string            | false    | none         | User Agent of the user who viewed the widget.                |
+| ipAddress    | string(ipv4)      | false    | none         | IP Address of the user who viewed the widget.                |
+
+<h3 id="getWidgetViews-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                              |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getWidgetViewsResponse](#getWidgetViews-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                               |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                               |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                               |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getShares
+
+<a id="opIdgetShares"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/shares',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/shares', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/shares', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/shares?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/shares", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/shares`
+
+_Endpoint to retrieve shares_
+
+Get shares.
+
+<h3 id="getShares-parameters">Parameters</h3>
+
+| Name               | In    | Type              | Required | Description                                                                                                         |
+| ------------------ | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate           | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate             | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId         | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| advocateEmail      | query | string(email)     | false    | Advocate email to filter on.                                                                                        |
+| advocateCustomerId | query | string            | false    | Advocate customer id to filter on.                                                                                  |
+| channel            | query | string            | false    | Share channel to filter on.                                                                                         |
+| pageToken          | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize           | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
+  "results": [
+    {
+      "advocateCustomerId": "c9a58f97-7d2c-4cfd-a8e7-ed404038d2b2",
+      "advocateEmail": "user@example.com",
+      "advocateName": "Test Advocate",
+      "channel": "email",
+      "referralCode": "abc123",
+      "campaignId": "ad39255f-b7e6-4c8b-baa8-5c7aa0c3e241",
+      "campaignName": "Evergreen Campaign",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
+      "ipAddress": "192.168.0.1"
+    }
+  ]
+}
+```
+
+<h3 id="getShares-responses">Responses</h3>
+
+| Name          | Type                                              | Required | Restrictions | Description                                                                                            |
+| ------------- | ------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                            | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                            | false    | none         | The total number of results.                                                                           |
+| results       | [[sharesGetResponse_results](#getShares-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getShares-results">Results</h3>
+
+| Name               | Type              | Required | Restrictions | Description                                                               |
+| ------------------ | ----------------- | -------- | ------------ | ------------------------------------------------------------------------- |
+| advocateCustomerId | string            | false    | none         | Customer Id of the advocate who shared.                                   |
+| advocateEmail      | string(email)     | false    | none         | Email of the advocate who shared.                                         |
+| advocateName       | string            | false    | none         | Name of the advocate who shared.                                          |
+| channel            | string            | false    | none         | The channel the user shared through (e.g. email, facebook, twitter, purl) |
+| referralCode       | string            | false    | none         | The referral code of the share.                                           |
+| campaignId         | string(uuid)      | false    | none         | The id of the campaign the share originated from.                         |
+| campaignName       | string            | false    | none         | The name of the campaign the share originated from.                       |
+| createdOn          | string(date-time) | false    | none         | The date the share was made.                                              |
+| userAgent          | string            | false    | none         | The user agent of the advocate who shared.                                |
+| ipAddress          | string(ipv4)      | false    | none         | The ip address of the advocate who shared.                                |
+
+<h3 id="getShares-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                    |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getSharesResponse](#getShares-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                     |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                     |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                     |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getClicks
+
+<a id="opIdgetClicks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/clicks',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/clicks', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/clicks', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/clicks?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/clicks", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/clicks`
+
+_Endpoint to retrieve valid clicks_
+
+Get valid clicks.
+
+<h3 id="getClicks-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description                                                                                                         |
+| ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| channel    | query | string            | false    | Filter for clicks that came from a specific channel.                                                                |
+| pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize   | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 0,
+  "results": [
+    {
+      "advocateCustomerId": "e24b313b-c941-4baf-8762-34b3af8cddee",
+      "advocateEmail": "user@example.com",
+      "advocateName": "Test Advocate",
+      "channel": "purl",
+      "referralCode": "abc123",
+      "campaignId": "1b9accd7-8ec5-4ff6-8d22-941fdc7338f4",
+      "campaignName": "Holiday Campaign",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
+      "ipAddress": "192.168.0.1",
+      "destinationUrl": "https://example.com"
+    }
+  ]
+}
+```
+
+<h3 id="getClicks-responses">Responses</h3>
+
+| Name          | Type                                              | Required | Restrictions | Description                                                                                            |
+| ------------- | ------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                            | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                            | false    | none         | The total number of results.                                                                           |
+| results       | [[clicksGetResponse_results](#getClicks-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getClicks-results">Results</h3>
+
+| Name               | Type              | Required | Restrictions | Description                                                           |
+| ------------------ | ----------------- | -------- | ------------ | --------------------------------------------------------------------- |
+| advocateCustomerId | string            | false    | none         | Customer Id associated of the advocate who's link was clicked on.     |
+| advocateEmail      | string(email)     | false    | none         | Email of the advocate who's link was clicked on.                      |
+| advocateName       | string            | false    | none         | Name of the advocate who's link was clicked on.                       |
+| channel            | string            | false    | none         | The channel of the link that was clicked (e.g. email, facebook, etc.) |
+| referralCode       | string            | false    | none         | The referral code of the link that was clicked.                       |
+| campaignId         | string(uuid)      | false    | none         | The campaign id of the link that was clicked.                         |
+| campaignName       | string            | false    | none         | The campaign name of the link that was clicked.                       |
+| createdOn          | string(date-time) | false    | none         | Timestamp of the click.                                               |
+| userAgent          | string            | false    | none         | User agent of the user who clicked the link.                          |
+| ipAddress          | string(ipv4)      | false    | none         | Ip address of the user who clicked the link.                          |
+| destinationUrl     | string            | false    | none         | The url the user was directed to after clicking the link.             |
+
+<h3 id="getClicks-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                    |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getClicksResponse](#getClicks-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                     |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                     |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                     |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getSignups
+
+<a id="opIdgetSignups"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/account-sign-ups',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/account-sign-ups', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/account-sign-ups', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/account-sign-ups?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/account-sign-ups", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/account-sign-ups`
+
+_Endpoint to retrieve referral signups_
+
+Get referral signups.
+
+<h3 id="getSignups-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description                                                                                                         |
+| ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| customerId | query | string            | false    | Customer id to filter on. This will filter based on the customer id of the user who signed up.                      |
+| email      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the user who signed up.                                  |
+| pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize   | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
+  "results": [
+    {
+      "customerId": "1b9accd7-8ec5-4ff6-8d22-941fdc7338f4",
+      "email": "user@example.com",
+      "name": "Test Friend",
+      "campaignId": "03bbcf1f-c0d1-4868-af7c-3b65d44a410d",
+      "campaignName": "Evergreen Campaign",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
+      "ipAddress": "192.168.0.1",
+      "advocateName": "Test Advocate",
+      "advocateEmail": "advocate@example.com",
+      "advocateCustomerId": "61dbe3d5-8134-4a96-80e4-540f2df678b2",
+      "newCustomer": true,
+      "referralCode": "abc123"
+    }
+  ]
+}
+```
+
+<h3 id="getSignups-responses">Responses</h3>
+
+| Name          | Type                                                | Required | Restrictions | Description                                                                                            |
+| ------------- | --------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                              | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                              | false    | none         | The total number of results.                                                                           |
+| results       | [[signupsGetResponse_results](#getSignups-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getSignups-results">Results</h3>
+
+| Name               | Type              | Required | Restrictions | Description                                                                                   |
+| ------------------ | ----------------- | -------- | ------------ | --------------------------------------------------------------------------------------------- |
+| customerId         | string            | false    | none         | The customer id of the user who signed up.                                                    |
+| email              | string(email)     | false    | none         | Email of the user who signed up.                                                              |
+| name               | string            | false    | none         | Name of the user who signed up.                                                               |
+| campaignId         | string            | false    | none         | Id of the campaign that the user who signed up was referred through.                          |
+| campaignName       | string            | false    | none         | Name of the campaign that the user who signed up was referred through.                        |
+| createdOn          | string(date-time) | false    | none         | Timestamp of the signup.                                                                      |
+| userAgent          | string            | false    | none         | User agent of the user who signed up.                                                         |
+| ipAddress          | string(ipv4)      | false    | none         | IP address of the user who signed up.                                                         |
+| advocateName       | string            | false    | none         | Name of the advocate who referred the user that signed up.                                    |
+| advocateEmail      | string(email)     | false    | none         | Email of the advocate who referred the user that signed up.                                   |
+| advocateCustomerId | string            | false    | none         | Customer id of the advocate who referred the user that signed up.                             |
+| newCustomer        | boolean           | false    | none         | Indicates whether or not the user who signed up was a new customer.                           |
+| referralCode       | string            | false    | none         | The referral code of the link the user who signed up clicked on.                              |
+| channel            | string            | false    | none         | The channel of the link the user who signed up clicked on (e.g. email, purl, facebook, etc.). |
+
+<h3 id="getSignups-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                      |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getSignupsResponse](#getSignups-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                       |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                       |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                       |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getPurchases
+
+<a id="opIdgetPurchases"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/purchases',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/purchases', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/purchases', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/purchases?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/purchases", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/purchases`
+
+_Endpoint to retrieve referral purchases_
+
+Get referral purchases.
+
+<h3 id="getPurchases-parameters">Parameters</h3>
+
+| Name       | In    | Type              | Required | Description                                                                                                         |
+| ---------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate   | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate     | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| customerId | query | string            | false    | Customer id to filter on. This will filter based on the customer id of the user who signed up.                      |
+| email      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the user who signed up.                                  |
+| pageToken  | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize   | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
+  "results": [
+    {
+      "customerId": "fbdb5742-6fe4-40cb-95da-df8b02708627",
+      "email": "user@example.com",
+      "name": "Test Customer",
+      "campaignId": "abc52d7f-828d-44e4-8b0d-79df62fdae9c",
+      "campaignName": "Evergreen Campaign",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "ipAddress": "192.168.0.1",
+      "advocateName": "Test Advocate",
+      "advocateEmail": "advocate@example.com",
+      "advocateCustomerId": "da6c99b7-4040-4677-a152-ef7bebc13b99",
+      "newCustomer": true,
+      "referralCode": "abc123",
+      "totalAmount": 50.0,
+      "couponCode": "test-coupon-1",
+      "products": [
+        {
+          "sku": "test-product-1",
+          "name": "Test Product",
+          "quantity": 2,
+          "price": 25.0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="getPurchases-responses">Responses</h3>
+
+| Name          | Type                                                    | Required | Restrictions | Description                                                                                            |
+| ------------- | ------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                                  | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                                  | false    | none         | The total number of results.                                                                           |
+| results       | [[purchasesGetResponse_results](#getPurchases-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getPurchases-results">Results</h3>
+
+| Name               | Type                                        | Required | Restrictions | Description                                                                |
+| ------------------ | ------------------------------------------- | -------- | ------------ | -------------------------------------------------------------------------- |
+| customerId         | string                                      | false    | none         | Customer id of the user who made the purchase.                             |
+| email              | string(email)                               | false    | none         | Email of the user who made the purchase.                                   |
+| name               | string                                      | false    | none         | Name of the user who made the purchase.                                    |
+| campaignId         | string                                      | false    | none         | Id of the campaign the user who made the purchase was referred from.       |
+| campaignName       | string                                      | false    | none         | Name of the campaign the user who made the purchase was referred from.     |
+| createdOn          | string(date-time)                           | false    | none         | Timestamp of the purchase.                                                 |
+| ipAddress          | string(ipv4)                                | false    | none         | IP address of the user who made the purchase.                              |
+| advocateName       | string                                      | false    | none         | Name of the advocate who referred the user who made a purchase.            |
+| advocateEmail      | string(email)                               | false    | none         | Email of the advocate who referred the user who made a purchase.           |
+| advocateCustomerId | string                                      | false    | none         | Customer id of the advocate who referred the user who made a purchase.     |
+| newCustomer        | boolean                                     | false    | none         | Indicates whether or not the user who made the purchase is a new customer. |
+| referralCode       | string                                      | false    | none         | The referral code of the link the user who made the purchase clicked on.   |
+| totalAmount        | number                                      | false    | none         | Total amount of the purchase.                                              |
+| couponCode         | string                                      | false    | none         | Any coupon code used on the purchase.                                      |
+| products           | [[product](#getPurchases-product-response)] | false    | none         | Any products contained in the purchase.                                    |
+
+<h3 id="getPurchases-product-response">Product Response</h3>
+
+| Name     | Type    | Required | Restrictions | Description                   |
+| -------- | ------- | -------- | ------------ | ----------------------------- |
+| sku      | string  | true     | none         | SKU of the product.           |
+| name     | string  | false    | none         | Name of the product.          |
+| quantity | integer | false    | none         | Number of products purchased. |
+| price    | integer | false    | none         | Price of the product.         |
+
+<h3 id="getPurchases-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                          |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getPurchasesResponse](#getPurchases-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                           |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                           |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                           |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getDistributedAdvocateRewards
+
+<a id="opIdgetDistributedAdvocateRewards"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/distributed-advocate-rewards", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/distributed-advocate-rewards`
+
+_Endpoint to retrieve distributed advocate rewards_
+
+Get distributed advocate rewards.
+
+<h3 id="getDistributedAdvocateRewards-parameters">Parameters</h3>
+
+| Name               | In    | Type              | Required | Description                                                                                                         |
+| ------------------ | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate           | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate             | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId         | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| advocateCustomerId | query | string            | false    | Customer id to filter on. This will filter based on the customer id of the advocate who received the reward.        |
+| advocateEmail      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the advocate who received the reward.                    |
+| pageToken          | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize           | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
+  "results": [
+    {
+      "createdOn": "2021-02-23T23:18:59Z",
+      "rewardType": "Coupon Code",
+      "rewardAmount": 10.0,
+      "couponCode": "test-coupon-1",
+      "trigger": "purchase",
+      "advocateEmail": "advocate@example.com",
+      "advocateName": "Test Advocate",
+      "advocateCustomerId": "4fe0f0cc-14c6-44c3-ba51-dda17412199a",
+      "referralCode": "abc123",
+      "channel": "facebook",
+      "friendEmail": "friend@example.com",
+      "friendName": "Test Friend",
+      "friendCustomerId": "2a3e06d4-4e99-47c6-b57f-8cb6b86f77ab",
+      "campaignId": "5727868f-1a1f-4b26-8104-b8a93b0c30db",
+      "campaignName": "Holiday Campaign"
+    }
+  ]
+}
+```
+
+<h3 id="getDistributedAdvocateRewards-responses">Responses</h3>
+
+| Name          | Type                                                                                      | Required | Restrictions | Description                                                                                            |
+| ------------- | ----------------------------------------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                                                                    | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                                                                    | false    | none         | The total number of results.                                                                           |
+| results       | [[distributedAdvocateRewardsGetResponse_results](#getDistributedAdvocateRewards-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getDistributedAdvocateRewards-results">Results</h3>
+
+| Name               | Type   | Required | Restrictions | Description                                                                                                                    |
+| ------------------ | ------ | -------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| createdOn          | string | false    | none         | Timestamp indicating when the reward was created.                                                                              |
+| rewardType         | string | false    | none         | One of "Account Credit", "Coupon Code", "Gift Card", "Custom", or "Ledger"                                                     |
+| rewardAmount       | number | false    | none         | The monetary value of the reward.                                                                                              |
+| couponCode         | string | false    | none         | The coupon code issued with the reward, if any.                                                                                |
+| trigger            | string | false    | none         | The event that triggered the reward.                                                                                           |
+| advocateEmail      | string | false    | none         | The email of the advocate who received the reward.                                                                             |
+| advocateName       | string | false    | none         | The name of the advocate who received the reward.                                                                              |
+| advocateCustomerId | string | false    | none         | The customer id of the advocate who received the reward.                                                                       |
+| referralCode       | string | false    | none         | The referral code associated with the reward. This code belongs to the share the referred friend clicked on before converting. |
+| channel            | string | false    | none         | The share channel the referred friend clicked on before converting.                                                            |
+| friendEmail        | string | false    | none         | The email of the referred friend.                                                                                              |
+| friendName         | string | false    | none         | The name of the referred friend.                                                                                               |
+| friendCustomerId   | string | false    | none         | The customer id of the referred friend.                                                                                        |
+| campaignId         | string | false    | none         | The id of the campaign the reward was issued from.                                                                             |
+| campaignName       | string | false    | none         | The name of the campaign the reward was issued from.                                                                           |
+
+<h3 id="getDistributedAdvocateRewards-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                                    |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [distributedRewardsGetResponse](#getDistributedAdvocateRewards-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                                     |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                                     |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                                     |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getDistributedFriendIncentives
+
+<a id="opIdgetDistributedFriendIncentives"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/distributed-friend-incentives',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/distributed-friend-incentives', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/distributed-friend-incentives', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/distributed-friend-incentives?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/distributed-friend-incentives", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/distributed-friend-incentives`
+
+_Endpoint to retrieve distributed friend incentives_
+
+Get distributed friend incentives.
+
+<h3 id="getDistributedFriendIncentives-parameters">Parameters</h3>
+
+| Name             | In    | Type              | Required | Description                                                                                                         |
+| ---------------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate         | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate           | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId       | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| friendCustomerId | query | string            | false    | Customer Id to filter on. This will filter based on the customer id of the user who received the incentive.         |
+| friendEmail      | query | string(email)     | false    | Email to filter on. This will filter based on the email of the user who received the incentive.                     |
+| pageToken        | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize         | query | string            | false    | Page size limit.                                                                                                    |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
+  "results": [
+    {
+      "createdOn": "2019-11-05T01:07:38.509Z",
+      "rewardType": "Coupon Code",
+      "rewardAmount": 5.0,
+      "couponCode": "test-coupon-2",
+      "trigger": "email_capture",
+      "advocateEmail": "advocate@example.com",
+      "advocateName": "Test Advocate",
+      "advocateCustomerId": "0655e7df-a925-4e56-8509-5c1cbdb78bc2",
+      "referralCode": "abc123",
+      "channel": "messenger",
+      "friendEmail": "friend@example.com",
+      "friendName": "Test Friend",
+      "friendCustomerId": "ea31b0f9-6af8-4c05-835f-c60cd18f0c50",
+      "campaignId": "8c3153f2-2692-4e42-8f95-72eacd36860b",
+      "campaignName": "Test Campaign"
+    }
+  ]
+}
+```
+
+<h3 id="getDistributedFriendIncentives-responses">Responses</h3>
+
+| Name          | Type                                                                                        | Required | Restrictions | Description                                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                                                                      | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                                                                      | false    | none         | The total number of results.                                                                           |
+| results       | [[distributedFriendIncentivesGetResponse_results](#getDistributedFriendIncentives-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getDistributedFriendIncentives-results">Results</h3>
+
+| Name               | Type   | Required | Restrictions | Description                                                                                                                       |
+| ------------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| createdOn          | string | false    | none         | Timestamp indicating when the incentive was created.                                                                              |
+| incentiveType      | string | false    | none         | One of "Account Credit", "Coupon Code", "Gift Card", "Custom", or "Ledger"                                                        |
+| incentiveAmount    | number | false    | none         | The monetary value of the incentive.                                                                                              |
+| couponCode         | string | false    | none         | The coupon code issued with the incentive, if any.                                                                                |
+| trigger            | string | false    | none         | The event that triggered the incentive.                                                                                           |
+| advocateEmail      | string | false    | none         | The email of the advocate who referred their friend.                                                                              |
+| advocateName       | string | false    | none         | The name of the advocate who referred their friend.                                                                               |
+| advocateCustomerId | string | false    | none         | The customer id of the advocate who referred their friend.                                                                        |
+| referralCode       | string | false    | none         | The referral code associated with the incentive. This code belongs to the share the referred friend clicked on before converting. |
+| channel            | string | false    | none         | The share channel the referred friend clicked on before converting.                                                               |
+| friendEmail        | string | false    | none         | The email of the referred friend who received the incentive.                                                                      |
+| friendName         | string | false    | none         | The name of the referred friend who received the incentive.                                                                       |
+| friendCustomerId   | string | false    | none         | The customer id of the referred friend who received the incentive.                                                                |
+| campaignId         | string | false    | none         | The id of the campaign the incentive was issued from.                                                                             |
+| campaignName       | string | false    | none         | The name of the campaign the incentive was issued from.                                                                           |
+
+<h3 id="getDistributedFriendIncentives-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                                     |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [distributedRewardsGetResponse](#getDistributedFriendIncentives-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                                      |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                                      |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                                      |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## getEmailCaptures
+
+<a id="opIdgetEmailCaptures"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/email-captures',
+  params: {
+  'fromDate' => 'string(date-time)',
+'toDate' => 'string(date-time)'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/email-captures', params={
+  'fromDate': '2020-01-05T01:07:38.509Z',  'toDate': '2021-01-05T01:07:38.509Z'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/email-captures', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/email-captures?fromDate=2020-01-05T01%3A07%3A38.509Z&toDate=2021-01-05T01%3A07%3A38.509Z");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/email-captures", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/email-captures`
+
+_Endpoint to retrieve email captures_
+
+Get email captures.
+
+<h3 id="getEmailCaptures-parameters">Parameters</h3>
+
+| Name             | In    | Type              | Required | Description                                                                                                         |
+| ---------------- | ----- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| fromDate         | query | string(date-time) | true     | Beginning of the search period.                                                                                     |
+| toDate           | query | string(date-time) | true     | End of the search period.                                                                                           |
+| campaignId       | query | string(uuid)      | false    | Campaign Id to filter on.                                                                                           |
+| emailCaptureType | query | string            | false    | The type of email capture to filter on. One of "advocate" or "friend".                                              |
+| email            | query | string(email)     | false    | Email to filter on. This will filter based on the email captured.                                                   |
+| pageToken        | query | string            | false    | The page token used to specify which page of results to use. Will be provided in the response to previous requests. |
+| pageSize         | query | string            | false    | Page size limit.                                                                                                    |
+
+#### Enumerated Values
+
+| Parameter        | Value    |
+| ---------------- | -------- |
+| emailCaptureType | advocate |
+| emailCaptureType | friend   |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "nextPageToken": "eyJzZWFyY2hBZnRlciI6WzE1OTY1NzE5NDM0NDksIjI1YmU3NDhkLWEyYTgtNDA5ZS1iMmU3LTUyNGU2NGFhY2YzYzg0Y2EyMmJmLTZjZDgtNDQxMy1iOTM0LTM3ZDE1NDhhMGU0NCJdLCJmcm9tRGF0ZSI6IjIwMTktMTItMzFUMDg6MDA6MDAuMDAwWiIsInRvRGF0ZSI6IjIwMjEtMDEtMDFUMDc6NTk6NTkuOTk5WiIsInBhZ2VTaXplIjoyMDAsInpvbmUiOiJBbWVyaWNhL0xvc19BbmdlbGVzIn0",
+  "totalResults": 1,
+  "results": [
+    {
+      "name": "Test Customer",
+      "email": "user@example.com",
+      "widgetName": "Friend Incentive Widget",
+      "campaignId": "de07e043-0730-4d32-b52c-146ba61cb859",
+      "campaignName": "Evergreen Campaign",
+      "createdOn": "2021-02-23T01:20:14Z",
+      "ipAddress": "192.168.0.1",
+      "emailCaptureType": "friend",
+      "newsletterOptIn": true
+    }
+  ]
+}
+```
+
+<h3 id="getEmailCaptures-responses">Responses</h3>
+
+| Name          | Type                                                            | Required | Restrictions | Description                                                                                            |
+| ------------- | --------------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| nextPageToken | string                                                          | false    | none         | A token representing the next page of results. Pass this token in as pageToken with your next request. |
+| totalResults  | number                                                          | false    | none         | The total number of results.                                                                           |
+| results       | [[emailCapturesGetResponse_results](#getEmailCaptures-results)] | false    | none         | The records retrieved for this page.                                                                   |
+
+<h3 id="getEmailCaptures-results">Results</h3>
+
+| Name             | Type              | Required | Restrictions | Description                                                                                                                                                                                                                                |
+| ---------------- | ----------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name             | string            | false    | none         | Name submitted with the email capture, if any.                                                                                                                                                                                             |
+| email            | string(email)     | false    | none         | The captured email.                                                                                                                                                                                                                        |
+| widgetName       | string            | false    | none         | The name of the widget used to capture the email.                                                                                                                                                                                          |
+| campaignId       | string(uuid)      | false    | none         | The id of the campaign used to capture the email.                                                                                                                                                                                          |
+| campaignName     | string            | false    | none         | The name of the campaign used to capture the email.                                                                                                                                                                                        |
+| createdOn        | string(date-time) | false    | none         | Timestamp of the email capture.                                                                                                                                                                                                            |
+| ipAddress        | string(ipv4)      | false    | none         | IP address of the user who submitted their email.                                                                                                                                                                                          |
+| emailCaptureType | string            | false    | none         | The type of email capture based on the widget the email was submitted to. One of "advocate", "friend", or "other". "Other" means the email was captured by a friend incentive widget, but did not have any attribution associated with it. |
+| newsletterOptIn  | boolean           | false    | none         | Whether or not the user opted in to receive newsletters.                                                                                                                                                                                   |
+
+<h3 id="getEmailCaptures-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                  |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [getEmailCapturesResponse](#getEmailCaptures-responses) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                   |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                   |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                   |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 ## Errors
 
 <a id="schemaerror"></a>
