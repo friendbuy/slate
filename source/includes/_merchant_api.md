@@ -476,6 +476,87 @@ To retrieve email captures, make a **GET** request to **/analytics/email-capture
 
 View Merchant API details [here](#merchant-api-guides-getemailcaptures)
 
+## GET Email Metrics
+
+> Example Request
+
+```curl
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&toDate=2021-04-07&zone=America%2FLos_Angeles&includeSeries=true \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Example Response
+
+```json
+{
+  "fromDate": "2021-04-07",
+  "toDate": "2021-04-07",
+  "zone": "string",
+  "emails": {
+    "totalOpens": 10,
+    "uniqueOpens": 7,
+    "uniqueClicks": 13,
+    "totalClicks": 15,
+    "shares": 14,
+    "recipients": 17,
+    "delivered": 14,
+    "bounced": 0,
+    "spam": 0
+  },
+  "reminderEmails": {
+    "totalOpens": 5,
+    "uniqueOpens": 2,
+    "uniqueClicks": 5,
+    "totalClicks": 7,
+    "shares": 4,
+    "recipients": 4,
+    "delivered": 4,
+    "bounced": 0,
+    "spam": 0
+  },
+  "series": [
+    {
+      "date": "2021-04-07",
+      "emails": {
+        "totalOpens": 10,
+        "uniqueOpens": 7,
+        "uniqueClicks": 13,
+        "totalClicks": 15,
+        "shares": 14,
+        "recipients": 17,
+        "delivered": 14,
+        "bounced": 0,
+        "spam": 0
+      },
+      "reminderEmails": {
+        "totalOpens": 5,
+        "uniqueOpens": 2,
+        "uniqueClicks": 5,
+        "totalClicks": 7,
+        "shares": 4,
+        "recipients": 4,
+        "delivered": 4,
+        "bounced": 0,
+        "spam": 0
+      }
+    }
+  ]
+}
+```
+
+### Summary
+
+The GET Email Metrics endpoint allows you to retrieve all of the share email and reminder email metrics for a given date range and time zone, optionally filtered by **campaignId** or **widgetId**. By default, this endpoint will return the sums for emails and reminder emails in the given date range. If you add "includeSeries=true" in the query string, the response will also include a breakdown of the metrics by date.
+
+**NOTE: Unlike other GET endpoints, the GET Email Metrics endpoint is an aggregate endpoint. It only accepts whole dates (e.g. "2021-04-05") and not dates with timestamps. Additionally, the GET Email Metrics endpoint does not utilize pagination.**
+
+To retrieve email metrics, make a **GET** request to **/analytics/email-metrics**.
+
+View Merchant API details [here](#merchant-api-guides-getemailmetrics)
+
 ## Generating Referral Links
 
 > Example Request Body
