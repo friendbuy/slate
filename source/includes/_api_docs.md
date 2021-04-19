@@ -4613,21 +4613,21 @@ Get email metrics.
 
 <h3 id="emailmetricsget-responses">Responses</h3>
 
-| Name           | Type                                                                            | Required | Restrictions | Description                                                                           |
-| -------------- | ------------------------------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------- |
-| fromDate       | string(date)                                                                    | false    | none         | Beginning of the search period.                                                       |
-| toDate         | string(date)                                                                    | false    | none         | End of the search period.                                                             |
-| zone           | string                                                                          | false    | none         | Timezone for the search period.                                                       |
-| shareEmails    | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item) | false    | none         | Metrics for initial share emails.                                                     |
-| reminderEmails | [EmailMetricsSeriesItem](#emailmetricsget-email-metrics-series-item)            | false    | none         | Metrics for reminder emails.                                                          |
-| series         | [[EmailMetricsSeries](#emailmetricsget-series)]                                 | false    | none         | A time series that breaks down metrics by day. Only include if includeSeries is true. |
+| Name           | Type                                                                                  | Required | Restrictions | Description                                                                           |
+| -------------- | ------------------------------------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------- |
+| fromDate       | string(date)                                                                          | false    | none         | Beginning of the search period.                                                       |
+| toDate         | string(date)                                                                          | false    | none         | End of the search period.                                                             |
+| zone           | string                                                                                | false    | none         | Timezone for the search period.                                                       |
+| shareEmails    | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item)       | false    | none         | Metrics for initial share emails.                                                     |
+| reminderEmails | [ReminderEmailMetricsSeriesItem](#emailmetricsget-reminder-email-metrics-series-item) | false    | none         | Metrics for reminder emails.                                                          |
+| series         | [[EmailMetricsSeries](#emailmetricsget-series)]                                       | false    | none         | A time series that breaks down metrics by day. Only include if includeSeries is true. |
 
 <h3 id="emailmetricsget-series">EmailMetricsSeries</h3>
 | Name         | Type   | Required | Restrictions | Description                                                                       |
 | ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
 | date | string | false | none | Date for the series item |
 | shareEmails | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item)  | false | none | Share email metrics for the specified date. |
-| reminderEmails | [EmailMetricsSeriesItem](#emailmetricsget-email-metrics-series-item) | false | none | Reminder email metrics for the specified date. |
+| reminderEmails | [ReminderEmailMetricsSeriesItem](#emailmetricsget-reminder-email-metrics-series-item) | false | none | Reminder email metrics for the specified date. |
 
 <h3 id="emailmetricsget-share-email-metrics-series-item">ShareEmailMetricsSeriesItem</h3>
 
@@ -4643,7 +4643,7 @@ Get email metrics.
 | bounced      | number | false    | none         | Number of emails bounced.                                                         |
 | spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
 
-<h3 id="emailmetricsget-email-metrics-series-item">EmailMetricsSeriesItem</h3>
+<h3 id="emailmetricsget-reminder-email-metrics-series-item">ReminderEmailMetricsSeriesItem</h3>
 
 | Name         | Type   | Required | Restrictions | Description                                                                       |
 | ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
@@ -4655,8 +4655,6 @@ Get email metrics.
 | delivered    | number | false    | none         | Number of emails delivered.                                                       |
 | bounced      | number | false    | none         | Number of emails bounced.                                                         |
 | spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
-
-                               |
 
 <h3 id="emailmetricsget-response-codes">Response Codes</h3>
 
