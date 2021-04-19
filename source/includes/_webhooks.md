@@ -72,11 +72,21 @@ Reward details will be available in the `data` property of the request with the 
   "data": [
     {
       "eventId": "e6c720d4-b721-4789-a110-0d680777b802",
-      "emailAddress": "test@example.com",
+      "emailAddress": "john.customer@example.com",
+      "name": "John Customer",
       "campaign": {
         "id": "8a7b9436-8b91-4022-b830-d405dfcc3964",
         "name": "Spring Campaign"
       },
+      "referral": {
+        "channel": "purl",
+        "code": "7p9axss2"
+      },
+      "advocate": {
+        "email": "sarah.advocate@example.com",
+        "name": "Sarah Advocate"
+      },
+      attributionId: "fea9b87a-9411-4a10-aa41-aa137a09849d",
       "incentive": {
         "couponCode": "Test couponCode",
         "amount": 30,
@@ -106,12 +116,16 @@ After an email capture is created, Friendbuy will send a POST request to your sy
 
 Email Capture details will be available in the `data` property of the request with the following format:
 
-| Property     | Type   | Description                                                        |
-| :----------- | :----- | :----------------------------------------------------------------- |
-| eventId      | string | The id of the email capture event. Useful for troubleshooting.     |
-| emailAddress | string | The email address entered into the email field.                    |
-| campaign     | object | The campaign details for the campaign the email was captured with. |
-| incentive    | object | The incentive associated with the email capture, if any.           |
+| Property      | Type   | Description                                                          |
+| :------------ | :----- | :------------------------------------------------------------------- |
+| eventId       | string | The id of the email capture event. Useful for troubleshooting.       |
+| emailAddress  | string | The email address entered into the email field.                      |
+| name          | string | The name entered into the email capture widget.                      |
+| campaign      | object | The campaign details for the campaign the email was captured with.   |
+| referral      | object | Details about the referral for a referred friend.                    |
+| advocate      | object | Details about the advocate for a referred friend.                    |
+| attributionId | string | The id of the attribution that connects the advocate and the friend. |
+| incentive     | object | The incentive associated with the email capture, if any.             |
 
 The `campaign` object in the payload has the following structure:
 
@@ -119,6 +133,21 @@ The `campaign` object in the payload has the following structure:
 | :------- | :----- | :-------------------------------------------------- |
 | id       | string | The id of the campaign used to capture the email.   |
 | name     | string | The name of the campaign used to capture the email. |
+
+The `referral` object in the payload has the following structure:
+
+| Property | Type   | Description                                                                                    |
+| :------- | :----- | :--------------------------------------------------------------------------------------------- |
+| code     | string | The referral code for the referral that resulted in the friends' email address being captured. |
+| channel  | string | The referral channel.                                                                          |
+
+The `advocate` object in the payload has the following structure:
+
+| Property | Type   | Description                                                           |
+| :------- | :----- | :-------------------------------------------------------------------- |
+| email    | string | The email address entered by the advocate when creating the referral. |
+| name     | string | The name entered by the advocate when creating the referral.          |
+| customerId | string | The advocate's customer id, if known.                               |
 
 The `incentive` object in the payload has the following structure:
 
