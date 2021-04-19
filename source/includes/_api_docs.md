@@ -4380,6 +4380,296 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## getEmailMetrics
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&toDate=2021-04-07&zone=America%2FLos_Angeles&includeSeries=true \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&toDate=2021-04-07&zone=America%2FLos_Angeles&includeSeries=true HTTP/1.1
+Host: mapi.fbot.me
+Accept: application/json
+
+```
+
+```javascript
+const headers = {
+  Accept: "application/json",
+  Authorization: "Bearer {access-token}",
+};
+
+fetch(
+  "https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&toDate=2021-04-07&zone=America%2FLos_Angeles&includeSeries=true",
+  {
+    method: "GET",
+
+    headers: headers,
+  }
+)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (body) {
+    console.log(body);
+  });
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://mapi.fbot.me/v1/analytics/email-metrics',
+  params: {
+  'fromDate' => 'string(date)',
+'toDate' => 'string(date)',
+'zone' => 'string',
+'includeSeries' => 'true',
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://mapi.fbot.me/v1/analytics/email-metrics', params={
+  'fromDate': '2021-04-07',  'toDate': '2021-04-07',  'zone': 'America/Los_Angeles',
+  'includeSeries': 'true',
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://mapi.fbot.me/v1/analytics/email-metrics', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&toDate=2021-04-07&zone=America%2FLos_Angeles&includeSeries=true");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://mapi.fbot.me/v1/analytics/email-metrics", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /v1/analytics/email-metrics`
+
+_Endpoint to retrieve email metrics_
+
+Get email metrics.
+
+<h3 id="emailmetricsget-parameters">Parameters</h3>
+
+| Name          | In    | Type         | Required | Description                                                                         |
+| ------------- | ----- | ------------ | -------- | ----------------------------------------------------------------------------------- |
+| fromDate      | query | string(date) | true     | Beginning of the search period. Whole dates only (no timestamps).                   |
+| toDate        | query | string(date) | true     | End of the search period. Whole dates only (no timestamps).                         |
+| zone          | query | string       | true     | Timezone for the search period.                                                     |
+| campaignId    | query | string(uuid) | false    | Campaign Id to filter results on.                                                   |
+| widgetId      | query | string(uuid) | false    | Widget Id to filter results on.                                                     |
+| includeSeries | query | string       | false    | Indicates whether or not to include a timeseries in the results. Defaults to false. |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "fromDate": "2021-04-07",
+  "toDate": "2021-04-07",
+  "zone": "string",
+  "shareEmails": {
+    "totalOpens": 10,
+    "uniqueOpens": 7,
+    "uniqueClicks": 13,
+    "totalClicks": 15,
+    "shares": 14,
+    "recipients": 17,
+    "delivered": 14,
+    "bounced": 0,
+    "spam": 0
+  },
+  "reminderEmails": {
+    "totalOpens": 5,
+    "uniqueOpens": 2,
+    "uniqueClicks": 5,
+    "totalClicks": 7,
+    "shares": 4,
+    "recipients": 4,
+    "delivered": 4,
+    "bounced": 0,
+    "spam": 0
+  },
+  "series": [
+    {
+      "date": "2021-04-07",
+      "shareEmails": {
+        "totalOpens": 10,
+        "uniqueOpens": 7,
+        "uniqueClicks": 13,
+        "totalClicks": 15,
+        "shares": 14,
+        "recipients": 17,
+        "delivered": 14,
+        "bounced": 0,
+        "spam": 0
+      },
+      "reminderEmails": {
+        "totalOpens": 5,
+        "uniqueOpens": 2,
+        "uniqueClicks": 5,
+        "totalClicks": 7,
+        "shares": 4,
+        "recipients": 4,
+        "delivered": 4,
+        "bounced": 0,
+        "spam": 0
+      }
+    }
+  ]
+}
+```
+
+<h3 id="emailmetricsget-responses">Responses</h3>
+
+| Name           | Type                                                                                  | Required | Restrictions | Description                                                                           |
+| -------------- | ------------------------------------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------- |
+| fromDate       | string(date)                                                                          | false    | none         | Beginning of the search period.                                                       |
+| toDate         | string(date)                                                                          | false    | none         | End of the search period.                                                             |
+| zone           | string                                                                                | false    | none         | Timezone for the search period.                                                       |
+| shareEmails    | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item)       | false    | none         | Metrics for initial share emails.                                                     |
+| reminderEmails | [ReminderEmailMetricsSeriesItem](#emailmetricsget-reminder-email-metrics-series-item) | false    | none         | Metrics for reminder emails.                                                          |
+| series         | [[EmailMetricsSeries](#emailmetricsget-series)]                                       | false    | none         | A time series that breaks down metrics by day. Only include if includeSeries is true. |
+
+<h3 id="emailmetricsget-series">EmailMetricsSeries</h3>
+| Name         | Type   | Required | Restrictions | Description                                                                       |
+| ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
+| date | string | false | none | Date for the series item |
+| shareEmails | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item)  | false | none | Share email metrics for the specified date. |
+| reminderEmails | [ReminderEmailMetricsSeriesItem](#emailmetricsget-reminder-email-metrics-series-item) | false | none | Reminder email metrics for the specified date. |
+
+<h3 id="emailmetricsget-share-email-metrics-series-item">ShareEmailMetricsSeriesItem</h3>
+
+| Name         | Type   | Required | Restrictions | Description                                                                       |
+| ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
+| totalOpens   | number | false    | none         | Total number of email open events.                                                |
+| uniqueOpens  | number | false    | none         | Number of unique emails opened.                                                   |
+| uniqueClicks | number | false    | none         | Number of unique emails clicked.                                                  |
+| totalClicks  | number | false    | none         | Total number of email click events.                                               |
+| shares       | number | false    | none         | Total number of email shares.                                                     |
+| recipients   | number | false    | none         | Number of recipients for email shares (can be greater than the number of shares). |
+| delivered    | number | false    | none         | Number of emails delivered.                                                       |
+| bounced      | number | false    | none         | Number of emails bounced.                                                         |
+| spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
+
+<h3 id="emailmetricsget-reminder-email-metrics-series-item">ReminderEmailMetricsSeriesItem</h3>
+
+| Name         | Type   | Required | Restrictions | Description                                                                       |
+| ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
+| totalOpens   | number | false    | none         | Total number of email open events.                                                |
+| uniqueOpens  | number | false    | none         | Number of unique emails opened.                                                   |
+| uniqueClicks | number | false    | none         | Number of unique emails clicked.                                                  |
+| totalClicks  | number | false    | none         | Total number of email click events.                                               |
+| recipients   | number | false    | none         | Number of recipients for email shares (can be greater than the number of shares). |
+| delivered    | number | false    | none         | Number of emails delivered.                                                       |
+| bounced      | number | false    | none         | Number of emails bounced.                                                         |
+| spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
+
+<h3 id="emailmetricsget-response-codes">Response Codes</h3>
+
+| Status | Meaning                                                                    | Description                                  | Schema                                                    |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------- |
+| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)                    | 0 or more records are retrieved.             | [emailMetricsGetResponse](#schemaemailmetricsgetresponse) |
+| 422    | [Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)   | Unprocessable Entity                         | [Error](#schemaerror)                                     |
+| 429    | [Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)         | Too many requests                            | [Error](#schemaerror)                                     |
+| 500    | [Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1) | Internal Server Error (uncontrolled failure) | [Error](#schemaerror)                                     |
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 ## Errors
 
 <a id="schemaerror"></a>
