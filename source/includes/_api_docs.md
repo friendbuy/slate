@@ -4559,7 +4559,7 @@ Get email metrics.
   "fromDate": "2021-04-07",
   "toDate": "2021-04-07",
   "zone": "string",
-  "emails": {
+  "shareEmails": {
     "totalOpens": 10,
     "uniqueOpens": 7,
     "uniqueClicks": 13,
@@ -4584,7 +4584,7 @@ Get email metrics.
   "series": [
     {
       "date": "2021-04-07",
-      "emails": {
+      "shareEmails": {
         "totalOpens": 10,
         "uniqueOpens": 7,
         "uniqueClicks": 13,
@@ -4618,7 +4618,7 @@ Get email metrics.
 | fromDate       | string(date)                                                                    | false    | none         | Beginning of the search period.                                                       |
 | toDate         | string(date)                                                                    | false    | none         | End of the search period.                                                             |
 | zone           | string                                                                          | false    | none         | Timezone for the search period.                                                       |
-| emails         | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item) | false    | none         | Metrics for initial share emails.                                                     |
+| shareEmails    | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item) | false    | none         | Metrics for initial share emails.                                                     |
 | reminderEmails | [EmailMetricsSeriesItem](#emailmetricsget-email-metrics-series-item)            | false    | none         | Metrics for reminder emails.                                                          |
 | series         | [[EmailMetricsSeries](#emailmetricsget-series)]                                 | false    | none         | A time series that breaks down metrics by day. Only include if includeSeries is true. |
 
@@ -4626,21 +4626,8 @@ Get email metrics.
 | Name         | Type   | Required | Restrictions | Description                                                                       |
 | ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
 | date | string | false | none | Date for the series item |
-| emails | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item)  | false | none | Share email metrics for the specified date. |
+| shareEmails | [ShareEmailMetricsSeriesItem](#emailmetricsget-share-email-metrics-series-item)  | false | none | Share email metrics for the specified date. |
 | reminderEmails | [EmailMetricsSeriesItem](#emailmetricsget-email-metrics-series-item) | false | none | Reminder email metrics for the specified date. |
-
-<h3 id="emailmetricsget-email-metrics-series-item">EmailMetricsSeriesItem</h3>
-
-| Name         | Type   | Required | Restrictions | Description                                                                       |
-| ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
-| totalOpens   | number | false    | none         | Total number of email open events.                                                |
-| uniqueOpens  | number | false    | none         | Number of unique emails opened.                                                   |
-| uniqueClicks | number | false    | none         | Number of unique emails clicked.                                                  |
-| totalClicks  | number | false    | none         | Total number of email click events.                                               |
-| recipients   | number | false    | none         | Number of recipients for email shares (can be greater than the number of shares). |
-| delivered    | number | false    | none         | Number of emails delivered.                                                       |
-| bounced      | number | false    | none         | Number of emails bounced.                                                         |
-| spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
 
 <h3 id="emailmetricsget-share-email-metrics-series-item">ShareEmailMetricsSeriesItem</h3>
 
@@ -4655,6 +4642,21 @@ Get email metrics.
 | delivered    | number | false    | none         | Number of emails delivered.                                                       |
 | bounced      | number | false    | none         | Number of emails bounced.                                                         |
 | spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
+
+<h3 id="emailmetricsget-email-metrics-series-item">EmailMetricsSeriesItem</h3>
+
+| Name         | Type   | Required | Restrictions | Description                                                                       |
+| ------------ | ------ | -------- | ------------ | --------------------------------------------------------------------------------- |
+| totalOpens   | number | false    | none         | Total number of email open events.                                                |
+| uniqueOpens  | number | false    | none         | Number of unique emails opened.                                                   |
+| uniqueClicks | number | false    | none         | Number of unique emails clicked.                                                  |
+| totalClicks  | number | false    | none         | Total number of email click events.                                               |
+| recipients   | number | false    | none         | Number of recipients for email shares (can be greater than the number of shares). |
+| delivered    | number | false    | none         | Number of emails delivered.                                                       |
+| bounced      | number | false    | none         | Number of emails bounced.                                                         |
+| spam         | number | false    | none         | Number of emails that received spam complaints.                                   |
+
+                               |
 
 <h3 id="emailmetricsget-response-codes">Response Codes</h3>
 

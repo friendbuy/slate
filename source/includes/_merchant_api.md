@@ -495,7 +495,7 @@ curl -X GET https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&
   "fromDate": "2021-04-07",
   "toDate": "2021-04-07",
   "zone": "string",
-  "emails": {
+  "shareEmails": {
     "totalOpens": 10,
     "uniqueOpens": 7,
     "uniqueClicks": 13,
@@ -520,7 +520,7 @@ curl -X GET https://mapi.fbot.me/v1/analytics/email-metrics?fromDate=2021-04-07&
   "series": [
     {
       "date": "2021-04-07",
-      "emails": {
+      "shareEmails": {
         "totalOpens": 10,
         "uniqueOpens": 7,
         "uniqueClicks": 13,
