@@ -764,6 +764,7 @@ const inputBody = '{
   "isNewCustomer": false,
   "couponCode": "string",
   "attributionId": "string",
+  "referralCode": "string",
   "products": [
     {
       "sku": "string",
@@ -928,6 +929,7 @@ Generate purchase event
   "isNewCustomer": false,
   "couponCode": "string",
   "attributionId": "string",
+  "referralCode": "string",
   "products": [
     {
       "sku": "string",
@@ -960,6 +962,7 @@ Generate purchase event
 | » isNewCustomer           | body                 | boolean                        | false    | Whether or not the customer making the purchase has made a previous purchase.                        |
 | » couponCode              | body                 | string                         | false    | The coupon code used in the purchase, if any. Can be used to establish attribution with an advocate. |
 | » attributionId           | body                 | string                         | false    | The attribution ID from the advocate's referral, if any.                                             |
+| » referralCode            | body                 | string                         | false    | A referral code to be used to establish attribution with an advocate.                                |
 | » additionalProperties    | body                 | object                         | false    | Any additional properties you wish to track with the purchase.                                       |
 | »» **additionalProperty** | additionalProperties | string                         | false    | A key value pair indicating the property name and value.                                             |
 | » ipAddress               | body                 | string                         | false    | IP address of the customer making the purchase.                                                      |
