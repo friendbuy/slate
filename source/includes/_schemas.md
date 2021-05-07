@@ -110,6 +110,7 @@
 ```json
 {
   "link": "string",
+  "referralCode": "string",
   "createdOn": "string"
 }
 ```

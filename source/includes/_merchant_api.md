@@ -580,6 +580,7 @@ View Merchant API details [here](#merchant-api-guides-getemailmetrics)
 ```json
 {
   "link": "https://fbuy.io/alias/johnsmith",
+  "referralCode": "johnsmith",
   "createdOn": "2020-01-05T01:07:38.509Z"
 }
 ```
@@ -623,6 +624,7 @@ Please note - in the event that you need to generate a large amount of personal 
   "purls": [
     {
       "link": "https://fbuy.io/alias/johnsmith",
+      "referralCode": "johnsmith",
       "createdOn": "2020-01-05T01:07:38.509Z",
       "email": "test@example.com",
       "campaignId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
