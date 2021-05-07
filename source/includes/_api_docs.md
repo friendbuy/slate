@@ -1039,8 +1039,9 @@ const inputBody = '{
   "customerId": "string",
   "firstName": "string",
   "lastName": "string",
-  "attributionId": "string",
   "couponCode": "string",
+  "attributionId": "string",
+  "referralCode": "string",
   "additionalProperties": {
     "property1": "string",
     "property2": "string"
@@ -1221,8 +1222,9 @@ Generate sign-up event.
 | » customerId              | body                 | string        | true     | Customer id of the user.                                                                           |
 | » firstName               | body                 | string        | false    | First name of the user.                                                                            |
 | » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
-| » attributionId           | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
 | » couponCode              | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
+| » attributionId           | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
+| » referralCode            | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
 | » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with this signup.                                      |
 | »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and the value.                              |
 | » ipAddress               | body                 | string        | false    | The IP address of the user.                                                                        |
@@ -1450,8 +1452,9 @@ Generate event
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
-  "attributionId": "string",
   "couponCode": "string",
+  "attributionId": "string",
+  "referralCode": "string",
   "additionalProperties": {
     "property1": "string",
     "property2": "string"
@@ -1472,8 +1475,9 @@ Generate event
 | » isNewCustomer           | body                 | boolean       | false    | Whether or not the user is a new customer.                                                         |
 | » firstName               | body                 | string        | false    | First name of the user.                                                                            |
 | » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
-| » attributionId           | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
 | » couponCode              | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
+| » attributionId           | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
+| » referralCode            | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
 | » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with the event.                                        |
 | »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name and value of the additional property.                       |
 | » ipAddress               | body                 | string        | false    | IP Address of the user.                                                                            |

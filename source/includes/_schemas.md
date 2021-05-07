@@ -287,8 +287,9 @@
   "isNewCustomer": false,
   "firstName": "string",
   "lastName": "string",
-  "attributionId": "string",
   "couponCode": "string",
+  "attributionId": "string",
+  "referralCode": "string",
   "additionalProperties": {
     "property1": "string",
     "property2": "string"
@@ -348,8 +349,9 @@
   "customerId": "string",
   "firstName": "string",
   "lastName": "string",
-  "attributionId": "string",
   "couponCode": "string",
+  "attributionId": "string",
+  "referralCode": "string",
   "additionalProperties": {
     "property1": "string",
     "property2": "string"

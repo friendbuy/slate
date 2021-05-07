@@ -739,8 +739,9 @@ To track a purchase, make a **POST** request to **/event/purchase.**
   "customerId": "15529938",
   "firstName": "Test",
   "lastName": "User",
+  "couponCode": "FRIEND-OFFER-244432",
   "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
-  "couponCode": "FRIEND-OFFER-244432"
+  "referralCode": "xhaf5hps"
 }
 ```
 
@@ -759,7 +760,7 @@ In much the same way that the Friendbuy Merchant API can be used to track purcha
 
 Tracking a signup through the API requires an email address and a customer id. You can also optionally pass in customer first name and last name, referral code, and coupon code.
 
-Like with purchases, Friendbuy will attempt to establish attribution if referral code or coupon code is passed in.
+As with purchases and custom events, Friendbuy will attempt to establish attribution to an advocate if a coupon code, an attribution id, or a referral code is present.
 
 To track a signup, make a **POST** request to **/event/account-sign-up**
 
@@ -775,8 +776,9 @@ To track a signup, make a **POST** request to **/event/account-sign-up**
   "isNewCustomer": false,
   "firstName": "Test",
   "lastName": "User",
-  "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
   "couponCode": "FRIEND-OFFER-244432",
+  "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
+  "referralCode": "xhaf5hps"
 }
 ```
 
@@ -795,7 +797,7 @@ In addition to tracking purchases and signups, Friendbuy also allows you to trac
 
 Tracking a custom event through the Merchant API works just like tracking a signup, except that you are also required to pass an eventType. The eventType can be any string that you want to use to denote the event you are tracking. You must configure this event type in your campaign settings in order for it to be properly tracked and attributed to a campaign.
 
-As with purchases and signups, Friendbuy will attempt to establish attribution to an advocate if referral code or coupon code is present
+As with purchases and signups, Friendbuy will attempt to establish attribution to an advocate if a coupon code, an attribution id, or a referral code is present.
 
 To track a custom event, make a **POST** request to **/event/custom**.
 
