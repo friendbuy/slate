@@ -214,6 +214,7 @@
   "isNewCustomer": false,
   "couponCode": "string",
   "attributionId": "string",
+  "referralCode": "string",
   "products": [
     {
       "sku": "string",
@@ -245,6 +246,7 @@
 | isNewCustomer              | boolean                                                                 | false    | none         | none        |
 | couponCode                 | string                                                                  | false    | none         | none        |
 | attributionId              | string                                                                  | false    | none         | none        |
+| referralCode               | string                                                                  | false    | none         | none        |
 | products                   | [[purchaseEventRequest_products](#schemapurchaseeventrequest_products)] | false    | none         | none        |
 | additionalProperties       | object                                                                  | false    | none         | none        |
 | » **additionalProperties** | string                                                                  | false    | none         | none        |

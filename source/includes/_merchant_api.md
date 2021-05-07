@@ -695,6 +695,7 @@ When a Friendbuy referral link is followed, Friendbuy adds the GET parameter `fb
   "isNewCustomer": false,
   "couponCode": "FRIEND-OFFER-244432",
   "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
+  "referralCode": "xhaf5hps",
   "products": [
     {
       "sku": "SKU123324",
@@ -719,11 +720,11 @@ When a Friendbuy referral link is followed, Friendbuy adds the GET parameter `fb
 
 The Friendbuy Merchant API can be used to send purchase events to Friendbuy as an alternative or supplement to our Javascript-based pixel tracking. Common use cases include tracking purchases that occur offline and purchases that occur within a mobile app.
 
-When you submit a purchase using the Friendbuy Merchant API, you must submit a unique order id, a purchase amount, and the currency the purchase was in. We strongly recommend passing the email and/or customer id of the user who made the purchase. We also recommend passing a value for isNewCustomer, which we use as part of our reward criteria when determining if the advocate should earn a reward.
+When you submit a purchase using the Friendbuy Merchant API, you must submit a unique order id, a customer id, a purchase amount, and the currency the purchase was in. We strongly recommend also passing the email address of the customer who made the purchase. We also recommend passing a value for isNewCustomer, which we use as part of our reward criteria when determining if the advocate should earn a reward.
 
-A key component of tracking a purchase through the Merchant API is the ability to pass in a referral code or coupon code with the purchase. If either of these values is present, we will attempt to use the referral code and then the coupon code to establish attribution to the advocate that referred the user making the purchase. **NOTE: the coupon code must have been distributed from a Friend Incentive widget in order for Friendbuy to establish attribution.**
+A key component of tracking a purchase through the Merchant API is the ability to pass in an attribution id, a coupon code, or a referral code with the purchase. If any of these values is present, we will attempt to use the the coupon code, the attribution id, or the referral code (in that order) to establish attribution to the advocate that referred the user making the purchase. **NOTE: the coupon code must have been distributed from a Friend Incentive widget in order for Friendbuy to establish attribution.**
 
-Lastly, product details may be passed to facilitate rewards based on purchasing a specific product.
+Finally, product details may be passed to facilitate rewards based on purchasing a specific product.  (For example, you should pass the product skus if your campaign uses sku-based rewards.)
 
 To track a purchase, make a **POST** request to **/event/purchase.**
 
