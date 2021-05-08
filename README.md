@@ -12,22 +12,32 @@ You're going to need:
 
 - **Linux or macOS** — Windows may work, but is unsupported.
 - **Ruby, version 2.3.1 or newer**
-- **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
+- **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, do something such as the following to install it:
+
+    ``` shell
+    gem install --user-install bundler
+    export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+    ```
 
 ### Getting Set Up
 
-1. Clone this repo to your machine with `git clone git@github.com:friendbuy/slate.git`.
-2. `cd slate`
-3. Initialize and start Slate. You can either do this locally, or with Vagrant:
+1. Clone this repo to your machine.
 
-```shell
-# either run this to run locally
-bundle install
-bundle exec middleman server
+    ```shell
+    git clone git@github.com:friendbuy/slate.git
+    cd slate
+    ```
 
-# OR run this to run with vagrant
-vagrant up
-```
+2. Initialize and start Slate. You can either do this locally, or with Vagrant:
+
+    ```shell
+    # either run this to run locally
+    bundle install
+    bundle exec middleman server
+
+    # OR run this to run with vagrant
+    vagrant up
+    ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
@@ -35,18 +45,46 @@ You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 1. Build files to `build` folder
 
-```shell
-bundle exec middleman build --clean --no-parallel
-```
+    ```shell
+    bundle exec middleman build --clean --no-parallel
+    ```
 
 2. Deploy
 
-Login to the AWS console and upload files in the build folder to the root of:  
-`https://console.aws.amazon.com/s3/buckets/developers.fbot.me/?region=us-east-1`
+    Login to the AWS console and upload files in the build folder to the root of:
+    `https://console.aws.amazon.com/s3/buckets/developers.fbot.me/?region=us-east-1`
 
-Make sure all files are uploaded with object read permission enabled for everybody.
+    Make sure all files are uploaded with object read permission enabled for everybody.
 
-Create a Cloudfront invalidation for developers.friendbuy.io distribution.
+    Create a Cloudfront invalidation for developers.friendbuy.io distribution.
+
+    Or, using the `aws` command-line tool:
+
+    ``` shell
+    # Find the distribution-id either using the console or:
+    aws cloudfront list-distributions \
+      jq -r '.DistributionList.Items[] | select(.Aliases.Items[0] == "developers.fbot-sandbox.me") | .Id'
+
+    # Sandbox
+    aws s3 cp build/index.html s3://developers.fbot-sandbox.me/index.html --acl public-read
+    aws cloudfront create-invalidation --distribution-id E2ENI2P0FTW0JY --paths /index.html
+
+    # Production
+    aws s3 cp build/index.html s3://developers.fbot.me/index.html --acl public-read
+    aws cloudfront create-invalidation --distribution-id E3VKN9QCJP6FJB --paths /index.html
+    ```
+
+    This shell function makes it easier to look up a distribution-id by name for use with the `aws cloudfront create-invalidation` command. It uses [jq](https://stedolan.github.io/jq/).
+
+    ``` shell
+    find-distribution () {
+      aws cloudfront list-distributions | \
+        jq -r ".DistributionList.Items[] | select(.Aliases.Items[] | contains(\"$1\")) | .Id"
+    }
+
+    # Example usage:
+    find-distribution developers.fbot-sandbox.me
+    ```
 
 You can view the docs at:
 
