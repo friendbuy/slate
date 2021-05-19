@@ -1,0 +1,128 @@
+version: 2
+
+use_fbt_build_image: &use_fbt_build_image
+  docker:
+    - image: $FBT_AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/fbt-circleci:latest
+      aws_auth:
+        aws_access_key_id: $AWS_ACCESS_KEY_ID
+        aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+
+aliases:
+  - &persist_to_workspace
+    persist_to_workspace:
+      root: .
+      paths:
+        - .
+
+  - &attach_workspace
+    attach_workspace:
+      at: .
+
+  - &configure_aws_credentials
+    run:
+      name: Configure AWS Credentials
+      command: |
+        aws configure \
+          set aws_access_key_id $AWS_ACCESS_KEY_ID \
+          --profile fbot-$CONTEXT
+        aws configure \
+          set aws_secret_access_key $AWS_SECRET_ACCESS_KEY \
+          --profile fbot-$CONTEXT
+        aws configure \
+          set profile fbot-$CONTEXT
+
+  - &setup_and_generate_doc
+    run:
+      name: Setup and generate doc
+      command: |
+        bundle install
+        bundle exec middleman build --clean --no-parallel
+
+  - &push_to_s3
+    run:
+      name: Copy api document to S3
+      command: >
+        aws s3 cp build s3://developers.$ROOT_DOMAIN
+        --recursive
+        --acl public-read
+
+  - &invalidate_cloudfront_cache
+    run:
+      name: Invalidate Cloudfront Cache
+      command: |
+        DISTRIBUTION_ID=`aws cloudfront list-distributions \
+                          --query "DistributionList.Items[].{ID:Id, Alias:Aliases.Items[0]}" \
+                          --output text | grep developers.$ROOT_DOMAIN | cut -f 2`
+
+        ID=`aws cloudfront create-invalidation \
+          --distribution-id $DISTRIBUTION_ID \
+          --paths "/*" \
+          --query "Invalidation.Id" \
+          --output=text`
+
+        aws cloudfront wait invalidation-completed \
+          --distribution-id $DISTRIBUTION_ID \
+          --id $ID
+
+  - &checkout_e2e_repo
+    run:
+      name: Checkout End to End Testing Repository
+      command: git clone git@github.com:friendbuy/fbot-e2e.git
+
+  - &run_regression_tests
+    run:
+      working_directory: fbot-e2e
+      name: Run Regression Tests
+      command: ./build-and-run-tests.sh
+
+jobs:
+  deploy:
+    <<: *use_fbt_build_image
+    steps:
+      - checkout
+      - *attach_workspace
+      - *persist_to_workspace
+      - *configure_aws_credentials
+      - *setup_and_generate_doc
+      - *push_to_s3
+      - *invalidate_cloudfront_cache
+
+
+workflows:
+  version: 2
+  deploy-qa:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: 
+                - qa
+          context: qa
+
+  deploy-sandbox:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: 
+                - sandbox
+          context: sandbox
+
+  deploy-staging:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^staging.*/
+            branches:
+              only: master
+          context: staging
+
+  deploy-production:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+          context: production
