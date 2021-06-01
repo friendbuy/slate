@@ -112,7 +112,7 @@ After an email capture is created, Friendbuy will send a POST request to your sy
 | :-------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | id        | string           | The id of the webhook. Useful for troubleshooting.                                                                                    |
 | createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                       |
-| data      | array of objects | An array of webhook payloads, see definition below. Multiple rewards may fire in the same webhook if they happen in quick succession. |
+| data      | array of objects | An array of webhook payloads, see definition below. Multiple email captures may be sent in the same webhook call if they happen in quick succession. |
 
 Email Capture details will be available in the `data` property of the request with the following format:
 
@@ -156,3 +156,44 @@ The `incentive` object in the payload has the following structure:
 | couponCode | string | The coupon code given to the user for entering their email, if applicable. |
 | amount     | number | The numerical value of the incentive.                                      |
 | currency   | string | The currency of the incentive \(i.e. "USD"\).                              |
+
+## Email Unsubscribe Webhook
+
+> Example Payload
+
+``` json
+{
+  "id": "fd2f5766-8c27-4bfe-b3d3-9f41e186b13e",
+  "type": "emailOptOut",
+  "data": [
+    {
+      "emailAddress": "a.friend@example.com",
+      "campaignId": "8a7b9436-8b91-4022-b830-d405dfcc3964",
+      "campaignName": "Spring Campaign"
+    }
+  ],
+  "createdOn": "2021-06-01T14:28:27.657Z"
+}
+```
+
+An email unsubscribe is created when a friend who receives an advocate share email clicks the unsubscribe link in that email. When this happens, Friendbuy records the opt-out request and will not send any future share emails to that email address for any of your campaigns.
+
+The email unsubscribe webhook can be used to also notify you when someone opts out of receiving future share emails so that you can add their email address to your own email address blacklist. If the email unsubscribe webhook is configured and enabled then, after an email opt-out is created, Friendbuy will send a POST request to your system with data about the unsubscribe request.
+
+### Payload
+
+| Property  | Type             | Description                                                                                                                                        |
+|:----------|:-----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------|
+| id        | string           | The id of the webhook call. Useful for troubleshooting.                                                                                            |
+| type      | "emailOptOut"    | Indicates that this is an email opt-out request.                                                                                                   |
+| createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                                    |
+| data      | array of objects | An array of webhook payloads, see definition below. Multiple unsubscribes may be sent in the same webhook call if they happen in quick succession. |
+
+Email Unsubscribe details will be available in the `data` property of the request with the following format:
+
+| Property     | Type   | Description                                                    |
+|:-------------|:-------|:---------------------------------------------------------------|
+| emailAddress | string | The email address of the user whoentered into the email field. |
+| campaignId   | string | The id of the campaign that the share email was for.           |
+| campaignName | string | The name of the campaign that the share email was for.         |
+
