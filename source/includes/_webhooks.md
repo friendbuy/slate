@@ -86,7 +86,7 @@ Reward details will be available in the `data` property of the request with the 
         "email": "sarah.advocate@example.com",
         "name": "Sarah Advocate"
       },
-      attributionId: "fea9b87a-9411-4a10-aa41-aa137a09849d",
+      "attributionId": "fea9b87a-9411-4a10-aa41-aa137a09849d",
       "incentive": {
         "couponCode": "Test couponCode",
         "amount": 30,
