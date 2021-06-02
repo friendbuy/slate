@@ -8,12 +8,15 @@
 <script>
   window["friendbuyAPI"] = friendbuyAPI = window["friendbuyAPI"] || [];
 
+  // Replace yoursitedomain.com with your root domain.
+  // e.g. If your site loads at www.yoursitedomain.com, this should be
+  friendbuyAPI.rootDomain = "yoursitedomain.com";
+
   // registers your merchant using your merchant ID found in the
   // retailer app https://retailer.fbot.me/settings/general
   friendbuyAPI.merchantId = "REPLACE_WITH_YOUR_MERCHANT_ID";
-  friendbuyAPI.push(["merchant", friendbuyAPI.merchantId]);
 
-  // load the merchant SDK and your campaigns
+  friendbuyAPI.push(["merchant", friendbuyAPI.merchantId]);
   (function (f, r, n, d, b, u, y) {
     while ((u = n.shift())) {
       (b = f.createElement(r)), (y = f.getElementsByTagName(r)[0]);
@@ -25,6 +28,28 @@
     "https://static.fbot.me/friendbuy.js",
     "https://campaign.fbot.me/" + friendbuyAPI.merchantId + "/campaigns.js",
   ]);
+
+  function getValByName(name) {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value !== null) ? unescape(value[1]) : "";
+  }
+
+  const host = window.location.host;
+  const urlParams = new URLSearchParams(window.location.search);
+  const fbuy = urlParams.get("fbuy");
+  if (fbuy) {
+    document.cookie = "fby_fbuy=" + fbuy + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+    document.cookie = "fby_hosts=" + host + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+  }
+
+  const fbuyVal = getValByName("fby_fbuy");
+  const fbuyHosts = getValByName("fby_hosts").split(",");
+  if (fbuyVal && fbuyHosts.indexOf(host) === -1) {
+    friendbuyAPI.push(["setTracker", fbuyVal]);
+    fbuyHosts.push(host);
+    document.cookie = "fby_hosts=" + fbuyHosts.join(",") + ";domain=." + friendbuyAPI.rootDomain + ";path=/";
+  }
 </script>
 ```
 
