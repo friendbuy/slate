@@ -157,7 +157,7 @@ The `incentive` object in the payload has the following structure:
 | amount     | number | The numerical value of the incentive.                                      |
 | currency   | string | The currency of the incentive \(i.e. "USD"\).                              |
 
-## Email Unsubscribe Webhook
+## Email Opt-Out Webhook
 
 > Example Payload
 
@@ -176,9 +176,9 @@ The `incentive` object in the payload has the following structure:
 }
 ```
 
-An email unsubscribe is created when a friend who receives an advocate share email clicks the unsubscribe link in that email. When this happens, Friendbuy records the opt-out request and will not send any future share emails to that email address for any of your campaigns.
+An email opt-out is created when a friend who receives an advocate share email clicks the unsubscribe link in that email. When this happens, Friendbuy records the opt-out request and will not send any future share emails to that email address for any of your campaigns.
 
-The email unsubscribe webhook can be used to also notify you when someone opts out of receiving future share emails so that you can add their email address to your own email address blacklist. If the email unsubscribe webhook is configured and enabled then, after an email opt-out is created, Friendbuy will send a POST request to your system with data about the unsubscribe request.
+The email opt-out webhook can be used to also notify you when someone opts out of receiving future share emails so that you can add their email address to your own email address blacklist. If the email opt-out webhook is configured and enabled then, after an email opt-out is created, Friendbuy will send a POST request to your system with data about the opt-out request.
 
 ### Payload
 
@@ -187,9 +187,9 @@ The email unsubscribe webhook can be used to also notify you when someone opts o
 | id        | string           | The id of the webhook call. Useful for troubleshooting.                                                                                            |
 | type      | "emailOptOut"    | Indicates that this is an email opt-out request.                                                                                                   |
 | createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                                    |
-| data      | array of objects | An array of webhook payloads, see definition below. Multiple unsubscribes may be sent in the same webhook call if they happen in quick succession. |
+| data      | array of objects | An array of webhook payloads, see definition below. Multiple opt-outs may be sent in the same webhook call if they happen in quick succession. |
 
-Email Unsubscribe details will be available in the `data` property of the request with the following format:
+Email Opt-Out details will be available in the `data` property of the request with the following format:
 
 | Property     | Type   | Description                                                    |
 |:-------------|:-------|:---------------------------------------------------------------|
