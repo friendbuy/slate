@@ -2,11 +2,11 @@
 
 ## Overview
 
-The Email Recipient Authorization Callback allows you to block the sending of a share email based on the recipient's email address. This allows you to apply your own email opt-out rules on top of Friendbuy's unsubscribe system.
+The Email Recipient Authorization Callback allows you to prevent the sending of a share email message based on the recipient's email address. This allows you to apply your own email opt-out rules on top of Friendbuy's unsubscribe system.
 
 ## Request Payload
 
-When an advocate shares an offer with a friend via the email channel, Friendbuy sends an email to the friend on the advocate's behalf. Before actually sending the email, Friendbuy checks to see whether the friend has previously opted-out of receiving share emails and, if so, the email is not sent. If you have configured an Email Recipient Authorization Callback for your account then, after an email has passed all of Friendbuy's internal checks, we will make an HTTP POST request to the URL you have provided. The body of the request will contain a list of email addresses, as described below.
+When an advocate shares an offer with a friend via the email channel, Friendbuy sends an email message to the friend on the advocate's behalf. Before actually sending the email message, Friendbuy checks to see whether the friend has previously opted-out of receiving share emails and, if so, the email message is not sent. If you have configured an Email Recipient Authorization Callback for your account then, after an email has passed all of Friendbuy's internal checks, we will make an HTTP POST request to the URL you have provided. The body of the request will contain a list of email addresses, as described below.
 
 > Example Payload
 
@@ -37,7 +37,7 @@ When an advocate shares an offer with a friend via the email channel, Friendbuy 
 ["allowed.friend@example.com"]
 ```
 
-Friendbuy expects the response to the email recipient authorization callback to be a list of the allowed email addresses. The share emails for recipients in the returned list of allowed email addresses will be sent, and the share emails to recipients not in the returned list will be blocked.
+Friendbuy expects the response to the email recipient authorization callback to be a list of the allowed email addresses. The share email messages for recipients in the returned list of allowed email addresses will be sent, and the share email messages to recipients not in the returned list will be discarded.
 
 ### Retry Behavior
 
