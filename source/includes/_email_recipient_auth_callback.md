@@ -41,4 +41,4 @@ Friendbuy expects the response to the email recipient authorization callback to 
 
 ### Retry Behavior
 
-If the Email Recipient Authorization Callback fails or if it receives a failure response, the sending of those share emails will be temporarily blocked and the callback will be retried later, on Friendbuy's email retry schedule.  If, after six retries the callback is still failing, the emails will not be sent.
+If the Email Recipient Authorization Callback fails or if it receives a failure response, the sending of those share emails will be temporarily blocked and the callback will be retried later, on Friendbuy's email retry schedule. The delay between tries is 10 minutes, 5 hours, 40 hours, 7 days, and 22 days. If, after six tries the callback is still failing, the emails will not be sent.
