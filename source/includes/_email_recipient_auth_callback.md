@@ -34,7 +34,7 @@ When an advocate shares an offer with a friend via the email channel, Friendbuy 
 > Example Response
 
 ```json
-["allowed-friend@example.com"]
+["allowed.friend@example.com"]
 ```
 
 Friendbuy expects the response to the email recipient authorization callback to be a list of the allowed email addresses. The share emails for recipients in the returned list of allowed email addresses will be sent, and the share emails to recipients not in the returned list will be blocked.
