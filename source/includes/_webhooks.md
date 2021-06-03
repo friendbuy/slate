@@ -178,7 +178,7 @@ The `incentive` object in the payload has the following structure:
 
 An email opt-out is created when a friend who receives an advocate share email clicks the unsubscribe link in that email. When this happens, Friendbuy records the opt-out request and will not send any future share emails to that email address for any of your campaigns.
 
-The email opt-out webhook can be used to also notify you when someone opts out of receiving future share emails so that you can add their email address to your own email address blacklist. If the email opt-out webhook is configured and enabled then, after an email opt-out is created, Friendbuy will send a POST request to your system with data about the opt-out request.
+The email opt-out webhook can be used to also notify you when someone opts out of receiving future share emails so that you can add their email address to your own email address opt-out list. If the email opt-out webhook is configured and enabled then, after an email opt-out is created, Friendbuy will send a POST request to your system with data about the opt-out request.
 
 ### Payload
 
@@ -193,7 +193,7 @@ Email Opt-Out details will be available in the `data` property of the request wi
 
 | Property     | Type   | Description                                                    |
 |:-------------|:-------|:---------------------------------------------------------------|
-| emailAddress | string | The email address of the user whoentered into the email field. |
+| emailAddress | string | The email address of the user who entered into the email field. |
 | campaignId   | string | The id of the campaign that the share email was for.           |
 | campaignName | string | The name of the campaign that the share email was for.         |
 

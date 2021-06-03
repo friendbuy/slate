@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Email Recipient Authorization Callback allows you to prevent the sending of a share email message based on the recipient's email address. This allows you to apply your own email opt-out rules on top of Friendbuy's unsubscribe system.
+The Email Recipient Authorization Callback is used to determine whether or not Friendbuy is allowed to send a share email based on the recipient's email address. This allows you to apply your own email opt-out rules on top of Friendbuy's unsubscribe system.
 
 ## Request Payload
 
