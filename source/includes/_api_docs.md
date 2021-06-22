@@ -183,9 +183,8 @@ func main() {
 
 | Name     | In   | Type         | Required | Description         |
 | -------- | ---- | ------------ | -------- | ------------------- |
-| body     | body | object       | false    | none                |
-| » key    | body | string(uuid) | true     | Your api access key |
-| » secret | body | string       | true     | Your api secret key |
+| key      | body | string(uuid) | true     | Your api access key |
+| secret   | body | string       | true     | Your api secret key |
 
 > Example responses
 
@@ -414,31 +413,30 @@ Generate event
 
 | Name                        | In   | Type          | Required | Description                                                                                      |
 | --------------------------- | ---- | ------------- | -------- | ------------------------------------------------------------------------------------------------ |
-| body                        | body | object        | false    | none                                                                                             |
-| » email                     | body | string(email) | true     | Email of the advocate.                                                                           |
-| » campaignId                | body | string(uuid)  | true     | ID of the campaign to use to generate the link.                                                  |
-| » customerId                | body | string        | false    | Your customer id for the advocate.                                                               |
-| » firstName                 | body | string        | false    | First name of the advocate.                                                                      |
-| » lastName                  | body | string        | false    | Last name of the advocate.                                                                       |
-| » destinationUrlQueryParams | body | object        | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
-| » seed                      | body | string        | false    | Specifies what the vanity url will be based on if provided.                                      |
-| » channel                   | body | string        | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
-| » ipAddress                 | body | string        | false    | IP Address of the advocate. Used for fraud checks.                                               |
-| » userAgent                 | body | string        | false    | User Agent of the advocate. Used for fraud checks.                                               |
+| email                       | body | string(email) | true     | Email of the advocate.                                                                           |
+| campaignId                  | body | string(uuid)  | true     | ID of the campaign to use to generate the link.                                                  |
+| customerId                  | body | string        | false    | Your customer id for the advocate.                                                               |
+| firstName                   | body | string        | false    | First name of the advocate.                                                                      |
+| lastName                    | body | string        | false    | Last name of the advocate.                                                                       |
+| destinationUrlQueryParams   | body | object        | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
+| seed                        | body | string        | false    | Specifies what the vanity url will be based on if provided.                                      |
+| channel                     | body | string        | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
+| ipAddress                   | body | string        | false    | IP Address of the advocate. Used for fraud checks.                                               |
+| userAgent                   | body | string        | false    | User Agent of the advocate. Used for fraud checks.                                               |
 
 #### Enumerated Values
 
 | Parameter | Value     |
 | --------- | --------- |
-| » channel | email     |
-| » channel | facebook  |
-| » channel | generic   |
-| » channel | instagram |
-| » channel | messenger |
-| » channel | sms       |
-| » channel | snap      |
-| » channel | twitter   |
-| » channel | purl      |
+| channel   | email     |
+| channel   | facebook  |
+| channel   | generic   |
+| channel   | instagram |
+| channel   | messenger |
+| channel   | sms       |
+| channel   | snap      |
+| channel   | twitter   |
+| channel   | purl      |
 
 > Example responses
 
@@ -660,32 +658,31 @@ Generate event
 
 | Name                         | In       | Type          | Required | Description                                                                                      |
 | ---------------------------- | -------- | ------------- | -------- | ------------------------------------------------------------------------------------------------ |
-| body                         | body     | object        | true     | none                                                                                             |
-| » requests                   | body     | array         | true     | Array of PURL requests.                                                                          |
-| »» email                     | requests | string(email) | true     | Email of the advocate.                                                                           |
-| »» campaignId                | requests | string(uuid)  | true     | ID of the campaign to use to generate the link.                                                  |
-| »» customerId                | requests | string        | false    | Your customer id for the advocate.                                                               |
-| »» firstName                 | requests | string        | false    | First name of the advocate.                                                                      |
-| »» lastName                  | requests | string        | false    | Last name of the advocate.                                                                       |
-| »» destinationUrlQueryParams | requests | object        | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
-| »» seed                      | requests | string        | false    | Specifies what the vanity url will be based on if provided.                                      |
-| »» channel                   | requests | string        | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
-| »» ipAddress                 | requests | string        | false    | IP Address of the advocate. Used for fraud checks.                                               |
-| »» userAgent                 | requests | string        | false    | User Agent of the advocate. Used for fraud checks.                                               |
+| requests                     | body     | array         | true     | Array of PURL requests.                                                                          |
+| email                        | requests | string(email) | true     | Email of the advocate.                                                                           |
+| campaignId                   | requests | string(uuid)  | true     | ID of the campaign to use to generate the link.                                                  |
+| customerId                   | requests | string        | false    | Your customer id for the advocate.                                                               |
+| firstName                    | requests | string        | false    | First name of the advocate.                                                                      |
+| lastName                     | requests | string        | false    | Last name of the advocate.                                                                       |
+| destinationUrlQueryParams    | requests | object        | false    | Custom parameters to be inserted into the url that users are directed to when clicking the link. |
+| seed                         | requests | string        | false    | Specifies what the vanity url will be based on if provided.                                      |
+| channel                      | requests | string        | false    | The share channel the link will be associated with in analytics. Recommended value is "purl".    |
+| ipAddress                    | requests | string        | false    | IP Address of the advocate. Used for fraud checks.                                               |
+| userAgent                    | requests | string        | false    | User Agent of the advocate. Used for fraud checks.                                               |
 
 #### Enumerated Values
 
 | Parameter | Value     |
 | --------- | --------- |
-| » channel | email     |
-| » channel | facebook  |
-| » channel | generic   |
-| » channel | instagram |
-| » channel | messenger |
-| » channel | sms       |
-| » channel | snap      |
-| » channel | twitter   |
-| » channel | purl      |
+| channel   | email     |
+| channel   | facebook  |
+| channel   | generic   |
+| channel   | instagram |
+| channel   | messenger |
+| channel   | sms       |
+| channel   | snap      |
+| channel   | twitter   |
+| channel   | purl      |
 
 > Example responses
 
@@ -955,23 +952,22 @@ Generate purchase event
 
 | Name                      | In                   | Type                           | Required | Description                                                                                          |
 | ------------------------- | -------------------- | ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- |
-| body                      | body                 | object                         | false    | none                                                                                                 |
-| » orderId                 | body                 | string                         | true     | Unique order id for the purchase.                                                                    |
-| » email                   | body                 | string(email)                  | false    | Email of the customer making the purchase.                                                           |
-| » customerId              | body                 | string                         | true     | Customer ID of the customer making the purchase.                                                     |
-| » firstName               | body                 | string                         | false    | First name of the customer making the purchase.                                                      |
-| » lastName                | body                 | string                         | false    | Last name of the customer making the purchase.                                                       |
-| » amount                  | body                 | number                         | true     | The order total for the purchase.                                                                    |
-| » currency                | body                 | string                         | true     | The currency used for the purchase (i.e. USD).                                                       |
-| » isNewCustomer           | body                 | boolean                        | false    | Whether or not the customer making the purchase has made a previous purchase.                        |
-| » couponCode              | body                 | string                         | false    | The coupon code used in the purchase, if any. Can be used to establish attribution with an advocate. |
-| » attributionId           | body                 | string                         | false    | The attribution ID from the advocate's referral, if any.                                             |
-| » referralCode            | body                 | string                         | false    | A referral code to be used to establish attribution with an advocate.                                |
-| » additionalProperties    | body                 | object                         | false    | Any additional properties you wish to track with the purchase.                                       |
-| »» **additionalProperty** | additionalProperties | string                         | false    | A key value pair indicating the property name and value.                                             |
-| » ipAddress               | body                 | string                         | false    | IP address of the customer making the purchase.                                                      |
-| » userAgent               | body                 | string                         | false    | User Agent of the customer making the purchase.                                                      |
-| » products                | body                 | [product](#product-parameters) | false    | An array of purchased products.                                                                      |
+| orderId                   | body                 | string                         | true     | Unique order id for the purchase.                                                                    |
+| email                     | body                 | string(email)                  | false    | Email of the customer making the purchase.                                                           |
+| customerId                | body                 | string                         | true     | Customer ID of the customer making the purchase.                                                     |
+| firstName                 | body                 | string                         | false    | First name of the customer making the purchase.                                                      |
+| lastName                  | body                 | string                         | false    | Last name of the customer making the purchase.                                                       |
+| amount                    | body                 | number                         | true     | The order total for the purchase.                                                                    |
+| currency                  | body                 | string                         | true     | The currency used for the purchase (i.e. USD).                                                       |
+| isNewCustomer             | body                 | boolean                        | false    | Whether or not the customer making the purchase has made a previous purchase.                        |
+| couponCode                | body                 | string                         | false    | The coupon code used in the purchase, if any. Can be used to establish attribution with an advocate. |
+| attributionId             | body                 | string                         | false    | The attribution ID from the advocate's referral, if any.                                             |
+| referralCode              | body                 | string                         | false    | A referral code to be used to establish attribution with an advocate.                                |
+| additionalProperties      | body                 | object                         | false    | Any additional properties you wish to track with the purchase.                                       |
+| **additionalProperty**    | additionalProperties | string                         | false    | A key value pair indicating the property name and value.                                             |
+| ipAddress                 | body                 | string                         | false    | IP address of the customer making the purchase.                                                      |
+| userAgent                 | body                 | string                         | false    | User Agent of the customer making the purchase.                                                      |
+| products                  | body                 | [product](#product-parameters) | false    | An array of purchased products.                                                                      |
 
 <h3 id="product-parameters">Product Parameters</h3>
 | Name     | Type    | Required | Restrictions | Description |
@@ -1220,23 +1216,22 @@ Generate sign-up event.
 
 | Name                      | In                   | Type          | Required | Description                                                                                        |
 | ------------------------- | -------------------- | ------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| body                      | body                 | object        | false    | none                                                                                               |
-| » email                   | body                 | string(email) | true     | Email of the user signing up.                                                                      |
-| » customerId              | body                 | string        | true     | Customer id of the user.                                                                           |
-| » firstName               | body                 | string        | false    | First name of the user.                                                                            |
-| » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
-| » couponCode              | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
-| » attributionId           | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
-| » referralCode            | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
-| » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with this signup.                                      |
-| »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and the value.                              |
-| » ipAddress               | body                 | string        | false    | The IP address of the user.                                                                        |
-| » userAgent               | body                 | string        | false    | The User Agent of the user.                                                                        |
-| » timezone                | body                 | string        | false    | Timezone of the customer. See [Timezones](#tocS_Timezone)                                          |
-| » birthday                | body                 | object        | false    | Birthday of the customer                                                                           |
-| »» day                    | birthday             | integer       | true     | Day the event should trigger. 1 - 31.                                                              |
-| »» month                  | birthday             | integer       | true     | Month the event should trigger. 1 - 12.                                                            |
-| »» year                   | birthday             | integer       | false    | Year the event will trigger (YYYY).                                                                |
+| email                     | body                 | string(email) | true     | Email of the user signing up.                                                                      |
+| customerId                | body                 | string        | true     | Customer id of the user.                                                                           |
+| firstName                 | body                 | string        | false    | First name of the user.                                                                            |
+| lastName                  | body                 | string        | false    | Last name of the user.                                                                             |
+| couponCode                | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
+| attributionId             | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
+| referralCode              | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
+| additionalProperties      | body                 | object        | false    | Any additional properties you wish to track with this signup.                                      |
+| **additionalProperty**    | additionalProperties | string        | false    | A key value pair representing the name of the property and the value.                              |
+| ipAddress                 | body                 | string        | false    | The IP address of the user.                                                                        |
+| userAgent                 | body                 | string        | false    | The User Agent of the user.                                                                        |
+| timezone                  | body                 | string        | false    | Timezone of the customer. See [Timezones](#tocS_Timezone)                                          |
+| birthday                  | body                 | object        | false    | Birthday of the customer                                                                           |
+| day                       | birthday             | integer       | true     | Day the event should trigger. 1 - 31.                                                              |
+| month                     | birthday             | integer       | true     | Month the event should trigger. 1 - 12.                                                            |
+| year                      | birthday             | integer       | false    | Year the event will trigger (YYYY).                                                                |
 
 > Example responses
 
@@ -1471,20 +1466,19 @@ Generate event
 
 | Name                      | In                   | Type          | Required | Description                                                                                        |
 | ------------------------- | -------------------- | ------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| body                      | body                 | object        | false    | none                                                                                               |
-| » email                   | body                 | string(email) | true     | Email of the user performing the event.                                                            |
-| » eventType               | body                 | string        | true     | The type of the event you are tracking (i.e. "newsletter signup", "video view", etc).              |
-| » customerId              | body                 | string        | false    | Customer id of the user performing the event.                                                      |
-| » isNewCustomer           | body                 | boolean       | false    | Whether or not the user is a new customer.                                                         |
-| » firstName               | body                 | string        | false    | First name of the user.                                                                            |
-| » lastName                | body                 | string        | false    | Last name of the user.                                                                             |
-| » couponCode              | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
-| » attributionId           | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
-| » referralCode            | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
-| » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with the event.                                        |
-| »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name and value of the additional property.                       |
-| » ipAddress               | body                 | string        | false    | IP Address of the user.                                                                            |
-| » userAgent               | body                 | string        | false    | User Agent of the user.                                                                            |
+| email                     | body                 | string(email) | true     | Email of the user performing the event.                                                            |
+| eventType                 | body                 | string        | true     | The type of the event you are tracking (i.e. "newsletter signup", "video view", etc).              |
+| customerId                | body                 | string        | false    | Customer id of the user performing the event.                                                      |
+| isNewCustomer             | body                 | boolean       | false    | Whether or not the user is a new customer.                                                         |
+| firstName                 | body                 | string        | false    | First name of the user.                                                                            |
+| lastName                  | body                 | string        | false    | Last name of the user.                                                                             |
+| couponCode                | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
+| attributionId             | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
+| referralCode              | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
+| additionalProperties      | body                 | object        | false    | Any additional properties you wish to track with the event.                                        |
+| **additionalProperty**    | additionalProperties | string        | false    | A key value pair representing the name and value of the additional property.                       |
+| ipAddress                 | body                 | string        | false    | IP Address of the user.                                                                            |
+| userAgent                 | body                 | string        | false    | User Agent of the user.                                                                            |
 
 > Example responses
 
@@ -1741,29 +1735,28 @@ Generate event
 
 | Name                      | In                   | Type          | Required | Description                                                           |
 | ------------------------- | -------------------- | ------------- | -------- | --------------------------------------------------------------------- |
-| body                      | body                 | object        | false    | none                                                                  |
-| » email                   | body                 | string(email) | true     | Email of the customer.                                                |
-| » customerId              | body                 | string        | true     | Your id for the customer.                                             |
-| » isNewCustomer           | body                 | boolean       | false    | Whether or not the customer has purchsed before.                      |
-| » firstName               | body                 | string        | false    | First name of the customer.                                           |
-| » lastName                | body                 | string        | false    | Last name of the customer.                                            |
-| » age                     | body                 | integer       | false    | Age of the customer.                                                  |
-| » gender                  | body                 | string        | false    | Gender of the customer.                                               |
-| » zipCode                 | body                 | string        | false    | Zip code of the customer.                                             |
-| » state                   | body                 | string        | false    | State the customer lives in.                                          |
-| » city                    | body                 | string        | false    | The customer's city.                                                  |
-| » category                | body                 | string        | false    | The category the customer is in, if any.                              |
-| » country                 | body                 | string        | false    | The customer's country.                                               |
-| » language                | body                 | string        | false    | The customer's preferred language.                                    |
-| » additionalProperties    | body                 | object        | false    | Any additional properties you wish to track with this customer.       |
-| »» **additionalProperty** | additionalProperties | string        | false    | A key value pair representing the name of the property and its value. |
-| » ipAddress               | body                 | string        | false    | IP address of the customer.                                           |
-| » userAgent               | body                 | string        | false    | User Agent of the customer.                                           |
-| » timezone                | body                 | string        | false    | Timezone of the customer. See [Timezones](#tocS_Timezone)             |
-| » birthday                | body                 | object        | false    | Birthday of the customer                                              |
-| »» day                    | birthday             | integer       | true     | Day the event should trigger. 1 - 31.                                 |
-| »» month                  | birthday             | integer       | true     | Month the event should trigger. 1 - 12                                |
-| »» year                   | birthday             | integer       | false    | Year the event will trigger (YYYY).                                   |
+| email                     | body                 | string(email) | true     | Email of the customer.                                                |
+| customerId                | body                 | string        | true     | Your id for the customer.                                             |
+| isNewCustomer             | body                 | boolean       | false    | Whether or not the customer has purchsed before.                      |
+| firstName                 | body                 | string        | false    | First name of the customer.                                           |
+| lastName                  | body                 | string        | false    | Last name of the customer.                                            |
+| age                       | body                 | integer       | false    | Age of the customer.                                                  |
+| gender                    | body                 | string        | false    | Gender of the customer.                                               |
+| zipCode                   | body                 | string        | false    | Zip code of the customer.                                             |
+| state                     | body                 | string        | false    | State the customer lives in.                                          |
+| city                      | body                 | string        | false    | The customer's city.                                                  |
+| category                  | body                 | string        | false    | The category the customer is in, if any.                              |
+| country                   | body                 | string        | false    | The customer's country.                                               |
+| language                  | body                 | string        | false    | The customer's preferred language.                                    |
+| additionalProperties      | body                 | object        | false    | Any additional properties you wish to track with this customer.       |
+| **additionalProperty**    | additionalProperties | string        | false    | A key value pair representing the name of the property and its value. |
+| ipAddress                 | body                 | string        | false    | IP address of the customer.                                           |
+| userAgent                 | body                 | string        | false    | User Agent of the customer.                                           |
+| timezone                  | body                 | string        | false    | Timezone of the customer. See [Timezones](#tocS_Timezone)             |
+| birthday                  | body                 | object        | false    | Birthday of the customer                                              |
+| day                       | birthday             | integer       | true     | Day the event should trigger. 1 - 31.                                 |
+| month                     | birthday             | integer       | true     | Month the event should trigger. 1 - 12                                |
+| year                      | birthday             | integer       | false    | Year the event will trigger (YYYY).                                   |
 
 > Example responses
 
@@ -2419,15 +2412,14 @@ Regisdter time based event.
 
 | Name          | In   | Type    | Required    | Description                                                                      |
 | ------------- | ---- | ------- | ----------- | -------------------------------------------------------------------------------- |
-| body          | body | any     | true        | none                                                                             |
-| » customerId  | body | string  | true        | Customer id of the user.                                                         |
-| » date        | body | object  | true        | The date the event is scheduled.                                                 |
-| »» day        | date | integer | true        | Day the event should trigger. 1 - 31.                                            |
-| »» month      | date | integer | true        | Month the event should trigger. 1 - 12                                           |
-| »» year       | date | integer | false       | Year the event will trigger (YYYY).                                              |
-| » metadata    | body | object  | false       | Any metadata to be included.                                                     |
-| » configId \* | body | string  | conditional | Id of the configuration. Required if kind is not provided.                       |
-| » kind \*     | body | string  | conditional | One of "birthday", "anniversary", "other". Required if configId is not provided. |
+| customerId    | body | string  | true        | Customer id of the user.                                                         |
+| date          | body | object  | true        | The date the event is scheduled.                                                 |
+| day           | date | integer | true        | Day the event should trigger. 1 - 31.                                            |
+| month         | date | integer | true        | Month the event should trigger. 1 - 12                                           |
+| year          | date | integer | false       | Year the event will trigger (YYYY).                                              |
+| metadata      | body | object  | false       | Any metadata to be included.                                                     |
+| configId   \* | body | string  | conditional | Id of the configuration. Required if kind is not provided.                       |
+| kind   \*     | body | string  | conditional | One of "birthday", "anniversary", "other". Required if configId is not provided. |
 
 > Example responses
 
