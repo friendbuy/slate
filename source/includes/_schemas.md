@@ -171,7 +171,7 @@
 | country                    | string        | false    | none         | none        |
 | language                   | string        | false    | none         | none        |
 | additionalProperties       | object        | false    | none         | none        |
-| » **additionalProperties** | string        | false    | none         | none        |
+| **additionalProperties**   | string        | false    | none         | none        |
 | ipAddress                  | string        | false    | none         | none        |
 | userAgent                  | string        | false    | none         | none        |
 
@@ -250,7 +250,7 @@
 | referralCode               | string                                                                  | false    | none         | none        |
 | products                   | [[purchaseEventRequest_products](#schemapurchaseeventrequest_products)] | false    | none         | none        |
 | additionalProperties       | object                                                                  | false    | none         | none        |
-| » **additionalProperties** | string                                                                  | false    | none         | none        |
+| **additionalProperties**   | string                                                                  | false    | none         | none        |
 | ipAddress                  | string                                                                  | false    | none         | none        |
 | userAgent                  | string                                                                  | false    | none         | none        |
 
@@ -313,7 +313,7 @@
 | attributionId              | string        | false    | none         | none        |
 | couponCode                 | string        | false    | none         | none        |
 | additionalProperties       | object        | false    | none         | none        |
-| » **additionalProperties** | string        | false    | none         | none        |
+| **additionalProperties**   | string        | false    | none         | none        |
 | ipAddress                  | string        | false    | none         | none        |
 | userAgent                  | string        | false    | none         | none        |
 
@@ -374,7 +374,7 @@
 | attributionId              | string        | false    | none         | none        |
 | couponCode                 | string        | false    | none         | none        |
 | additionalProperties       | object        | false    | none         | none        |
-| » **additionalProperties** | string        | false    | none         | none        |
+| **additionalProperties**   | string        | false    | none         | none        |
 | ipAddress                  | string        | false    | none         | none        |
 | userAgent                  | string        | false    | none         | none        |
 
