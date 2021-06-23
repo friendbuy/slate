@@ -204,7 +204,7 @@ func main() {
 | --------- | ----------------- | -------- | ------------ | ------------------------------------------------------- |
 | tokenType | string            | false    | none         | The type of the token generated (Bearer).               |
 | token     | string(byte)      | false    | none         | The token generated. You will use this to authenticate. |
-| expires   | string(date-time) | false    | none         | Expires 20 minutes after registered.                    |
+| expires   | string(date-time) | false    | none         | Expires 20 minutes after being registered.                    |
 
 <h3>Response Codes</h3>
 
@@ -4691,7 +4691,7 @@ bearerAuth
 <a id="tocStimezone"></a>
 <a id="tocstimezone"></a>
 
-All timezones are supported.
+All world timezones are supported.
 
 ```json
 "America/Adak"
@@ -4699,7 +4699,7 @@ All timezones are supported.
 
 #### Enumerated Values
 
-| Values                 |
+| Example Values                 |
 | ---------------------- |
 | America/Adak           |
 | America/Anchorage      |
