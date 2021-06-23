@@ -202,9 +202,9 @@ func main() {
 
 | Name      | Type              | Required | Restrictions | Description                                             |
 | --------- | ----------------- | -------- | ------------ | ------------------------------------------------------- |
-| tokenType | string            | false    | none         | The type of the token generated.                        |
+| tokenType | string            | false    | none         | The type of the token generated (Bearer).               |
 | token     | string(byte)      | false    | none         | The token generated. You will use this to authenticate. |
-| expires   | string(date-time) | false    | none         | Expires 24 hours after registered.                      |
+| expires   | string(date-time) | false    | none         | Expires 20 minutes after registered.                    |
 
 <h3>Response Codes</h3>
 
@@ -2003,13 +2003,13 @@ func main() {
 | shares        | [userDataGetResponse_shares](#tracked_shares_and_conversions_response)          | false    | none         | none        |
 | conversions   | [userDataGetResponse_shares](#tracked_shares_and_conversions_response)          | false    | none         | none        |
 
-<h3 id="#schemauserdatagetresponse_trackedevents">Tracked Event Response</h3>
+<h3 id="schemauserdatagetresponse_trackedevents">Tracked Event Response</h3>
 | Name | Type   | Required | Restrictions | Description |
 | ---- | ------ | -------- | ------------ | ----------- |
 | type | string | false    | none         | The type of the event.        |
 | url  | string | false    | none         | The url of the page the event was tracked on.        |
 
-<h3 id="#tracked_shares_and_conversions_response">Tracked Share/Conversion Response</h3>
+<h3 id="tracked_shares_and_conversions_response">Tracked Share/Conversion Response</h3>
 
 The same schema applies to both tracked shares and tracked conversions.
 
@@ -4691,161 +4691,157 @@ bearerAuth
 <a id="tocStimezone"></a>
 <a id="tocstimezone"></a>
 
+All timezones are supported.
+
 ```json
 "America/Adak"
 ```
 
-### Properties
-
-| Name        | Type   | Required | Restrictions | Description |
-| ----------- | ------ | -------- | ------------ | ----------- |
-| _anonymous_ | string | false    | none         | none        |
-
 #### Enumerated Values
 
-| Property    | Value                  |
-| ----------- | ---------------------- |
-| _anonymous_ | America/Adak           |
-| _anonymous_ | America/Anchorage      |
-| _anonymous_ | America/Anguilla       |
-| _anonymous_ | America/Antigua        |
-| _anonymous_ | America/Araguaina      |
-| _anonymous_ | America/Argentina      |
-| _anonymous_ | America/Aruba          |
-| _anonymous_ | America/Asuncion       |
-| _anonymous_ | America/Atikokan       |
-| _anonymous_ | America/Atka           |
-| _anonymous_ | America/Bahia          |
-| _anonymous_ | America/Bahia_Banderas |
-| _anonymous_ | America/Barbados       |
-| _anonymous_ | America/Belem          |
-| _anonymous_ | America/Belize         |
-| _anonymous_ | America/Blanc          |
-| _anonymous_ | America/Boa_Vista      |
-| _anonymous_ | America/Bogota         |
-| _anonymous_ | America/Boise          |
-| _anonymous_ | America/Buenos_Aires   |
-| _anonymous_ | America/Cambridge_Bay  |
-| _anonymous_ | America/Campo_Grande   |
-| _anonymous_ | America/Cancun         |
-| _anonymous_ | America/Caracas        |
-| _anonymous_ | America/Catamarca      |
-| _anonymous_ | America/Cayenne        |
-| _anonymous_ | America/Cayman         |
-| _anonymous_ | America/Chicago        |
-| _anonymous_ | America/Chihuahua      |
-| _anonymous_ | America/Coral_Harbour  |
-| _anonymous_ | America/Cordoba        |
-| _anonymous_ | America/Costa_Rica     |
-| _anonymous_ | America/Creston        |
-| _anonymous_ | America/Cuiaba         |
-| _anonymous_ | America/Curacao        |
-| _anonymous_ | America/Danmarkshavn   |
-| _anonymous_ | America/Dawson         |
-| _anonymous_ | America/Dawson_Creek   |
-| _anonymous_ | America/Denver         |
-| _anonymous_ | America/Detroit        |
-| _anonymous_ | America/Dominica       |
-| _anonymous_ | America/Edmonton       |
-| _anonymous_ | America/Eirunepe       |
-| _anonymous_ | America/El_Salvador    |
-| _anonymous_ | America/Ensenada       |
-| _anonymous_ | America/Fortaleza      |
-| _anonymous_ | America/Fort_Nelson    |
-| _anonymous_ | America/Fort_Wayne     |
-| _anonymous_ | America/Glace_Bay      |
-| _anonymous_ | America/Godthab        |
-| _anonymous_ | America/Goose_Bay      |
-| _anonymous_ | America/Grand_Turk     |
-| _anonymous_ | America/Grenada        |
-| _anonymous_ | America/Guadeloupe     |
-| _anonymous_ | America/Guatemala      |
-| _anonymous_ | America/Guayaquil      |
-| _anonymous_ | America/Guyana         |
-| _anonymous_ | America/Halifax        |
-| _anonymous_ | America/Havana         |
-| _anonymous_ | America/Hermosillo     |
-| _anonymous_ | America/Indiana        |
-| _anonymous_ | America/Indianapolis   |
-| _anonymous_ | America/Inuvik         |
-| _anonymous_ | America/Iqaluit        |
-| _anonymous_ | America/Jamaica        |
-| _anonymous_ | America/Jujuy          |
-| _anonymous_ | America/Juneau         |
-| _anonymous_ | America/Kentucky       |
-| _anonymous_ | America/Knox_IN        |
-| _anonymous_ | America/Kralendijk     |
-| _anonymous_ | America/La_Paz         |
-| _anonymous_ | America/Lima           |
-| _anonymous_ | America/Los_Angeles    |
-| _anonymous_ | America/Louisville     |
-| _anonymous_ | America/Lower_Princes  |
-| _anonymous_ | America/Maceio         |
-| _anonymous_ | America/Managua        |
-| _anonymous_ | America/Manaus         |
-| _anonymous_ | America/Marigot        |
-| _anonymous_ | America/Martinique     |
-| _anonymous_ | America/Matamoros      |
-| _anonymous_ | America/Mazatlan       |
-| _anonymous_ | America/Mendoza        |
-| _anonymous_ | America/Menominee      |
-| _anonymous_ | America/Merida         |
-| _anonymous_ | America/Metlakatla     |
-| _anonymous_ | America/Mexico_City    |
-| _anonymous_ | America/Miquelon       |
-| _anonymous_ | America/Moncton        |
-| _anonymous_ | America/Monterrey      |
-| _anonymous_ | America/Montevideo     |
-| _anonymous_ | America/Montreal       |
-| _anonymous_ | America/Montserrat     |
-| _anonymous_ | America/Nassau         |
-| _anonymous_ | America/New_York       |
-| _anonymous_ | America/Nipigon        |
-| _anonymous_ | America/Nome           |
-| _anonymous_ | America/Noronha        |
-| _anonymous_ | America/North_Dakota   |
-| _anonymous_ | America/Ojinaga        |
-| _anonymous_ | America/Panama         |
-| _anonymous_ | America/Pangnirtung    |
-| _anonymous_ | America/Paramaribo     |
-| _anonymous_ | America/Phoenix        |
-| _anonymous_ | America/Port           |
-| _anonymous_ | America/Porto_Acre     |
-| _anonymous_ | America/Porto_Velho    |
-| _anonymous_ | America/Port_of_Spain  |
-| _anonymous_ | America/Puerto_Rico    |
-| _anonymous_ | America/Punta_Arenas   |
-| _anonymous_ | America/Rainy_River    |
-| _anonymous_ | America/Rankin_Inlet   |
-| _anonymous_ | America/Recife         |
-| _anonymous_ | America/Regina         |
-| _anonymous_ | America/Resolute       |
-| _anonymous_ | America/Rio_Branco     |
-| _anonymous_ | America/Rosario        |
-| _anonymous_ | America/Santarem       |
-| _anonymous_ | America/Santa_Isabel   |
-| _anonymous_ | America/Santiago       |
-| _anonymous_ | America/Santo_Domingo  |
-| _anonymous_ | America/Sao_Paulo      |
-| _anonymous_ | America/Scoresbysund   |
-| _anonymous_ | America/Shiprock       |
-| _anonymous_ | America/Sitka          |
-| _anonymous_ | America/St_Barthelemy  |
-| _anonymous_ | America/St_Johns       |
-| _anonymous_ | America/St_Kitts       |
-| _anonymous_ | America/St_Lucia       |
-| _anonymous_ | America/St_Thomas      |
-| _anonymous_ | America/St_Vincent     |
-| _anonymous_ | America/Swift_Current  |
-| _anonymous_ | America/Tegucigalpa    |
-| _anonymous_ | America/Thule          |
-| _anonymous_ | America/Thunder_Bay    |
-| _anonymous_ | America/Tijuana        |
-| _anonymous_ | America/Toronto        |
-| _anonymous_ | America/Tortola        |
-| _anonymous_ | America/Vancouver      |
-| _anonymous_ | America/Virgin         |
-| _anonymous_ | America/Whitehorse     |
-| _anonymous_ | America/Winnipeg       |
-| _anonymous_ | America/Yakutat        |
-| _anonymous_ | America/Yellowknife    |
+| Values                 |
+| ---------------------- |
+| America/Adak           |
+| America/Anchorage      |
+| America/Anguilla       |
+| America/Antigua        |
+| America/Araguaina      |
+| America/Argentina      |
+| America/Aruba          |
+| America/Asuncion       |
+| America/Atikokan       |
+| America/Atka           |
+| America/Bahia          |
+| America/Bahia_Banderas |
+| America/Barbados       |
+| America/Belem          |
+| America/Belize         |
+| America/Blanc          |
+| America/Boa_Vista      |
+| America/Bogota         |
+| America/Boise          |
+| America/Buenos_Aires   |
+| America/Cambridge_Bay  |
+| America/Campo_Grande   |
+| America/Cancun         |
+| America/Caracas        |
+| America/Catamarca      |
+| America/Cayenne        |
+| America/Cayman         |
+| America/Chicago        |
+| America/Chihuahua      |
+| America/Coral_Harbour  |
+| America/Cordoba        |
+| America/Costa_Rica     |
+| America/Creston        |
+| America/Cuiaba         |
+| America/Curacao        |
+| America/Danmarkshavn   |
+| America/Dawson         |
+| America/Dawson_Creek   |
+| America/Denver         |
+| America/Detroit        |
+| America/Dominica       |
+| America/Edmonton       |
+| America/Eirunepe       |
+| America/El_Salvador    |
+| America/Ensenada       |
+| America/Fortaleza      |
+| America/Fort_Nelson    |
+| America/Fort_Wayne     |
+| America/Glace_Bay      |
+| America/Godthab        |
+| America/Goose_Bay      |
+| America/Grand_Turk     |
+| America/Grenada        |
+| America/Guadeloupe     |
+| America/Guatemala      |
+| America/Guayaquil      |
+| America/Guyana         |
+| America/Halifax        |
+| America/Havana         |
+| America/Hermosillo     |
+| America/Indiana        |
+| America/Indianapolis   |
+| America/Inuvik         |
+| America/Iqaluit        |
+| America/Jamaica        |
+| America/Jujuy          |
+| America/Juneau         |
+| America/Kentucky       |
+| America/Knox_IN        |
+| America/Kralendijk     |
+| America/La_Paz         |
+| America/Lima           |
+| America/Los_Angeles    |
+| America/Louisville     |
+| America/Lower_Princes  |
+| America/Maceio         |
+| America/Managua        |
+| America/Manaus         |
+| America/Marigot        |
+| America/Martinique     |
+| America/Matamoros      |
+| America/Mazatlan       |
+| America/Mendoza        |
+| America/Menominee      |
+| America/Merida         |
+| America/Metlakatla     |
+| America/Mexico_City    |
+| America/Miquelon       |
+| America/Moncton        |
+| America/Monterrey      |
+| America/Montevideo     |
+| America/Montreal       |
+| America/Montserrat     |
+| America/Nassau         |
+| America/New_York       |
+| America/Nipigon        |
+| America/Nome           |
+| America/Noronha        |
+| America/North_Dakota   |
+| America/Ojinaga        |
+| America/Panama         |
+| America/Pangnirtung    |
+| America/Paramaribo     |
+| America/Phoenix        |
+| America/Port           |
+| America/Porto_Acre     |
+| America/Porto_Velho    |
+| America/Port_of_Spain  |
+| America/Puerto_Rico    |
+| America/Punta_Arenas   |
+| America/Rainy_River    |
+| America/Rankin_Inlet   |
+| America/Recife         |
+| America/Regina         |
+| America/Resolute       |
+| America/Rio_Branco     |
+| America/Rosario        |
+| America/Santarem       |
+| America/Santa_Isabel   |
+| America/Santiago       |
+| America/Santo_Domingo  |
+| America/Sao_Paulo      |
+| America/Scoresbysund   |
+| America/Shiprock       |
+| America/Sitka          |
+| America/St_Barthelemy  |
+| America/St_Johns       |
+| America/St_Kitts       |
+| America/St_Lucia       |
+| America/St_Thomas      |
+| America/St_Vincent     |
+| America/Swift_Current  |
+| America/Tegucigalpa    |
+| America/Thule          |
+| America/Thunder_Bay    |
+| America/Tijuana        |
+| America/Toronto        |
+| America/Tortola        |
+| America/Vancouver      |
+| America/Virgin         |
+| America/Whitehorse     |
+| America/Winnipeg       |
+| America/Yakutat        |
+| America/Yellowknife    |
