@@ -2390,7 +2390,7 @@ func main() {
 
 _Scheduling an event to be scheduled some time in the future._
 
-Regisdter time based event.
+Register time based event.
 
 > Body parameter
 
