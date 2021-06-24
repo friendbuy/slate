@@ -45,6 +45,7 @@ After a reward is created, friendbuy will send a POST request to your system wit
 | Property  | type             | Description                                                                                                                           |
 | :-------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | id        | string           | The id of the webhook. Useful for troubleshooting.                                                                                    |
+| type      | "advocateReward" | Indicates that this is an advocate reward request.                                                                                    |
 | createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                       |
 | data      | array of objects | An array of webhook payloads, see definition below. Multiple rewards may fire in the same webhook if they happen in quick succession. |
 
@@ -111,6 +112,7 @@ After an email capture is created, Friendbuy will send a POST request to your sy
 | Property  | Type             | Description                                                                                                                           |
 | :-------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | id        | string           | The id of the webhook. Useful for troubleshooting.                                                                                    |
+| type      | "emailCapture"   | Indicates that this is an email capture request.                                                                                      |
 | createdOn | ISO timestamp    | The date and time the webhook request was made.                                                                                       |
 | data      | array of objects | An array of webhook payloads, see definition below. Multiple email captures may be sent in the same webhook call if they happen in quick succession. |
 
