@@ -773,13 +773,14 @@ To track a signup, make a **POST** request to **/event/account-sign-up**
 {
   "email": "user@example.com",
   "eventType": "recurring_order",
-  "customerId": "15529938"
+  "customerId": "15529938",
   "isNewCustomer": false,
   "firstName": "Test",
   "lastName": "User",
   "couponCode": "FRIEND-OFFER-244432",
   "attributionId": "2112d0a1-9d65-456e-a168-382ffe76965a",
-  "referralCode": "xhaf5hps"
+  "referralCode": "xhaf5hps",
+  "deduplicationId": "3fddb07e-5faa-49c3-9133-092c4e9e1dbe",
 }
 ```
 
@@ -799,6 +800,9 @@ In addition to tracking purchases and signups, Friendbuy also allows you to trac
 Tracking a custom event through the Merchant API works just like tracking a signup, except that you are also required to pass an eventType. The eventType can be any string that you want to use to denote the event you are tracking. You must configure this event type in your campaign settings in order for it to be properly tracked and attributed to a campaign.
 
 As with purchases and signups, Friendbuy will attempt to establish attribution to an advocate if a coupon code, an attribution id, or a referral code is present.
+
+When creating a custom event, we strongly recommend
+passing in a unique `deduplicationId`. This property must be a string.  We will not reward any subsequent custom events with the same type and deduplicationId. You can use any string you prefer as the `deduplicationId`, as long as it is unique. You should pick a unique identifier approriate to the event you are tracking.
 
 To track a custom event, make a **POST** request to **/event/custom**.
 

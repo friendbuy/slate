@@ -392,6 +392,7 @@ When a user creates an account, you can register this event using the `sign_up` 
       id: "welcome-new-user-video",
       userId: "user-123",
       email: "john.doe@example.com",
+      deduplicationId: "user-123:welcome-new-user-video",
     },
   ]);
 </script>
@@ -400,3 +401,6 @@ When a user creates an account, you can register this event using the `sign_up` 
 In addition to the previous "controlled" events, you may decide to add your own custom event. For example you could trigger a "video viewed" custom event at the end of a marketing video or "survey taken" at the end of a quiz.
 
 Note that a custom event will always send all the information it receives.
+
+When creating a custom event, we strongly recommend
+passing in a unique `deduplicationId`. This property must be a string.  We will not reward any subsequent custom events with the same type and `deduplicationId`.  You can use any string you prefer as the `deduplicationId`, as long as it is unique. You should pick a unique identifier approriate to the event you are tracking. 
