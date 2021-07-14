@@ -403,4 +403,4 @@ In addition to the previous "controlled" events, you may decide to add your own 
 Note that a custom event will always send all the information it receives.
 
 When creating a custom event, we strongly recommend
-passing in a unique `deduplicationId`. This property must be a string.  We will not reward any subsequent custom events with the same type and `deduplicationId`.  You can use any string you prefer as the `deduplicationId`, as long as it is unique. You should pick a unique identifier approriate to the event you are tracking. 
+passing in a unique `deduplicationId`. This property must be a string.  We will not reward any subsequent custom events with the same type and `deduplicationId`.  You can use any string you prefer as the `deduplicationId`, as long as it is unique. A unique identifier that directly ties to a specific event is recommended. Examples include: Phone numbers for a phone number capture event, email address for an email capture event. That way, when the phone number or email capture event is submitted more than once, the same identifier is used for each event

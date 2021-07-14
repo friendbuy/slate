@@ -1477,7 +1477,7 @@ Generate event
 | couponCode                | body                 | string        | false    | The coupon code used in the signup, if any. Can be used to establish attribution with an advocate. |
 | attributionId             | body                 | string        | false    | The attribution ID from the advocate's referral, if any.                                           |
 | referralCode              | body                 | string        | false    | A referral code to be used to establish attribution with an advocate.                              |
-| deduplicationId | body | string | false | A unique identifier used to prevent duplication of events. You should pick a unique identifier approriate to the event you are tracking. |
+| deduplicationId | body | string | false | A unique identifier used to prevent duplication of events. A unique identifier that directly ties to a specific event is recommended. Examples include: Phone numbers for a phone number capture event, email address for an email capture event. That way, when the phone number or email capture event is submitted more than once, the same identifier is used for each event. |
 | additionalProperties      | body                 | object        | false    | Any additional properties you wish to track with the event.                                        |
 | **additionalProperty**    | additionalProperties | string        | false    | A key value pair representing the name and value of the additional property.                       |
 | ipAddress                 | body                 | string        | false    | IP Address of the user.                                                                            |
